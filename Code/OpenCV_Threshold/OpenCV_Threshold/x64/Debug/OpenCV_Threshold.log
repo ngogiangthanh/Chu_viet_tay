@@ -1,4 +1,8 @@
-﻿  Segmentation.cpp
+﻿  Element.cpp
+  Extent.cpp
+  frmMain.cpp
+  Preprocess.cpp
+  Segmentation.cpp
 Segmentation.cpp(45): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(51): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(85): warning C4018: '<': signed/unsigned mismatch
@@ -29,7 +33,6 @@ Segmentation.cpp(329): warning C4018: '>': signed/unsigned mismatch
 Segmentation.cpp(330): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
 Segmentation.cpp(332): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(332): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-  frmMain.cpp
   Generating Code...
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
@@ -59,4 +62,33 @@ d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
   	Found an intrinsic not supported in managed code
-  OpenCV_Threshold.vcxproj -> C:\Users\thanh\Desktop\The_thesis_k21_m2514030\OpenCV_Threshold\x64\Debug\OpenCV_Threshold.exe
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+  OpenCV_Threshold.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Threshold\x64\Debug\OpenCV_Threshold.exe

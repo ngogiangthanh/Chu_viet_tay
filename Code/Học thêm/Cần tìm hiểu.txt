@@ -1,0 +1,42 @@
+﻿* và ** và *(*) là gì? con trỏ k được ql
+^ là gì? contrỏ quản lý
+bitmap là gì?
+mat là gì?
+
+hàm chuyển số thành chuỗi và ngược lại
+hàm chuyển cv::string thanh System::String và ngược lại
+hàm chuyển Mat thành bitmap và ngược lại
+
+Chạy nhiều lần phân ngưỡng và rút ra kết luận loại nào tốt, tham số ntn
+Liệt kê ra các phép toán cải thiện ảnh? quyết định nên thực hiện công đoạn nào trước?
+
+thứ tự kết hợp
+- Bộ lọc gauss (5,7), mean (5,7), average (ít hiệu quả) tùy loại hình
+- Lọc đường biên laplacian (5)
+- Phân ngưỡng (190-210) (inverted bin)
+
+đối với giấy ghi ô li phức tạp do xuất hiện dòng kẻ
+
+Kế hoạch tiếp theo:
+cài đặt thủ tục tách dòng và tách từ
+- Khởi tạo các dòng (tb)
+
+- Giải thuật leo đồi tìm cực trị địa phương
+-> hàm f(x) = projection(r,n);
+
+f(tham so x);
+tìm R = phù hợp
+xác định depth = ? (số lần lặp)
+hàm leo đồi ()-> trả về kết quả thấp nhất
+
+
+- Lọc những dòng không thỏa dk (tb)
+-> 3 điều kiện
+
+- Kẻ dòng (khó)
+	- Trường hợp điểm ảnh chắn ngang và hai dòng không chạm nhau
+	- Trường hợp điểm hai dòng chạm nhau
+- Tách chữ
+Nghiên cứu chuẩn hóa
+-
+

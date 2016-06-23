@@ -1,0 +1,21 @@
+Bitmap^ Engine::ConvertMatToBitmap(cv::Mat matToConvert) {
+	return gcnew Bitmap(matToConvert.cols, matToConvert.rows, 4*matToConvert.rows, System::Drawing::Imaging::PixelFormat::Format24bppRgb, IntPtr(matToConvert.data));
+}
+
+
+private ImageSource ConvertBitmapToImageSource(Bitmap imToConvert)
+{
+    Bitmap bmp = new Bitmap(imToConvert);
+    MemoryStream ms = new MemoryStream();
+    bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+ 
+    BitmapImage image = new BitmapImage();
+    image.BeginInit();
+    ms.Seek(0, SeekOrigin.Begin);
+    image.StreamSource = ms;
+    image.EndInit();
+ 
+    ImageSource sc = (ImageSource)image;
+ 
+    return sc;
+}

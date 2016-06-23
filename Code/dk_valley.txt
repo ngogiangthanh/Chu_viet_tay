@@ -1,0 +1,7 @@
+﻿điều kiện thung lũng
+//Dòng bình thường
+((y_valley == -1 | (j - y_valley) > SIZE_OF_HILL*0.75) & j_cur <= 1 & j_1 + j_2 + j_3 >= 6 & (j_1 <= j_2 & j_2 <= j_3) & (j_1 > 0 & j_2 > 0 & j_3 > 0)) ;
+//Dòng đầu điên
+(j == 0 & j_cur != 0 & j_1 + j_2 + j_3 >= 6 & (j_1 > 0 & j_2 > 0 & j_3 > 0));
+//Dòng bất bình thường
+((y_valley == -1 | (j - y_valley) > SIZE_OF_HILL*0.75) & j_cur <= 5 & j_1 + j_2 + j_3 >= 21 & (j_1 <= j_2 & j_2 <= j_3) & (j_1 > 0 & j_2 > 0 & j_3 > 0));

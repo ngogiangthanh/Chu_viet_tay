@@ -1,38 +1,37 @@
-﻿  Element.cpp
-  Extent.cpp
-  frmMain.cpp
-  Preprocess.cpp
-  Segmentation.cpp
+﻿  Segmentation.cpp
 Segmentation.cpp(45): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(51): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(85): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(92): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(97): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
 Segmentation.cpp(99): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-Segmentation.cpp(114): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(112): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(115): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(115): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(122): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(125): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(126): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(139): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(141): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(153): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(154): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(156): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(157): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(181): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(202): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(209): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(211): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(239): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(266): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(116): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(117): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(121): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(122): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(123): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(133): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(135): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(145): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(146): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(147): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(148): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(171): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(192): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(199): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(202): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(228): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(254): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(292): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(327): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(329): warning C4018: '>': signed/unsigned mismatch
-Segmentation.cpp(330): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(332): warning C4018: '<': signed/unsigned mismatch
-Segmentation.cpp(332): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(295): warning C4018: '>': signed/unsigned mismatch
+Segmentation.cpp(296): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(299): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(299): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(313): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(326): warning C4018: '<': signed/unsigned mismatch
+  frmMain.cpp
   Generating Code...
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
@@ -62,33 +61,4 @@ d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
   	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
-  	Found an intrinsic not supported in managed code
-  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
   OpenCV_Threshold.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Threshold\x64\Debug\OpenCV_Threshold.exe

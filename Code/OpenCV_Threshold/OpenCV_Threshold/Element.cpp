@@ -10,6 +10,7 @@ Element::Element()
 	this->minDistance = -1;//Nothing;
 	this->doneNext = false;
 	this->donePre = false;
+	this->punctuationMarks = false;
 }
 
 Element::Element(unsigned int x, unsigned int y, unsigned int intensity)
@@ -22,6 +23,7 @@ Element::Element(unsigned int x, unsigned int y, unsigned int intensity)
 	this->minDistance = -1;//Nothing;
 	this->doneNext = false;
 	this->donePre = false;
+	this->punctuationMarks = false;
 }
 
 unsigned int Element::getX()

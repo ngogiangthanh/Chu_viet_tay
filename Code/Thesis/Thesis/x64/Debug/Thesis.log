@@ -1,4 +1,10 @@
-﻿  MyForm.cpp
+﻿  A2DD.cpp
+  DTWSingle.cpp
+  Header.cpp
+Header.cpp(32): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Header.cpp(59): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  MyForm.cpp
+  Generating Code...
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
@@ -13,4 +19,19 @@ d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
   	Found an intrinsic not supported in managed code
-  Thesis.vcxproj -> C:\Users\thanh\Desktop\The_thesis_k21_m2514030\Thesis\x64\Debug\Thesis.exe
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+  .NETFramework,Version=v4.5.2.AssemblyAttributes.cpp
+  Thesis.vcxproj -> D:\Thesis\Chu_viet_tay\Code\Thesis\x64\Debug\Thesis.exe

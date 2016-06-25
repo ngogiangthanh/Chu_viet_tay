@@ -24,7 +24,7 @@
     <ClCompile Include="A2DD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Header.cpp">
+    <ClCompile Include="Obstructing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,7 +38,7 @@
     <ClInclude Include="A2DD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
+    <ClInclude Include="Obstructing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

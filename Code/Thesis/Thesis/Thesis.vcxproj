@@ -139,13 +139,13 @@
   <ItemGroup>
     <ClCompile Include="A2DD.cpp" />
     <ClCompile Include="DTWSingle.cpp" />
-    <ClCompile Include="Header.cpp" />
+    <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A2DD.h" />
     <ClInclude Include="DTWSingle.h" />
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="Obstructing.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -1,0 +1,35 @@
+﻿- y_u: minimum y
+- y_d: maximum y
+
+- Hai dòng chạm nhau: 
+	+ Khoảng cách từ y_u -> thung lũng đang xét > y_u -> thung lũng trước đó. Hoặc y_u < dòng của đỉnh đang xét.
+	+ Khoảng cách từ y_d -> thung lũng đang xét > y_d -> thung lũng tiếp theo. Hoặc y_d lớn hơn dòng của đỉnh đang xét.
+	+ Kẽ thẳng cắt ngang điểm chạm.
+- Hai dòng không chạm nhau:
+	+ Gắn kết liên thông phía trên: khoảng cách từ y_u -> thung lũng đang xét > y_u -> thung lũng trước đó. Hoặc y_u nhỏ hơn dòng của đỉnh đang xét.
+		=> Kẽ dòng vòng phía dưới liên thông trên.
+	+ Gắn kết liên thông phía dưới: khoảng cách từ y_d -> thung lũng đang xét > y_d -> thung lũng tiếp theo. Hoặc y_d lớn hơn dòng của đỉnh tiếp theo.
+		=> Kẽ dòng vòng phía trên liên thông dưới.
+	* KHÔNG gắn kết liên thông trên cũng không gắn kết liên thông dưới thì là dấu của dòng tiếp theo.
+		=> Kẽ vòng lên liên thông phía trên.
+
+y_current_valley;
+y_pre_valley;
+y_next_valley;
+
+distance(int,int);
+
+dong_cham_nhau:
+	return (distance(y_u, y_current_valley) > distance(y_u, y_pre_valley) && distance(y_d, y_current_valley) > distance(y_d, y_next_valley));
+
+if(!dong_cham_nhau)
+	if(distance(y_u, y_current_valley) > distance(y_u, y_pre_valley))
+		if(distance(y_d, y_current_valley) > distance(y_d, y_next_valley))
+			ke_xuong_duoi_phan_up;
+		else 
+			ke_xuong_duoi_phan_down;
+	else
+		ke_len_tren_phan_up;
+else
+	ke_cat_ngang_diem_cham;
+	

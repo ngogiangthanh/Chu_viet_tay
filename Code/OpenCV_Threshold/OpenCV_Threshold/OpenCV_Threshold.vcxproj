@@ -140,6 +140,7 @@
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="Extent.cpp" />
     <ClCompile Include="frmMain.cpp" />
+    <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="Preprocess.cpp" />
     <ClCompile Include="Segmentation.cpp" />
   </ItemGroup>
@@ -149,6 +150,7 @@
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Obstructing.h" />
     <ClInclude Include="Preprocess.h" />
     <ClInclude Include="Segmentation.h" />
   </ItemGroup>

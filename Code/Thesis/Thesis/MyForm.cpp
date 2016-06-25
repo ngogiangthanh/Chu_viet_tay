@@ -8,7 +8,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "Header.h"
+#include "Obstructing.h"
 
 using namespace cv;
 using namespace System;
@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 	//int width = (sizeof(b) / sizeof(*b));
 	//DTWDistance(a, b, height, width);
 
-	src = imread("D:\\test-copy.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	src = imread("D:\\Thesis\\Chu_viet_tay\\Outputs\\pre_pfp_v3.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 
 	if (!src.data)
 	{
@@ -45,11 +45,11 @@ int main(int argc, char** argv)
 	int x = 592;
 	int y = 302;
 
-	Header* head = new Header();
+	Obstructing* head = new Obstructing();
 	head->setSrc(src);
 	//head->setDist(src);
 	//head->downSource(x, y, y);
-	head->upSource(25, 9, 9);
+	head->allSource(25, 72);
 	//head->Dilation(180, 67, 180, 67);
 	//head->Dilation(269, 74, 269, 74);
 	//head->Dilation(305, 61, 305, 61);

@@ -18,11 +18,25 @@
     <ClCompile Include="Sample.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Dropbox\Master Degree\Giao trinh mon hoc\Luan Van Tot Nghiep (HK2 2015-2016)\1 - Đề cương\Đề cương tham khảo\DTWDistance_matrix.cpp">
+    <ClCompile Include="Obstructing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Dropbox\Master Degree\Giao trinh mon hoc\Luan Van Tot Nghiep (HK2 2015-2016)\1 - Đề cương\Đề cương tham khảo\DTWDistance_single.cpp">
+    <ClCompile Include="ShortestPath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DrawDecision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Obstructing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortestPath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawDecision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

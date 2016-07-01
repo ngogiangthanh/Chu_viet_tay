@@ -139,16 +139,20 @@
   <ItemGroup>
     <ClCompile Include="A2DD.cpp" />
     <ClCompile Include="DTWSingle.cpp" />
+    <ClCompile Include="MatModifies.cpp" />
     <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="ShortestPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A2DD.h" />
     <ClInclude Include="DTWSingle.h" />
+    <ClInclude Include="MatModifies.h" />
     <ClInclude Include="Obstructing.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ShortestPath.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">

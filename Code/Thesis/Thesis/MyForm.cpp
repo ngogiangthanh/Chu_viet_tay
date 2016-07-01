@@ -9,6 +9,8 @@
 #include "opencv2/xfeatures2d/nonfree.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "Obstructing.h"
+#include "ShortestPath.h"
+#include "MatModifies.h"
 
 using namespace cv;
 using namespace System;
@@ -19,18 +21,31 @@ Mat src;
 [STAThread]
 int main(int argc, char** argv)
 {
+
+
 	//float a[] = { 1,2,2,4 };
 	//float b[] = { 1,2,3 };
 	//int height = (sizeof(a) / sizeof(*a));
 	//int width = (sizeof(b) / sizeof(*b));
 	//DTWDistance(a, b, height, width);
 
-	src = imread("D:\\Thesis\\Chu_viet_tay\\Outputs\\pre_pfp_v3.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	src = imread("D:\\line.jpg", CV_LOAD_IMAGE_GRAYSCALE);
 
-	if (!src.data)
-	{
-		std::cout << " --(!) Error reading images " << std::endl; return -1;
-	}
+	//if (!src.data)
+	//{
+	//	std::cout << " --(!) Error reading images " << std::endl; return -1;
+	//}
+
+	//crop image
+	/*MatModifies* matmod = new MatModifies(src);
+	matmod->cropImage(8,11,124,51);
+
+	imwrite("D:\\rs.jpg", matmod->getSrc());
+
+	matmod->addRowBegin();
+	imwrite("D:\\rs_begin.jpg", matmod->getDist());
+	matmod->addRowEnd();*/
+	///end crop
 
 	//int dilation_type;
 	//if (dilation_elem == 0) { dilation_type = MORPH_RECT; }
@@ -42,14 +57,14 @@ int main(int argc, char** argv)
 	//dilate(src, dilation_dst, element);
 	//imshow("Dilation Demo", dilation_dst);
 
-	int x = 592;
-	int y = 302;
+	//int x = 592;
+	//int y = 302;
 
-	Obstructing* head = new Obstructing();
-	head->setSrc(src);
+	//Obstructing* head = new Obstructing();
+	//head->setSrc(src);
 	//head->setDist(src);
 	//head->downSource(x, y, y);
-	head->allSource(25, 72);
+	//head->allSource(25, 72);
 	//head->Dilation(180, 67, 180, 67);
 	//head->Dilation(269, 74, 269, 74);
 	//head->Dilation(305, 61, 305, 61);
@@ -59,9 +74,9 @@ int main(int argc, char** argv)
 	//imwrite("D:/dilation_org.jpg", head->getDist());
 	//dilate(head->getSrc(), head->getDist(), element);
 
-	imshow("Ảnh goc", head->getSrc());
+/*	imshow("Ảnh goc", head->getSrc());
 	imshow("Anh dilation", head->getDist());
-	imwrite("D:/dilation.jpg", head->getDist());
+	imwrite("D:/dilation.jpg", head->getDist());*/
 
 	////-- Step 1: Detect the keypoints using SURF Detector
 
@@ -84,6 +99,37 @@ int main(int argc, char** argv)
 	//imshow("Ảnh gốc", src);
 	//imshow("SURF", img_surf);
 	//imshow("SIFT", img_sift);
+
+	Mat khoitao = src.clone();
+	khoitao.convertTo(khoitao, CV_8UC1);
+
+	State A, goal;
+	ShortestPath* shortest = new ShortestPath(khoitao);
+
+	shortest->init(A, goal);
+	shortest->setX_goal(30);
+	shortest->setY_goal(59);
+	cout << "Please waitting..." << endl;
+	Node* X = shortest->Astar(A, goal);
+	State result = X->state;
+
+	vector<Node*> results;
+	while (X != 0)
+	{
+		results.push_back(X);
+		X = X->parent;
+	}
+
+	int size = results.size();
+	int i;
+	Mat rs = src.clone();
+	rs.convertTo(rs, CV_8UC1);
+	for (i = size - 1; i >= 0; i--)
+	{
+		rs.at<uchar>(results[i]->state.rows, results[i]->state.cols) = 220;
+	}
+
+	imwrite("D:\\duongdi.jpg", rs);
 
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);

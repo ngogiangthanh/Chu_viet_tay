@@ -22,9 +22,6 @@ Mat Obstructing::getSrc()
 
 Mat Obstructing::getDist()
 {
-	string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/" + to_string(x) + "_" + to_string(y) + ".jpg";
-	//Luu vao o cung
-	imwrite(savePath, this->dist);
 	return this->dist;
 }
 
@@ -53,10 +50,15 @@ System::Void Obstructing::setSrc(Mat src)
 	cvtColor(this->dist, this->dist, COLOR_BGR2GRAY);
 }
 
-System::Void Obstructing::allSource(int x, int y)
+System::Void Obstructing::allSource(int x, int y, int& x_min, int& y_min, int& x_max, int& y_max)
 {
 	Scalar intensity_dist = this->dist.at<uchar>(y, x);
 	if (x >= 1 & y >= 1 & x < width - 1 & intensity_dist[0] == 255) {
+		if (x < x_min) x_min = x;
+		else if (x > x_max) x_max = x;
+		if (y < y_min) y_min = y;
+		else if (y > y_max) y_max = y;
+
 		this->dist.at<uchar>(y, x) = 0;
 		Scalar top, right, left, bot;
 		top = this->src.at<uchar>(y - 1, x);//top
@@ -65,16 +67,16 @@ System::Void Obstructing::allSource(int x, int y)
 		bot = this->src.at<uchar>(y + 1, x);//bottom
 
 		if ((top[0] <= 200)) {
-			allSource(x, y - 1);
+			allSource(x, y - 1, x_min, y_min, x_max, y_max);
 		}
 		if ((left[0] <= 200)) {
-			allSource(x - 1, y);
+			allSource(x - 1, y, x_min, y_min, x_max, y_max);
 		}
 		if ((right[0] <= 200)) {
-			allSource(x + 1, y);
+			allSource(x + 1, y, x_min, y_min, x_max, y_max);
 		}
 		if ((bot[0] <= 200)) {
-			allSource(x, y + 1);
+			allSource(x, y + 1, x_min, y_min, x_max, y_max);
 		}
 	}
 	return System::Void();

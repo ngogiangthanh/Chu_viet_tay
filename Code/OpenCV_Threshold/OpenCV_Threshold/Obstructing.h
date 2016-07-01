@@ -22,7 +22,7 @@ public: Obstructing();
 		System::Void setY(int);
 		System::Void setDist(Mat);
 		System::Void setSrc(Mat);
-		System::Void allSource(int, int);
+		System::Void allSource(int, int, int&, int&, int&, int&);
 		System::Void upSource(int, int, int);
 		System::Void downSource(int, int, int);
 };

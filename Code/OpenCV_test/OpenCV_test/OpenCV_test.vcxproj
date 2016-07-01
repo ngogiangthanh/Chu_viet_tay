@@ -151,9 +151,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\Dropbox\Master Degree\Giao trinh mon hoc\Luan Van Tot Nghiep (HK2 2015-2016)\1 - Đề cương\Đề cương tham khảo\DTWDistance_matrix.cpp" />
-    <ClCompile Include="..\..\..\Dropbox\Master Degree\Giao trinh mon hoc\Luan Van Tot Nghiep (HK2 2015-2016)\1 - Đề cương\Đề cương tham khảo\DTWDistance_single.cpp" />
+    <ClCompile Include="DrawDecision.cpp" />
+    <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="Sample.cpp" />
+    <ClCompile Include="ShortestPath.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DrawDecision.h" />
+    <ClInclude Include="Obstructing.h" />
+    <ClInclude Include="ShortestPath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

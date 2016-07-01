@@ -29,7 +29,12 @@ if(!dong_cham_nhau)
 		else 
 			ke_xuong_duoi_phan_down;
 	else
-		ke_len_tren_phan_up;
+		if(distance(y_d, y_current_valley) > distance(y_d, y_next_valley))
+			ke_xuong_duoi_phan_up;
+		else
+			ke_len_tren_phan_up;
 else
 	ke_cat_ngang_diem_cham;
+
+=========================================================================================================================================================
 	

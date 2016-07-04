@@ -111,7 +111,7 @@ int main(int argc, char** argv)
 	shortest->setY_goal(59);
 	cout << "Please waitting..." << endl;
 	Node* X = shortest->Astar(A, goal);
-	State result = X->state;
+//	State result = X->state;
 
 	vector<Node*> results;
 	while (X != 0)

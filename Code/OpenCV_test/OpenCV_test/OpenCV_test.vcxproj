@@ -152,12 +152,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DrawDecision.cpp" />
+    <ClCompile Include="Element.cpp" />
+    <ClCompile Include="Elements.cpp" />
+    <ClCompile Include="MatModifies.cpp" />
     <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="ShortestPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawDecision.h" />
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="Elements.h" />
+    <ClInclude Include="MatModifies.h" />
     <ClInclude Include="Obstructing.h" />
     <ClInclude Include="ShortestPath.h" />
   </ItemGroup>

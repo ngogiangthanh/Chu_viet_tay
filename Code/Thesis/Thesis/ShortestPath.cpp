@@ -18,22 +18,42 @@ Mat ShortestPath::getData()
 
 void ShortestPath::setX_goal(int x)
 {
-	this->x_goal = x;
+	this->x_end = x;
 }
 
 void ShortestPath::setY_goal(int y)
 {
-	this->y_goal = y;
+	this->y_end = y;
+}
+
+void ShortestPath::setX_start(int x)
+{
+	this->x_start = x;
+}
+
+void ShortestPath::setY_start(int y)
+{
+	this->y_start = y;
 }
 
 int ShortestPath::getX_goal()
 {
-	return this->x_goal;
+	return this->x_end;
 }
 
 int ShortestPath::getY_goal()
 {
-	return this->y_goal;
+	return this->y_end;
+}
+
+int ShortestPath::getX_start()
+{
+	return this->x_start;
+}
+
+int ShortestPath::getY_start()
+{
+	return this->y_start;
 }
 
 float ShortestPath::HeuristicEstimate(State A, State Goal)
@@ -118,11 +138,11 @@ int ShortestPath::Contains(const vector<Node*> q, const State& S)
 
 void ShortestPath::init(State & S, State &Goal)
 {
-	S.cols = 8;
-	S.rows = 59;
+	S.cols = this->x_start;
+	S.rows = this->y_start;
 
-	Goal.cols = this->x_goal;
-	Goal.rows = this->y_goal;
+	Goal.cols = this->x_end;
+	Goal.rows = this->y_end;
 }
 
 Node * ShortestPath::Astar(State start, State goal)
@@ -137,7 +157,7 @@ Node * ShortestPath::Astar(State start, State goal)
 
 	while (!frontier.empty()) {
 		Node* node = min(frontier);
-		if (node->state.rows == this->y_goal && node->state.cols == this->x_goal)
+		if (node->state.rows == this->y_end && node->state.cols == this->x_end)
 			return node;
 		explored.push_back(node);
 

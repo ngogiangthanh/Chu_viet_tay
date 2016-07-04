@@ -1,16 +1,8 @@
-﻿  ShortestPath.cpp
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(20): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(26): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.cpp(41): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.cpp(46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.cpp(112): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Sample.cpp
-  Obstructing.cpp
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.cpp(145): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.cpp(146): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.cpp(150): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.cpp(151): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-  DrawDecision.cpp
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\drawdecision.cpp(82): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-  Generating Code...
+﻿  Sample.cpp
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(11): warning C4005: 'UP': macro redefinition
+  d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.h(9): note: see previous definition of 'UP'
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(12): warning C4005: 'DOWN': macro redefinition
+  d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.h(10): note: see previous definition of 'DOWN'
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(21): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(27): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
   OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_test\x64\Debug\OpenCV_test.exe

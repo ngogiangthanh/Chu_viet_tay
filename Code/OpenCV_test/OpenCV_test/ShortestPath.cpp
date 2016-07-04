@@ -18,22 +18,52 @@ Mat ShortestPath::getData()
 
 void ShortestPath::setX_goal(int x)
 {
-	this->x_goal = x;
+	this->x_end = x;
 }
 
 void ShortestPath::setY_goal(int y)
 {
-	this->y_goal = y;
+	this->y_end = y;
+}
+
+void ShortestPath::setX_start(int x)
+{
+	this->x_start = x;
+}
+
+void ShortestPath::setY_start(int y)
+{
+	this->y_start = y;
 }
 
 int ShortestPath::getX_goal()
 {
-	return this->x_goal;
+	return this->x_end;
 }
 
 int ShortestPath::getY_goal()
 {
-	return this->y_goal;
+	return this->y_end;
+}
+
+int ShortestPath::getX_start()
+{
+	return this->x_start;
+}
+
+int ShortestPath::getY_start()
+{
+	return this->y_start;
+}
+
+State ShortestPath::getStart()
+{
+	return this->start;
+}
+
+State ShortestPath::getGoal()
+{
+	return this->goal;
 }
 
 float ShortestPath::HeuristicEstimate(State A, State Goal)
@@ -116,16 +146,16 @@ int ShortestPath::Contains(const vector<Node*> q, const State& S)
 	return -1;
 }
 
-void ShortestPath::init(State & S, State &Goal)
+void ShortestPath::init()
 {
-	S.cols = 8;
-	S.rows = 59;
+	this->start.cols = this->x_start;
+	this->start.rows = this->y_start;
 
-	Goal.cols = this->x_goal;
-	Goal.rows = this->y_goal;
+	this->goal.cols = this->x_end;
+	this->goal.rows = this->y_end;
 }
 
-Node * ShortestPath::Astar(State start, State goal)
+Node * ShortestPath::Astar()
 {
 	Node* root = new Node;
 	root->state = start;
@@ -137,7 +167,7 @@ Node * ShortestPath::Astar(State start, State goal)
 
 	while (!frontier.empty()) {
 		Node* node = min(frontier);
-		if (node->state.rows == this->y_goal && node->state.cols == this->x_goal)
+		if (node->state.rows == this->y_end && node->state.cols == this->x_end)
 			return node;
 		explored.push_back(node);
 
@@ -174,4 +204,26 @@ Node * ShortestPath::Astar(State start, State goal)
 		}
 	}
 	return 0;
+}
+
+Elements* ShortestPath::print(Node* X, Mat& rs, int x, int y)
+{
+	vector<Node*> results;
+	Elements* elements = new Elements();
+	while (X != 0)
+	{
+		results.push_back(X);
+		X = X->parent;
+	}
+
+	int size = results.size();
+	int i;
+	rs.convertTo(rs, CV_8UC1);
+	for (i = size - 1; i >= 0; i--)
+	{
+		rs.at<uchar>(y + results[i]->state.rows, x + results[i]->state.cols) = 200;
+		elements->add(new Element(x + results[i]->state.cols, y + results[i]->state.rows));
+	}
+
+	return elements;
 }

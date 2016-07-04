@@ -29,15 +29,20 @@ class ShortestPath
 private:
 	Mat data;
 	cv::Size size;
-	int x_goal, y_goal;
+	int x_end, y_end;
+	int x_start, y_start;
 public:
 	ShortestPath(Mat);
 	void setData(Mat);
 	Mat getData();
 	void setX_goal(int);
 	void setY_goal(int);
+	void setX_start(int);
+	void setY_start(int);
 	int getX_goal();
 	int getY_goal();
+	int getX_start();
+	int getY_start();
 	float HeuristicEstimate(State, State );
 	Node* min(vector<Node*>&);
 	bool Move(State, State &, int);

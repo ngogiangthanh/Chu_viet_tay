@@ -2,6 +2,11 @@
 #ifndef Element_H
 #define Element_H
 
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/xfeatures2d/nonfree.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+
 class Element {
 private:
 	unsigned int x;
@@ -14,7 +19,9 @@ private:
 	bool doneNext;
 	bool donePre;
 	bool punctuationMarks;
+	bool iterator;
 	double minDistance;
+	cv::Point corner;
 
 public:
 	Element();
@@ -24,12 +31,14 @@ public:
 	unsigned int getOrder();
 	unsigned int getIntensity();
 	double getMinDistance();
+	cv::Point getCorner();
 	long getIdxConnect();
 	bool isValley();
 	bool isTop();
 	bool isDoneNext();
 	bool isDonePre();
 	bool isPunctuationMarks();
+	bool isIterator();
 	void setX(unsigned int);
 	void setY(unsigned int);
 	void setOrder(unsigned int);
@@ -41,6 +50,8 @@ public:
 	void setDonePre(bool);
 	void setMinDistance(double);
 	void setPunctuationMarks(bool);
+	void setIterator(bool);
+	void setCorner(cv::Point);
 };
 
 #endif

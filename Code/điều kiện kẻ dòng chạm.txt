@@ -1,4 +1,6 @@
-﻿- y_u: minimum y
+﻿
+=========================================DRAW DECISION===========================================================================
+- y_u: minimum y
 - y_d: maximum y
 
 - Hai dòng chạm nhau: 
@@ -36,5 +38,54 @@ if(!dong_cham_nhau)
 else
 	ke_cat_ngang_diem_cham;
 
-=========================================================================================================================================================
-	
+======================================OBSTRUCTING===================================================================================
+anchor_point (x,y) => obstructing: width = this->width
+	height = min(pre_valley) & max(next_valley).
+
+crop_function:
+	pre_condition: 
+		if(has_pre_valley & has_next_valley)
+			imgsource <- crop(0, y_pre_valley , this->width, y_next_valley - y_pre_valley);
+		else_if(!has_pre_valley & has_next_valley)
+			imgsource <- crop(0, 0, this->width, y_next_valley);
+		else_if(has_pre_valley & !has_next_valley)
+			imgsource <- crop(0, y_pre_valley , this->width, this->height - y_pre_valley);
+		else
+			do_nothing;
+	post_condition:
+			create_white_image_same_size_crop_image -> dist;
+
+transit_function: y' = y - y_pre_valley. ex: y = 500, y_pre_valley = 460 => y' = 500 - 460 = 40
+	x' = x.
+otherwise,	x_min', y_min', x_max', y_max' => x_min, y_min, x_max, y_max
+		x_min = x_min'
+		y_min = y_min' + y_pre_valley
+		x_max = x_max'
+		y_max = y_max' + y_pre_valley
+obstructing_options:
+	ALL: do_nothing;
+	DOWN:
+		i <= y' - 1 -> set = white;
+	UP:
+		i >= y' + 1 -> set = white;
+
+Input: mat src, y_pre_valley, y_next_valley
+
+output: mat dist, with max and min points
+
+===========================================FIND PREVIOUS AND NEXT VALLEYS=====================================================================================
+
+Input vector<vector<Point>>, Point curr
+Output: Point pre, Point next
+
+1. find where is the point curr?
+2. get line previous point curr -> assign name pre_line;
+3. get line next point curr -> assign name next_line;
+4. iterator vector pre_line
+	4.1 has_NOT pre_line -> Point pre is (0,0);
+	4.2 if(pre_element.x > curr.x in the first time)
+		return pre_element.before;
+5. iterator vector next_line
+	5.1 has_NOT next_line -> Point next is(0, this->height);
+	5.2 if(next_element.x > curr_x in the first time)
+		return next_element.before;

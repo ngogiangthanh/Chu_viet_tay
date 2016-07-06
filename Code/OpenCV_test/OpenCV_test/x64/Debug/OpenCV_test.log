@@ -1,8 +1,8 @@
 ﻿  Sample.cpp
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(11): warning C4005: 'UP': macro redefinition
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(10): warning C4005: 'UP': macro redefinition
   d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.h(9): note: see previous definition of 'UP'
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(12): warning C4005: 'DOWN': macro redefinition
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(11): warning C4005: 'DOWN': macro redefinition
   d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\obstructing.h(10): note: see previous definition of 'DOWN'
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(21): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
-d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(27): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(20): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\shortestpath.h(26): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
   OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_test\x64\Debug\OpenCV_test.exe

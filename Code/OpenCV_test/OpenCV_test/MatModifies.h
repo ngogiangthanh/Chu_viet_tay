@@ -5,7 +5,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
-#include "Elements.h"
 
 using namespace cv;
 using namespace std;
@@ -17,6 +16,6 @@ public:
 		Mat cropImage(Mat, int, int, int, int);
 		Mat addRowEnd(Mat);
 		Mat addRowBegin(Mat);
-		Mat cut(Mat, Elements*, Elements*);
+		Mat cut(Mat, vector<Point>*);
 };
 #endif

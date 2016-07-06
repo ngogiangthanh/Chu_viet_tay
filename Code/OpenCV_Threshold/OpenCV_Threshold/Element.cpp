@@ -11,6 +11,8 @@ Element::Element()
 	this->doneNext = false;
 	this->donePre = false;
 	this->punctuationMarks = false;
+	this->idxConnect = -1;
+	this->iterator = false;
 }
 
 Element::Element(unsigned int x, unsigned int y, unsigned int intensity)
@@ -24,6 +26,8 @@ Element::Element(unsigned int x, unsigned int y, unsigned int intensity)
 	this->doneNext = false;
 	this->donePre = false;
 	this->punctuationMarks = false;
+	this->idxConnect = -1;
+	this->iterator = false;
 }
 
 unsigned int Element::getX()
@@ -49,6 +53,11 @@ unsigned int Element::getIntensity()
 double Element::getMinDistance()
 {
 	return this->minDistance;
+}
+
+cv::Point Element::getCorner()
+{
+	return this->corner;
 }
 
 long Element::getIdxConnect()
@@ -79,6 +88,11 @@ bool Element::isDonePre()
 bool Element::isPunctuationMarks()
 {
 	return this->punctuationMarks;
+}
+
+bool Element::isIterator()
+{
+	return this->iterator;
 }
 
 void Element::setX(unsigned int x)
@@ -134,4 +148,14 @@ void Element::setMinDistance(double minDistance)
 void Element::setPunctuationMarks(bool punctuationMarks)
 {
 	this->punctuationMarks = punctuationMarks;
+}
+
+void Element::setIterator(bool iterator)
+{
+	this->iterator = iterator;
+}
+
+void Element::setCorner(cv::Point corner)
+{
+	this->corner = corner;
 }

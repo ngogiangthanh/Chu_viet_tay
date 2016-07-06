@@ -15,123 +15,177 @@ int Obstructing::getY()
 	return this->y;
 }
 
+int Obstructing::getXMin()
+{
+	return this->x_min;
+}
+
+int Obstructing::getYMin()
+{
+	return this->y_min;
+}
+
+int Obstructing::getXMax()
+{
+	return this->x_max;
+}
+
+int Obstructing::getYMax()
+{
+	return this->y_max;
+}
+
+int Obstructing::getHeightOfLines()
+{
+	return this->height_of_lines;
+}
+
 Mat Obstructing::getSrc()
 {
 	return this->src;
 }
 
-Mat Obstructing::getDist()
-{
-	return this->dist;
-}
-
-System::Void Obstructing::setX(int x)
+void Obstructing::setX(int x)
 {
 	this->x = x;
 }
 
-System::Void Obstructing::setY(int y)
+void Obstructing::setY(int y)
 {
 	this->y = y;
 }
 
-System::Void Obstructing::setDist(Mat dist)
+void Obstructing::setXMin(int x)
 {
-	this->dist = dist.clone();
+	this->x_min = x;
 }
 
-System::Void Obstructing::setSrc(Mat src)
+void Obstructing::setYMin(int y)
+{
+	this->y_min = y;
+}
+
+void Obstructing::setXMax(int x)
+{
+	this->x_max = x;
+}
+
+void Obstructing::setYMax(int y)
+{
+	this->y_max = y;
+}
+
+
+void Obstructing::setSrc(Mat src)
 {
 	this->src = src.clone();
 	cv::Size s = this->src.size();
 	this->height = s.height;
 	this->width = s.width;
-	this->dist = Mat(this->height, this->width, CV_8UC3, Scalar(255, 255, 255));
-	cvtColor(this->dist, this->dist, COLOR_BGR2GRAY);
 }
 
-System::Void Obstructing::allSource(int x, int y, int& x_min, int& y_min, int& x_max, int& y_max)
+void Obstructing::setHeightOfLines(int height_of_lines)
 {
-	Scalar intensity_dist = this->dist.at<uchar>(y, x);
-	if (x >= 1 & y >= 1 & x < width - 1 & intensity_dist[0] == 255) {
-		if (x < x_min) x_min = x;
-		else if (x > x_max) x_max = x;
-		if (y < y_min) y_min = y;
-		else if (y > y_max) y_max = y;
-
-		this->dist.at<uchar>(y, x) = 0;
-		Scalar top, right, left, bot;
-		top = this->src.at<uchar>(y - 1, x);//top
-		left = this->src.at<uchar>(y, x - 1);//left
-		right = this->src.at<uchar>(y, x + 1);//right
-		bot = this->src.at<uchar>(y + 1, x);//bottom
-
-		if ((top[0] <= 200)) {
-			allSource(x, y - 1, x_min, y_min, x_max, y_max);
-		}
-		if ((left[0] <= 200)) {
-			allSource(x - 1, y, x_min, y_min, x_max, y_max);
-		}
-		if ((right[0] <= 200)) {
-			allSource(x + 1, y, x_min, y_min, x_max, y_max);
-		}
-		if ((bot[0] <= 200)) {
-			allSource(x, y + 1, x_min, y_min, x_max, y_max);
-		}
-	}
-	return System::Void();
+	this->height_of_lines = height_of_lines;
 }
 
-System::Void Obstructing::upSource(int x, int y, int y_limit)
+Mat Obstructing::obstructing(int obstructing_type)
 {
-	Scalar intensity_dist = this->dist.at<uchar>(y, x);
-	if (x >= 1 & y >= 1 & x < width - 1 & y <= y_limit & intensity_dist[0] == 255) {
-		this->dist.at<uchar>(y, x) = 0;
-		Scalar top, right, left, bot;
-		top = this->src.at<uchar>(y - 1, x);//top
-		left = this->src.at<uchar>(y, x - 1);//left
-		right = this->src.at<uchar>(y, x + 1);//right
-		bot = this->src.at<uchar>(y + 1, x);//bottom
+	int y_r = y - this->height_of_lines * 2;
+	cv::Rect crop(0,(y_r < 0) ? 0 : y_r, this->width, this->height_of_lines * 4);
+	Mat imageUpSource = this->src(crop);
+	this->height = imageUpSource.size().height;
 
-		if ((top[0] <= 200)) {
-			upSource(x, y - 1, y_limit);
-		}
-		if ((left[0] <= 200)) {
-			upSource(x - 1, y, y_limit);
-		}
-		if ((right[0] <= 200)) {
-			upSource(x + 1, y, y_limit);
-		}
-		if ((bot[0] <= 200)) {
-			upSource(x, y + 1, y_limit);
-		}
+	Mat dist = Mat(imageUpSource.size(), CV_8UC1, Scalar(255, 255, 255));
+
+	
+	switch (obstructing_type) {
+	case UP:
+		for (int i = 0; i < this->width; i++)
+			for (int j = this->height_of_lines * 2 + 1 ; j < this->height; j++)
+				imageUpSource.at<uchar>(j, i) = 255;
+		break;
+	case DOWN:
+		for (int i = 0; i < this->width; i++)
+			for (int j = 0; j < this->height_of_lines * 2; j++)
+				imageUpSource.at<uchar>(j, i) = 255;
+		break;
 	}
-	return System::Void();
+	dist.at<uchar>(y_r, this->x) = 0;
+
+
+	long count_cur = 1;
+	long count_pre = 0;
+	while (count_cur != count_pre) {
+
+		Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+		erode(dist, dist, element);
+		bitwise_or(dist, imageUpSource, dist);
+		count_pre = count_cur;
+		count_cur = 0;
+		for (int i = 0; i < this->width; i++)
+			for (int j = 0; j < this->height; j++) {
+				cv::Scalar intentsity = dist.at<uchar>(j, i);
+				if (intentsity[0] <= THRESHOLD)
+					count_cur++;
+			}
+	}
+	this->findMaxMin(dist);
+
+	imwrite("D:/src.jpg", imageUpSource);
+	imwrite("D:/dist.jpg", dist);
+	return dist;
 }
 
-System::Void Obstructing::downSource(int x, int y, int y_limit)
+void Obstructing::findMaxMin(Mat dist)
 {
-	Scalar intensity_dist = dist.at<uchar>(y, x);
-	if (x >= 1 & y >= y_limit & x < width - 1 & y < height - 1 & intensity_dist[0] == 255) {
-		dist.at<uchar>(y, x) = 0;
-		Scalar top, right, left, bot;
-		top = src.at<uchar>(y - 1, x);//top
-		left = src.at<uchar>(y, x - 1);//left
-		right = src.at<uchar>(y, x + 1);//right
-		bot = src.at<uchar>(y + 1, x);//bottom
+	//Init max min
+	this->x_min = this->width;
+	this->y_min = this->height;
+	this->x_max = 0;
+	this->y_max = 0;
+	//Find
+	for (int i = 0; i < this->width; i++)
+		for (int j = 0; j < this->height; j++) {
+			cv::Scalar intentsity = dist.at<uchar>(j, i);
+			if (intentsity[0] <= THRESHOLD) {
+				if (i < this->x_min) this->x_min = i;
+				else if (i > this->x_max) this->x_max = i;
+				if (j < this->y_min) this->y_min = j;
+				else if (j > this->y_max) this->y_max = j;
+			}
+		}
+}
 
-		if ((top[0] <= 200)) {
-			downSource(x, y - 1, y_limit);
-		}
-		if ((left[0] <= 200)) {
-			downSource(x - 1, y, y_limit);
-		}
-		if ((right[0] <= 200)) {
-			downSource(x + 1, y, y_limit);
-		}
-		if ((bot[0] <= 200)) {
-			downSource(x, y + 1, y_limit);
-		}
+bool Obstructing::isCut()
+{
+	cv::Scalar pix_curr = this->src.at<uchar>(this->y, this->x);
+	if (pix_curr[0] <= THRESHOLD) {
+		cv::Scalar pix_top = (this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x) : pix_curr;
+		cv::Scalar pix_tl = (this->x - 1 >= 0 & this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x - 1) : pix_curr;
+		cv::Scalar pix_tr = (this->x + 1 < this->width & this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x + 1) : pix_curr;
+		cv::Scalar pix_l = (this->x - 1 >= 0) ? this->src.at<uchar>(this->y, this->x - 1) : pix_curr;
+		cv::Scalar pix_r = (this->x + 1 < this->width) ? this->src.at<uchar>(this->y, this->x + 1) : pix_curr;
+		cv::Scalar pix_bot = (this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x) : pix_curr;
+		cv::Scalar pix_bl = (this->x - 1 >= 0 & this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x - 1) : pix_curr;
+		cv::Scalar pix_br = (this->x + 1 < this->width & this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x + 1) : pix_curr;
+		//check condition
+		if (pix_top[0] <= THRESHOLD)
+			return true;
+		if (pix_tl[0] <= THRESHOLD)
+			return true;
+		if (pix_tr[0] <= THRESHOLD)
+			return true;
+		if (pix_l[0] <= THRESHOLD)
+			return true;
+		if (pix_r[0] <= THRESHOLD)
+			return true;
+		if (pix_bot[0] <= THRESHOLD)
+			return true;
+		if (pix_bl[0] <= THRESHOLD)
+			return true;
+		if (pix_br[0] <= THRESHOLD)
+			return true;
 	}
-	return System::Void();
+	return false;
 }

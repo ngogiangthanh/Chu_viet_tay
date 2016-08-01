@@ -1,8 +1,4 @@
-﻿  Obstructing.cpp
-Obstructing.cpp(165): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Obstructing.cpp(166): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Obstructing.cpp(170): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Obstructing.cpp(171): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+﻿  Preprocess.cpp
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:

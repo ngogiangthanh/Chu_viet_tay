@@ -43,6 +43,12 @@ void Preprocess::laplacian(unsigned int kernel_size, int ddepth, int scale, int 
 	cv::Laplacian(this->src, this->dist, ddepth, kernel_size, scale, delta, BORDER_DEFAULT);
 }
 
+void Preprocess::adaptive(bool adaptiveMethod, bool thresholdType,unsigned int blockSize, unsigned int C)
+{
+	int MAX_VALUE = 255;
+	cv::adaptiveThreshold(this->src, this->dist, MAX_VALUE, (adaptiveMethod ? ADAPTIVE_THRESH_GAUSSIAN_C : ADAPTIVE_THRESH_MEAN_C), (thresholdType ? THRESH_BINARY_INV : THRESH_BINARY), blockSize, C);
+}
+
 void Preprocess::setSrc(Mat src)
 {
 	this->src = src.clone();

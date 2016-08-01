@@ -40,6 +40,7 @@ public:
 	Mat obstructing(int);
 	void findMaxMin(Mat);
 	bool isCut();
+	Point convert(Point, int, bool);
 };
 #endif // ! _Obstruting_H_
 

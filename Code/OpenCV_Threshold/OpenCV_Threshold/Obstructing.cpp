@@ -1,4 +1,4 @@
-#include "Obstructing.h"
+﻿#include "Obstructing.h"
 
 Obstructing::Obstructing()
 {
@@ -88,7 +88,10 @@ void Obstructing::setHeightOfLines(int height_of_lines)
 {
 	this->height_of_lines = height_of_lines;
 }
-
+/*
+* Trả về thành phần liên thông trong hàng với height = [pre_valley, next_valley].
+*
+*/
 Mat Obstructing::obstructing(int obstructing_type)
 {
 	int y_r = y - this->height_of_lines * 2;
@@ -188,4 +191,17 @@ bool Obstructing::isCut()
 			return true;
 	}
 	return false;
+}
+
+cv::Point Obstructing::convert(cv::Point srcPoint, int y_pre_valley, bool isInvert)
+{
+	cv::Point result;
+	result.x = srcPoint.x;
+	//Invert is converting from ' to orginal
+	if (isInvert)
+		result.y = srcPoint.x + y_pre_valley;
+	else
+		result.y = srcPoint.x - y_pre_valley;
+
+	return result;
 }

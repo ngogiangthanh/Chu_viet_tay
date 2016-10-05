@@ -5,6 +5,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include <iostream>
 #define ALL 0
 #define UP 1
 #define DOWN 2
@@ -34,9 +35,10 @@ public:
 		void setXMax(int);
 		void setYMax(int);
 		void setSrc(Mat);
-		Mat obstructing(int);
+		Mat obstructing(int, int, int);
 		void findMaxMin(Mat);
 		bool isCut();
+		int convert(int, int, bool);
 };
 #endif // ! _Obstruting_H_
 

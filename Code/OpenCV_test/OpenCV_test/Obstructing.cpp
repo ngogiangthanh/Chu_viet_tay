@@ -79,27 +79,35 @@ void Obstructing::setSrc(Mat src)
 	this->width = s.width;
 }
 
-Mat Obstructing::obstructing(int obstructing_type)
+Mat Obstructing::obstructing(int obstructing_type, int y_min, int y_max)
 {
-	Mat dist = Mat(this->height, this->width, CV_8UC1, Scalar(255, 255, 255));
-	Mat imageUpSource = this->src.clone();
+	//int y_r = y - this->height_of_lines * 2;
 
+	cv::Rect crop(0, y_min, this->width, y_max - y_min);
+	Mat imageUpSource = this->src(crop);
+	this->height = y_max - y_min;
+
+	Mat dist = Mat(imageUpSource.size(), CV_8UC1, Scalar(255, 255, 255));
+
+	this->y = this->convert(this->y, y_min, false);
 	switch (obstructing_type) {
-		case UP:
-			for (int i = 0; i < this->width; i++)
-				for (int j = y + 1; j < this->height; j++)
-					imageUpSource.at<uchar>(j, i) = 255;
-			break;
-		case DOWN:
-			for (int i = 0; i < this->width; i++)
-				for (int j = 0; j < y; j++)
-					imageUpSource.at<uchar>(j, i) = 255;
-			break;
+	case UP:
+		for (int i = 0; i < this->width; i++)
+			for (int j = this->y + 1; j < this->height; j++)
+				imageUpSource.at<uchar>(j, i) = 255;
+		break;
+	case DOWN:
+		for (int i = 0; i < this->width; i++)
+			for (int j = 0; j < this->y - 1; j++)
+				imageUpSource.at<uchar>(j, i) = 255;
+		break;
 	}
+
 	dist.at<uchar>(this->y, this->x) = 0;
+
 	long count_cur = 1;
 	long count_pre = 0;
-	while(count_cur != count_pre){
+	while (count_cur != count_pre) {
 
 		Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
 		erode(dist, dist, element);
@@ -109,11 +117,20 @@ Mat Obstructing::obstructing(int obstructing_type)
 		for (int i = 0; i < this->width; i++)
 			for (int j = 0; j < this->height; j++) {
 				cv::Scalar intentsity = dist.at<uchar>(j, i);
-				if (intentsity[0] <= THRESHOLD)
+				
+				if (intentsity[0] <= THRESHOLD) {
 					count_cur++;
+				}
 			}
 	}
 	this->findMaxMin(dist);
+	cout << "x_min" << this->x_min << endl;
+	cout << "y_min" << this->y_min << endl;
+	cout << "x_max" << this->x_max << endl;
+	cout << "y_max" << this->y_max << endl;
+
+	imwrite("D:\\src.jpg", imageUpSource);
+	imwrite("D:\\dist.jpg", dist);
 	return dist;
 }
 
@@ -168,4 +185,16 @@ bool Obstructing::isCut()
 			return true;
 	}
 	return false;
+}
+
+int Obstructing::convert(int y, int y_pre_valley, bool isInvert)
+{
+	cv::Point result;
+	//Invert is converting from ' to orginal
+	if (isInvert)
+		y = y + y_pre_valley;
+	else
+		y = y - y_pre_valley;
+
+	return y;
 }

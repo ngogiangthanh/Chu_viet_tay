@@ -92,30 +92,29 @@ void Obstructing::setHeightOfLines(int height_of_lines)
 * Trả về thành phần liên thông trong hàng với height = [pre_valley, next_valley].
 *
 */
-Mat Obstructing::obstructing(int obstructing_type)
+Mat Obstructing::obstructing(int obstructing_type, int y_min, int y_max)
 {
-	int y_r = y - this->height_of_lines * 2;
-	cv::Rect crop(0,(y_r < 0) ? 0 : y_r, this->width, this->height_of_lines * 4);
+	cv::Rect crop(0, y_min, this->width, y_max - y_min);
 	Mat imageUpSource = this->src(crop);
-	this->height = imageUpSource.size().height;
+	this->height = y_max - y_min;
 
 	Mat dist = Mat(imageUpSource.size(), CV_8UC1, Scalar(255, 255, 255));
 
-	
+	this->y = this->convert(this->y, y_min, false);
 	switch (obstructing_type) {
 	case UP:
 		for (int i = 0; i < this->width; i++)
-			for (int j = this->height_of_lines * 2 + 1 ; j < this->height; j++)
+			for (int j = this->y + 1; j < this->height; j++)
 				imageUpSource.at<uchar>(j, i) = 255;
 		break;
 	case DOWN:
 		for (int i = 0; i < this->width; i++)
-			for (int j = 0; j < this->height_of_lines * 2; j++)
+			for (int j = 0; j < this->y - 1; j++)
 				imageUpSource.at<uchar>(j, i) = 255;
 		break;
 	}
-	dist.at<uchar>(y_r, this->x) = 0;
 
+	dist.at<uchar>(this->y, this->x) = 0;
 
 	long count_cur = 1;
 	long count_pre = 0;
@@ -129,14 +128,14 @@ Mat Obstructing::obstructing(int obstructing_type)
 		for (int i = 0; i < this->width; i++)
 			for (int j = 0; j < this->height; j++) {
 				cv::Scalar intentsity = dist.at<uchar>(j, i);
-				if (intentsity[0] <= THRESHOLD)
+
+				if (intentsity[0] <= THRESHOLD) {
 					count_cur++;
+				}
 			}
 	}
 	this->findMaxMin(dist);
 
-	imwrite("D:/src.jpg", imageUpSource);
-	imwrite("D:/dist.jpg", dist);
 	return dist;
 }
 
@@ -193,15 +192,14 @@ bool Obstructing::isCut()
 	return false;
 }
 
-cv::Point Obstructing::convert(cv::Point srcPoint, int y_pre_valley, bool isInvert)
+int Obstructing::convert(int y, int y_pre_valley, bool isInvert)
 {
 	cv::Point result;
-	result.x = srcPoint.x;
 	//Invert is converting from ' to orginal
 	if (isInvert)
-		result.y = srcPoint.x + y_pre_valley;
+		y = y + y_pre_valley;
 	else
-		result.y = srcPoint.x - y_pre_valley;
+		y = y - y_pre_valley;
 
-	return result;
+	return y;
 }

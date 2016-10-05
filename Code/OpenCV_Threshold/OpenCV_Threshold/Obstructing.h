@@ -37,10 +37,10 @@ public:
 	void setYMax(int);
 	void setSrc(Mat);
 	void setHeightOfLines(int);
-	Mat obstructing(int);
+	Mat obstructing(int, int, int);
 	void findMaxMin(Mat);
 	bool isCut();
-	Point convert(Point, int, bool);
+	int convert(int, int, bool);
 };
 #endif // ! _Obstruting_H_
 

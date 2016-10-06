@@ -5,42 +5,57 @@ Projection::Projection(Mat src)
 	this->source = src.clone();
 }
 
-void Projection::getFeatures()
+void Projection::cal_pp()
 {
 	Size size = this->source.size();
-	this->projection_pts = new int[size.width];
-	long sum_intensity = 0;
+	this->pp = new int[size.width];
+	long summing = 0;
 
 	for (int i = 0; i < size.width; i++)
 	{
-		sum_intensity = 0;
+		summing = 0;
 		for (int j = 0; j < size.height; j++)
 		{
-			sum_intensity += 255 - this->source.at<uchar>(j, i);
+			summing += 255 - this->I(j, i);
 		}//for j
-		this->projection_pts[i] = sum_intensity;
+		this->pp[i] = summing;
 		if (i == 0)
-			max = sum_intensity;
-		else if (max < sum_intensity) max = sum_intensity;
+			this->max = summing;
+		else if (this->max < summing)
+			this->max = summing;
 	}//for i
 }
 
-int* Projection::getProjection_pts()
+int Projection::I(int r, int c)
+{
+	Scalar intensity = this->source.at<uchar>(r, c);
+	return intensity[0];
+}
+
+int* Projection::get_pp()
+{
+	return this->pp;
+}
+
+void Projection::draw_pp()
 {
 	//normalization height to [0..1]
-		//initial
-		Mat dist = Mat(100, this->source.size().width, CV_8UC3, Scalar(255, 255, 255));
-		float unit = max / 100;
-		int size_of_projection = this->source.size().width;
-		cout << "with=" << size_of_projection << endl;
-		for (int i = 0; i < size_of_projection; i++)
-		{
-			cout << "" << this->projection_pts[i] << endl;
-			cv::line(dist, cv::Point(i, 100), cv::Point(i, round(this->projection_pts[i] / unit)), Scalar(0, 0, 0));
-		}
-		
-		imshow("Projection profile", dist);
-		imwrite("D:/save.jpg", dist);
-	//return the result
-	return this->projection_pts;
+	Size size = this->source.size();
+	Mat dist = Mat(NORMALIZATION_PP, size.width, CV_8UC3, Scalar(255, 255, 255));
+	int size_of_pp = size.width;
+
+	for (int i = 0; i < size_of_pp; i++)
+	{
+		this->pp[i] = ceil(this->pp[i] * NORMALIZATION_PP / max);
+	}//end for i
+
+	for (int i = 0; i < size_of_pp - 1; i++)
+	{
+		cv::line(dist, Point(i, this->pp[i]), Point(i, this->pp[i + 1]), Scalar(0, 0, 0));
+	}//end for i
+
+	imshow("Projection profile", dist);
+	imwrite("D:/save_pp.jpg", dist);
 }
+
+

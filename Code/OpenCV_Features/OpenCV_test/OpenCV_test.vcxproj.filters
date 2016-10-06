@@ -21,15 +21,27 @@
     <ClCompile Include="Projection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Word_Up.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Word_lp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Projection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Word.h">
+    <ClInclude Include="SIFT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SIFT.h">
+    <ClInclude Include="SURF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_Up.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_lp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

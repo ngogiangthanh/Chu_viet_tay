@@ -154,11 +154,15 @@
   <ItemGroup>
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
+    <ClCompile Include="Word_lp.cpp" />
+    <ClCompile Include="Word_Up.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SIFT.h" />
-    <ClInclude Include="Word.h" />
+    <ClInclude Include="SURF.h" />
+    <ClInclude Include="Word_lp.h" />
+    <ClInclude Include="Word_Up.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

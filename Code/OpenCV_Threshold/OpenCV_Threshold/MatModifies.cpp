@@ -90,7 +90,7 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 			//cv::line(src, cv::Point(x_line, y_start), cv::Point(x_line_end, y_start), Scalar(200, 200, 200));
 			cout << "Bat dau cat tai x,y = " << x_line_end << ", "<< start.y << endl;
 			//Lấy kết quả phần liên thông
-			Mat rs = obstructing.obstructing(ALL);
+			Mat rs = obstructing.obstructing(ALL,1,1);
 			x_max = obstructing.getXMax();
 			y_max = obstructing.getYMax();
 			x_min = obstructing.getXMin();

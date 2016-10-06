@@ -15,7 +15,7 @@ void readme();
 /** @function main */
 int main(int argc, char** argv)
 {
-	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dlsn.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 
 	if (!img_org.data)
 	{

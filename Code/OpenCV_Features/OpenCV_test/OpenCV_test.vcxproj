@@ -152,12 +152,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DTW.cpp" />
+    <ClCompile Include="nbit.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="Word_lp.cpp" />
     <ClCompile Include="Word_Up.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DTW.h" />
+    <ClInclude Include="nbit.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SIFT.h" />
     <ClInclude Include="SURF.h" />

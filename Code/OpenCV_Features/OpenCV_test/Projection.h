@@ -1,13 +1,14 @@
 #pragma once
-#include "iostream"
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
+#include <iostream>
 #include <opencv2/opencv.hpp>
 #define NORMALIZATION_PP 100
 
 using namespace cv;
 using namespace std;
-
+/*
+* Class name: Projection
+* Description: Projection profile - the frist feature that use to DTW algorithm
+*/
 class Projection
 {
 	private:

@@ -1,7 +1,5 @@
 #pragma once
-#include "iostream"
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
+#include <iostream>
 #include <opencv2/opencv.hpp>
 #define THRESHOLD_INK_UP 180
 #define NORMALIZATION_WP_UP 100
@@ -10,7 +8,10 @@
 
 using namespace cv;
 using namespace std;
-
+/*
+* Class name: Word_Up
+* Description: Upper word profile - the second feature that use to DTW algorithm
+*/
 class Word_Up
 {
 private:

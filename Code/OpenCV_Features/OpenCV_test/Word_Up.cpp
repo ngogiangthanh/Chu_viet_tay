@@ -14,24 +14,25 @@ void Word_Up::cal_up()
 	for (int i = 0; i < size.width; i++)
 	{
 		int j = 0;
+		//argmin - loop from 0 to size.height - 1 and get the index of the first ink value
 		for (j = 0; j < size.height; j++)
 		{
 			if (this->is_ink(j, i) == 0)
 			{
 				value = j;
 				this->up[i] = value;
+
+				//find maximum value in array pp
 				if (i == 0)
 					this->max = value;
 				else if (this->max < value)
 					this->max = value;
 				break;
-			}
+			}//end if
 		}//for j
 		//undefined situation
-		if (j == size.height){
+		if (j == size.height)
 			this->up[i] = -1;
-			cout << "undefined" << endl;
-		}
 	}//for i
 }
 
@@ -48,8 +49,8 @@ int* Word_Up::get_up()
 
 void Word_Up::interpolated_value()
 {
+	//find two nearest and get avg from them
 	Size size = this->source.size();
-	// find two nearest and get avg from them
 	int first = - 1;
 	int second = -1;
 	for (int i = 0; i < size.width; i++)
@@ -63,7 +64,7 @@ void Word_Up::interpolated_value()
 						first = k;
 					else if (abs(first - i) > abs(k - i))
 						first = k;
-				}
+				}//end if
 
 			//find the second
 			for (int k = 0; k < size.width; k++)
@@ -73,31 +74,29 @@ void Word_Up::interpolated_value()
 						second = k;
 					else if (abs(second - i) > abs(k - i))
 						second = k;
-				}
-					
-			cout << "[F=" << first << "-" << this->up[first] << "][M=" << i << "-" << (this->up[first] + this->up[second]) / 2 << "][S=" << second << "-" << this->up[second] << "]"<<endl;
+				}//end if
+			
+			//Calculating the average value
 			this->up[i] = (this->up[first] + this->up[second]) / 2;
-		}
+		}//end if
 }
 
 void Word_Up::draw_up()
 {
-	this->interpolated_value();
 	//normalization height to [0..1]
 	Size size = this->source.size();
-	Mat dist = Mat(NORMALIZATION_WP_UP, size.width, CV_8UC3, Scalar(255, 255, 255));
 	int size_of_pp = size.width;
+	Mat dist = Mat(NORMALIZATION_WP_UP, size.width, CV_8UC3, Scalar(255, 255, 255));
 
+	//Calculating
 	for (int i = 0; i < size_of_pp; i++)
-	{
-		this->up[i] = this->up[i] * NORMALIZATION_WP_UP / max;
-	}//end for i
+		this->up[i] = (this->up[i] * (NORMALIZATION_WP_UP - 1)) / max;
 
+	//Drawing
 	for (int i = 0; i < size_of_pp - 1; i++)
-	{
 		cv::line(dist, Point(i, this->up[i]), Point(i, this->up[i + 1]), Scalar(0, 0, 0));
-	}//end for i
 
-	imshow("Word_Up upper profile", dist);
+	//Show
+	imshow("Word upper profile", dist);
 	imwrite("D:/save_up.jpg", dist);
 }

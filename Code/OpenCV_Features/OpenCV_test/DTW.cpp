@@ -1,80 +1,110 @@
-
 #include "DTW.h"
 
-using namespace std;
-template<class T, size_t N>
-size_t size(T(&)[N]) { return N; }
-/*
-int DTWDistance(s: array [1..n], t: array [1..m]) {
-DTW := array [0..n, 0..m]
+Dynamic_Time_Warping::Dynamic_Time_Warping(int* x, int* y, int M, int N)
+{
+	this->M = M;
+	this->N = N;
+	this->X = new int[this->M];
+	this->Y = new int[this->N];
 
-for i := 1 to n
-DTW[i, 0] := infinity
-for i := 1 to m
-DTW[0, i] := infinity
-DTW[0, 0] := 0
+	for (int i = 0; i < this->M; i++)
+		this->X[i] = x[i];
 
-for i := 1 to n
-for j := 1 to m
-cost:= d(s[i], t[j])
-DTW[i, j] := cost + minimum(DTW[i-1, j  ],    // insertion
-DTW[i  , j-1],    // deletion
-DTW[i-1, j-1])    // match
+	for (int i = 0; i < this->N; i++)
+		this->Y[i] = y[i];
 
-return DTW[n, m]
+	this->DTW = new float*[this->M];
+	for (int h = 0; h < this->M; h++)
+	{
+		this->DTW[h] = new float[this->N];
+		for (int w = 0; w < this->N; w++)
+			this->DTW[h][w] = -1;//infinity
+	}
 }
-*/
 
-float minimum(float insertion, float deletion, float match)
+float Dynamic_Time_Warping::minimum(float insertion, float deletion, float match)
 {
 	return (insertion > deletion) ? (deletion > match) ? match : deletion : (insertion > match) ? match : insertion;
 }
 
-void DTWDistance(int X[], int Y[], int M, int N) {
-	float** DTW = 0;
+float Dynamic_Time_Warping::max(int a, int b)
+{
+	return (a > b) ? a : b;
+}
 
-	DTW = new float*[M];
-	for (int h = 0; h < M; h++)
-	{
-		DTW[h] = new float[N];
-		for (int w = 0; w < N; w++)
-			DTW[h][w] = 0;
-	}
-	DTW[0][0] = pow(X[0] - Y[0], 2);
+float Dynamic_Time_Warping::min(int a, int b)
+{
+	return (a > b) ? b : a;
+}
 
-	for (int h = 1; h < M; h++)
-		DTW[h][0] = DTW[h - 1][0] + pow(X[h] - Y[0], 2);
-
+float Dynamic_Time_Warping::DTWDistance() {
+	this->DTW[0][0] = pow(this->X[0] - this->Y[0], 2);
+	//
+	for (int h = 1; h < this->M; h++)
+		this->DTW[h][0] = this->DTW[h - 1][0] + pow(this->X[h] - this->Y[0], 2);
+	//
 	for (int w = 1; w < N; w++)
-		DTW[0][w] = DTW[0][w - 1] + pow(X[0] - Y[w], 2);
-
+		this->DTW[0][w] = this->DTW[0][w - 1] + pow(this->X[0] - this->Y[w], 2);
+	//
 	float cost;
-	for (int h = 1; h < M; h++)
-		for (int w = 1; w < N; w++)
+	for (int h = 1; h < this->M; h++)
+		for (int w = 1; w < this->N; w++)
 		{
-			cost = pow(X[h - 1] - Y[w - 1], 2);
-			DTW[h][w] = cost + minimum(DTW[h - 1][w],
-				DTW[h][w - 1],
-				DTW[h - 1][w - 1]);
+			cost = pow(this->X[h] - this->Y[w], 2);
+			this->DTW[h][w] = cost + minimum(this->DTW[h - 1][w],
+				this->DTW[h][w - 1],
+				this->DTW[h - 1][w - 1]);
 		}
 
-	cout << "Result: \n";
-	for (int h = 0; h < M; h++)
+	/*cout << "Result: \n";
+	for (int h = 0; h < this->M; h++)
 	{
-		for (int w = 0; w < N; w++)
-			cout << DTW[h][w] << "  ";
+		for (int w = 0; w < this->N; w++)
+			cout << this->DTW[h][w] << "  ";
 		cout << "\n";
-	}
+	}*/
+
+	return (float)(this->DTW[M - 1][N - 1]);
+}
+
+float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
+	r = this->max(r,abs(this->N - this->M));
+	//
+	this->DTW[0][0] = pow(this->X[0] - this->Y[0], 2);
+	//
+	for (int h = 1; h < this->M; h++)
+		this->DTW[h][0] = this->DTW[h - 1][0] + pow(this->X[h] - this->Y[0], 2);
+	//
+	for (int w = 1; w < this->N; w++)
+		this->DTW[0][w] = this->DTW[0][w - 1] + pow(this->X[0] - this->Y[w], 2);
+	//
+	float cost;
+	for (int h = 1; h < this->M; h++)
+		for (int w = this->max(1, h - r); w < this->min(this->N, h + r); w++)
+		{
+			cost = pow(X[h] - Y[w], 2);
+			this->DTW[h][w] = cost + this->minimum(this->DTW[h - 1][w],
+				this->DTW[h][w - 1],
+				this->DTW[h - 1][w - 1]);
+		}
+
+	//cout << "Result: \n";
+	//for (int h = 0; h < this->M; h++)
+	//{
+	//	for (int w = 0; w < this->N; w++)
+	//		cout << this->DTW[h][w] << "  ";
+	//	cout << "\n";
+	//}
+
+	return (float)(this->DTW[M - 1][N - 1]);
+}
+
+void Dynamic_Time_Warping::setX(int* x)
+{
 
 }
 
-//int main()
-//{
-//	float a[] = {1,2,2};
-//	float b[] = {1,2,3};
-//    int height = (sizeof(a)/sizeof(*a));
-//    int width = (sizeof(b)/sizeof(*b));
-//	DTWDistance(a,b,height,width);
-//	
-//	return 0;
-//}
+void Dynamic_Time_Warping::setY(int* y)
+{
+	
+}

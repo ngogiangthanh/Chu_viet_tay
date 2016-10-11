@@ -19,6 +19,6 @@ class Projection
 		Projection(Mat);
 		void cal_pp();
 		int I(int, int);
-		int* get_pp();
+		int get_pp(int *&);
 		void draw_pp();
 };

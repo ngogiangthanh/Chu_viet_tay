@@ -22,7 +22,7 @@ public:
 	Word_lp(Mat);
 	void cal_lp();
 	int is_ink(int, int);
-	int* get_lp();
+	int get_lp(int *&);
 	void interpolated_value();
 	void draw_lp();
 };

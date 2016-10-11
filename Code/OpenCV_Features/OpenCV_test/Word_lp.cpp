@@ -42,9 +42,13 @@ int Word_lp::is_ink(int r, int c)
 	return (intensity[0] <= THRESHOLD_INK_LP) ? INK_LP : BACKGROUND_LP;
 }
 
-int * Word_lp::get_lp()
+int Word_lp::get_lp(int *&returnVal)
 {
-	return this->lp;
+	int length = this->source.size().width;
+	returnVal = new int[length];
+	for (int i = 0; i < length; i++)
+		returnVal[i] = this->lp[i];
+	return length;
 }
 
 void Word_lp::interpolated_value()

@@ -34,9 +34,13 @@ int Projection::I(int r, int c)
 	return intensity[0];
 }
 
-int* Projection::get_pp()
+int Projection::get_pp(int *&returnVal)
 {
-	return this->pp;
+	int length = this->source.size().width;
+	returnVal = new int[length];
+	for (int i = 0; i < length; i++)
+		returnVal[i] = this->pp[i];
+	return length;
 }
 
 void Projection::draw_pp()

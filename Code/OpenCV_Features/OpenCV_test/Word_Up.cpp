@@ -42,9 +42,13 @@ int Word_Up::is_ink(int r, int c)
 	return (intensity[0] <= THRESHOLD_INK_UP) ? INK_UP : BACKGROUND_UP;
 }
 
-int* Word_Up::get_up()
+int Word_Up::get_up(int *&returnVal)
 {
-	return this->up;
+	int length = this->source.size().width;
+	returnVal = new int[length];
+	for (int i = 0; i < length; i++)
+		returnVal[i] = this->up[i];
+	return length;
 }
 
 void Word_Up::interpolated_value()

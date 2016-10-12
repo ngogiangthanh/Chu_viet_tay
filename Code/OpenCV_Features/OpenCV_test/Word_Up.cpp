@@ -8,7 +8,7 @@ Word_Up::Word_Up(Mat src)
 void Word_Up::cal_up()
 {
 	Size size = this->source.size();
-	this->up = new int[size.width];
+	this->up = new float[size.width];
 	int value = 0;
 
 	for (int i = 0; i < size.width; i++)
@@ -42,10 +42,10 @@ int Word_Up::is_ink(int r, int c)
 	return (intensity[0] <= THRESHOLD_INK_UP) ? INK_UP : BACKGROUND_UP;
 }
 
-int Word_Up::get_up(int *&returnVal)
+int Word_Up::get_up(float *&returnVal)
 {
 	int length = this->source.size().width;
-	returnVal = new int[length];
+	returnVal = new float[length];
 	for (int i = 0; i < length; i++)
 		returnVal[i] = this->up[i];
 	return length;
@@ -81,11 +81,11 @@ void Word_Up::interpolated_value()
 				}//end if
 			
 			//Calculating the average value
-			this->up[i] = (this->up[first] + this->up[second]) / 2;
+			this->up[i] = round((this->up[first] + this->up[second]) / 2);
 		}//end if
 }
 
-void Word_Up::draw_up()
+Mat Word_Up::draw_up()
 {
 	//normalization height to [0..1]
 	Size size = this->source.size();
@@ -94,13 +94,15 @@ void Word_Up::draw_up()
 
 	//Calculating
 	for (int i = 0; i < size_of_pp; i++)
-		this->up[i] = (this->up[i] * (NORMALIZATION_WP_UP - 1)) / max;
+		this->up[i] = 1 - this->up[i] / max;//invert
 
 	//Drawing
 	for (int i = 0; i < size_of_pp - 1; i++)
-		cv::line(dist, Point(i, this->up[i]), Point(i, this->up[i + 1]), Scalar(0, 0, 0));
+		cv::line(dist, Point(i, round(this->up[i] * (NORMALIZATION_WP_UP - 1))), Point(i, round(this->up[i + 1] * (NORMALIZATION_WP_UP - 1))), Scalar(0, 0, 0));
 
 	//Show
 	imshow("Word upper profile", dist);
 	imwrite("D:/save_up.jpg", dist);
+
+	return dist;
 }

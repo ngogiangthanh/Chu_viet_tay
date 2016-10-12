@@ -7,18 +7,18 @@ using namespace cv;
 using namespace std;
 /*
 * Class name: Projection
-* Description: Projection profile - the frist feature that use to DTW algorithm
+* Description: Projection profile - the first feature that use to DTW algorithm
 */
 class Projection
 {
 	private:
 		Mat source;
-		int* pp;
-		int max;
+		float* pp;
+		float max;
 	public:
 		Projection(Mat);
 		void cal_pp();
-		int I(int, int);
-		int get_pp(int *&);
-		void draw_pp();
+		float I(int, int);
+		int get_pp(float *&);
+		Mat draw_pp();
 };

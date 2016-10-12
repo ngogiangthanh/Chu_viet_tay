@@ -16,13 +16,13 @@ class Word_Up
 {
 private:
 	Mat source;
-	int* up;
-	int max;
+	float* up;
+	float max;
 public:
 	Word_Up(Mat);
 	void cal_up();
 	int is_ink(int, int);
-	int get_up(int *&);
+	int get_up(float *&);
 	void interpolated_value();
-	void draw_up();
+	Mat draw_up();
 };

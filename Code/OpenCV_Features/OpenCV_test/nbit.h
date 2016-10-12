@@ -20,7 +20,7 @@ public:
 	nbit(Mat);
 	void cal_nbit();
 	bool is_bground_to_ink(int, int);
-	float* get_nbit();
+	int get_nbit(float *&);
 	void interpolated_value();
-	void draw_nbit();
+	Mat draw_nbit();
 };

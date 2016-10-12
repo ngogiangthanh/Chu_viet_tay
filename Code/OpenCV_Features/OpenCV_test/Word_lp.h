@@ -16,13 +16,13 @@ class Word_lp
 {
 private:
 	Mat source;
-	int* lp;
-	int max;
+	float* lp;
+	float max;
 public:
 	Word_lp(Mat);
 	void cal_lp();
 	int is_ink(int, int);
-	int get_lp(int *&);
+	int get_lp(float *&);
 	void interpolated_value();
-	void draw_lp();
+	Mat draw_lp();
 };

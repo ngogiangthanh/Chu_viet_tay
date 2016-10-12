@@ -8,8 +8,8 @@ Word_lp::Word_lp(Mat src)
 void Word_lp::cal_lp()
 {
 	Size size = this->source.size();
-	this->lp = new int[size.width];
-	int value = 0;
+	this->lp = new float[size.width];
+	float value = 0;
 
 	for (int i = 0; i < size.width; i++)
 	{
@@ -42,10 +42,10 @@ int Word_lp::is_ink(int r, int c)
 	return (intensity[0] <= THRESHOLD_INK_LP) ? INK_LP : BACKGROUND_LP;
 }
 
-int Word_lp::get_lp(int *&returnVal)
+int Word_lp::get_lp(float *&returnVal)
 {
 	int length = this->source.size().width;
-	returnVal = new int[length];
+	returnVal = new float[length];
 	for (int i = 0; i < length; i++)
 		returnVal[i] = this->lp[i];
 	return length;
@@ -81,26 +81,28 @@ void Word_lp::interpolated_value()
 				}//end if
 
 			//Calculating the average value
-			this->lp[i] = (this->lp[first] + this->lp[second]) / 2;
+			this->lp[i] = round((this->lp[first] + this->lp[second]) / 2);
 		}//end if
 }
 
-void Word_lp::draw_lp()
+Mat Word_lp::draw_lp()
 {
 	//normalization height to [0..1]
 	Size size = this->source.size();
 	int size_of_pp = size.width;
 	Mat dist = Mat(NORMALIZATION_WP_LP, size.width, CV_8UC3, Scalar(255, 255, 255));
-	
+
 	//Calculating
 	for (int i = 0; i < size_of_pp; i++)
-		this->lp[i] = (this->lp[i] * (NORMALIZATION_WP_LP - 1)) / max;
+		this->lp[i] = 1 - (this->lp[i]) / max;//invert
 
 	//Drawing
 	for (int i = 0; i < size_of_pp - 1; i++)
-		cv::line(dist, Point(i, this->lp[i]), Point(i, this->lp[i + 1]), Scalar(0, 0, 0));
+		cv::line(dist, Point(i, round(this->lp[i] * (NORMALIZATION_WP_LP - 1))), Point(i, round(this->lp[i + 1] * (NORMALIZATION_WP_LP - 1))), Scalar(0, 0, 0));
 
 	//Show
 	imshow("Word lower profile", dist);
 	imwrite("D:/save_lp.jpg", dist);
+
+	return dist;
 }

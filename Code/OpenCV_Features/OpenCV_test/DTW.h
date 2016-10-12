@@ -13,18 +13,17 @@ class Dynamic_Time_Warping
 {
 private:
 	float** DTW; //results matrix
-	int* X; //vector X
-	int* Y; //vector Y
+	float* X; //vector X
+	float* Y; //vector Y
 	int M, N; //length of X,Y
 public:
-	Dynamic_Time_Warping(int*, int*, int, int);
+	Dynamic_Time_Warping(float*, float*, int, int);
 	float minimum(float, float, float);
-	float max(int, int);
-	float min(int, int);
+	float max(float, float);
+	float min(float, float);
 	float DTWDistance();
 	float DTWDistance_GPC(int);
-	void setX(int*);
-	void setY(int*);
+	int pathWarping();
 };
 #endif // ! _DTW_H_
 

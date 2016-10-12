@@ -8,8 +8,8 @@ Projection::Projection(Mat src)
 void Projection::cal_pp()
 {
 	Size size = this->source.size();
-	this->pp = new int[size.width];
-	int summing = 0;
+	this->pp = new float[size.width];
+	float summing = 0;
 
 	for (int i = 0; i < size.width; i++)
 	{
@@ -28,22 +28,22 @@ void Projection::cal_pp()
 	}//for i
 }
 
-int Projection::I(int r, int c)
+float Projection::I(int r, int c)
 {
 	Scalar intensity = this->source.at<uchar>(r, c);
 	return intensity[0];
 }
 
-int Projection::get_pp(int *&returnVal)
+int Projection::get_pp(float *&returnVal)
 {
 	int length = this->source.size().width;
-	returnVal = new int[length];
+	returnVal = new float[length];
 	for (int i = 0; i < length; i++)
 		returnVal[i] = this->pp[i];
 	return length;
 }
 
-void Projection::draw_pp()
+Mat Projection::draw_pp()
 {
 	//normalization the height to [0..1]
 	Size size = this->source.size();
@@ -52,15 +52,17 @@ void Projection::draw_pp()
 
 	//Calculating
 	for (int i = 0; i < size_of_pp; i++)
-		this->pp[i] = (this->pp[i] * (NORMALIZATION_PP - 1)) / max;
+		this->pp[i] = (this->pp[i]) / max;//[0..1]
 
 	//Drawing
 	for (int i = 0; i < size_of_pp - 1; i++)
-		cv::line(dist, Point(i, this->pp[i]), Point(i, this->pp[i + 1]), Scalar(0, 0, 0));
-
+		cv::line(dist, Point(i, round(this->pp[i] * (NORMALIZATION_PP - 1))), Point(i, round(this->pp[i + 1] * (NORMALIZATION_PP - 1))), Scalar(0, 0, 0));
+		
 	//Show
 	imshow("Projection profile", dist);
 	imwrite("D:/save_pp.jpg", dist);
+
+	return dist;
 }
 
 

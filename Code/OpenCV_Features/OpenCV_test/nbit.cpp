@@ -23,10 +23,8 @@ void nbit::cal_nbit()
 		}//for j
 
 		//undefined situation
-		if (counter == 0){
+		if (counter == 0)
 			this->nbit_p[i] = -1;
-			cout << "undefined" << endl;
-		}
 
 		this->nbit_p[i] = counter / 6;
 		//find maximum value in array pp
@@ -45,9 +43,13 @@ bool nbit::is_bground_to_ink(int r, int c)
 	return (intensity[0] > THRESHOLD_INK_NBIT & intensity_next[0] <= THRESHOLD_INK_NBIT) | (intensity[0] <= THRESHOLD_INK_NBIT & intensity_next[0] > THRESHOLD_INK_NBIT);
 }
 
-float * nbit::get_nbit()
+int nbit::get_nbit(float *&returnVal)
 {
-	return this->nbit_p;
+	int length = this->source.size().width;
+	returnVal = new float[length];
+	for (int i = 0; i < length; i++)
+		returnVal[i] = this->nbit_p[i];
+	return length;
 }
 
 void nbit::interpolated_value()
@@ -80,11 +82,11 @@ void nbit::interpolated_value()
 				}//end if
 
 				 //Calculating the average value
-			this->nbit_p[i] = (this->nbit_p[first] + this->nbit_p[second]) / 2;
+			this->nbit_p[i] = round((this->nbit_p[first] + this->nbit_p[second]) / 2);
 		}//end if
 }
 
-void nbit::draw_nbit()
+Mat nbit::draw_nbit()
 {
 	//normalization height to [0..1]
 	Size size = this->source.size();
@@ -93,16 +95,15 @@ void nbit::draw_nbit()
 
 	//Calculating
 	for (int i = 0; i < size_of_pp; i++)
-	{
-		this->nbit_p[i] = (this->nbit_p[i] / max) *  (NORMALIZATION_NBIT - 1);
-	}
-		
+		this->nbit_p[i] = this->nbit_p[i] / max;
 
 	//Drawing
 	for (int i = 0; i < size_of_pp; i++)
-		cv::line(dist, Point(i, 0), Point(i, this->nbit_p[i]), Scalar(0, 0, 0));
+		cv::line(dist, Point(i, 0), Point(i, round(this->nbit_p[i] * (NORMALIZATION_NBIT - 1))), Scalar(0, 0, 0));
 
 	//Show
 	imshow("Word nbit profile", dist);
 	imwrite("D:/save_nbit.jpg", dist);
+
+	return dist;
 }

@@ -68,19 +68,21 @@ float Dynamic_Time_Warping::DTWDistance() {
 }
 
 float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
-	this->DTW[0][0] = pow(this->X[0] - this->Y[0], 2);
-	//
-	for (int h = 1; h < this->M; h++)
-		this->DTW[h][0] = this->DTW[h - 1][0] + pow(this->X[h] - this->Y[0], 2);
-	//
-	for (int w = 1; w < this->N; w++)
-		this->DTW[0][w] = this->DTW[0][w - 1] + pow(this->X[0] - this->Y[w], 2);
-	//
 	Equations equation_line_up(this->N, 1, this->M - r, r, 1, 0);
 	equation_line_up.solve();
 	Equations equation_line_down(this->N - r, 1, this->M, 0, 1, r);
 	equation_line_down.solve();
-
+	//verifying
+	r = min(r, min(this->M, this->N));
+	//init zero point
+	this->DTW[0][0] = pow(this->X[0] - this->Y[0], 2);
+	//init height
+	for (int h = 1; h <= r; h++)
+		this->DTW[h][0] = this->DTW[h - 1][0] + pow(this->X[h] - this->Y[0], 2);
+	//init width
+	for (int w = 1; w <= r; w++)
+		this->DTW[0][w] = this->DTW[0][w - 1] + pow(this->X[0] - this->Y[w], 2);
+	//calculating
 	float cost;
 	for (int i = 1; i < this->N; i++)
 	{
@@ -94,7 +96,6 @@ float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
 		}
 	}
 
-	
 	cout << "Result: \n";
 	for (int h = 0; h < this->M; h++)
 	{
@@ -103,7 +104,6 @@ float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
 		cout << "\n";
 	}
 	
-
 	return this->DTW[this->M - 1][this->N - 1] / this->pathWarping();
 }
 

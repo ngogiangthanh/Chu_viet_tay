@@ -36,6 +36,9 @@
     <ClCompile Include="Equations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SIFT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Projection.h">

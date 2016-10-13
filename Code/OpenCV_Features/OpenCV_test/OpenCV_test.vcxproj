@@ -157,6 +157,7 @@
     <ClCompile Include="nbit.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
+    <ClCompile Include="SIFT.cpp" />
     <ClCompile Include="Word_lp.cpp" />
     <ClCompile Include="Word_Up.cpp" />
   </ItemGroup>

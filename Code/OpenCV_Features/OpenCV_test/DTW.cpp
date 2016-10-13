@@ -18,7 +18,7 @@ Dynamic_Time_Warping::Dynamic_Time_Warping(float* x, float* y, int M, int N)
 	{
 		this->DTW[h] = new float[this->N];
 		for (int w = 0; w < this->N; w++)
-			this->DTW[h][w] = -1;//infinity
+			this->DTW[h][w] = infinity;
 	}
 }
 
@@ -68,8 +68,6 @@ float Dynamic_Time_Warping::DTWDistance() {
 }
 
 float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
-	r = this->max(r,abs(this->N - this->M));
-	//
 	this->DTW[0][0] = pow(this->X[0] - this->Y[0], 2);
 	//
 	for (int h = 1; h < this->M; h++)
@@ -78,16 +76,25 @@ float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
 	for (int w = 1; w < this->N; w++)
 		this->DTW[0][w] = this->DTW[0][w - 1] + pow(this->X[0] - this->Y[w], 2);
 	//
-	float cost;
-	for (int h = 1; h < this->M; h++)
-		for (int w = this->max(1, h - r); w < this->min(this->N, h + r); w++)
-		{
-			cost = pow(X[h] - Y[w], 2);
-			this->DTW[h][w] = cost + this->minimum(this->DTW[h - 1][w],
-				this->DTW[h][w - 1],
-				this->DTW[h - 1][w - 1]);
-		}
+	Equations equation_line_up(this->N, 1, this->M - r, r, 1, 0);
+	equation_line_up.solve();
+	Equations equation_line_down(this->N - r, 1, this->M, 0, 1, r);
+	equation_line_down.solve();
 
+	float cost;
+	for (int i = 1; i < this->N; i++)
+	{
+		int up = ceil(equation_line_up.getX() * i + equation_line_up.getY()) < 1 ? 1 : ceil(equation_line_up.getX() * i + equation_line_up.getY());
+		int down = ceil(equation_line_down.getX() * i + equation_line_down.getY()) >= this->M ? this->M - 1 : ceil(equation_line_down.getX() * i + equation_line_down.getY());
+		for (int k = up; k <= down; k++) {
+			cost = pow(X[k] - Y[i], 2);
+			this->DTW[k][i] = cost + this->minimum(this->DTW[k - 1][i],
+				this->DTW[k][i - 1],
+				this->DTW[k - 1][i - 1]);
+		}
+	}
+
+	
 	cout << "Result: \n";
 	for (int h = 0; h < this->M; h++)
 	{
@@ -95,6 +102,7 @@ float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
 			cout << this->DTW[h][w] << "  ";
 		cout << "\n";
 	}
+	
 
 	return this->DTW[this->M - 1][this->N - 1] / this->pathWarping();
 }
@@ -112,7 +120,6 @@ int Dynamic_Time_Warping::pathWarping()
 	{
 		//cout << " [" << M_temp << "][" << N_temp << "] -";
 		length_K++;
-		//
 		insertion = (float) this->DTW[(M_temp - 1 < 0) ? 0 : (M_temp - 1)][N_temp];//insertion
 		deletion = (float) this->DTW[M_temp][(N_temp - 1 < 0) ? 0 : (N_temp - 1)];//deletion
 		match = (float) this->DTW[(M_temp - 1 < 0) ? 0 : (M_temp - 1)][(N_temp - 1 < 0) ? 0 : (N_temp - 1)];//matching

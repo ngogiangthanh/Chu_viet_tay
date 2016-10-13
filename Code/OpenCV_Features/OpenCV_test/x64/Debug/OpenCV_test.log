@@ -4,5 +4,7 @@ d:\thesis\opencv_modify\install\include\opencv2\core\mat.hpp(1965): warning C481
 d:\thesis\opencv_modify\install\include\opencv2\core\persistence.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
 d:\thesis\opencv_modify\install\include\opencv2\core\utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
 d:\thesis\opencv_modify\install\include\opencv2\core\utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+d:\thesis\chu_viet_tay\code\opencv_features\opencv_test\sample.cpp(152): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\thesis\chu_viet_tay\code\opencv_features\opencv_test\sample.cpp(153): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Debug\OpenCV_Features.exe
   OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Debug\OpenCV_Features.pdb (Full PDB)

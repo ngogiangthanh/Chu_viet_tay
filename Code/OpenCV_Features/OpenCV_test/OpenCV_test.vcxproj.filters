@@ -33,6 +33,9 @@
     <ClCompile Include="DTW.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Equations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Projection.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DTW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Equations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

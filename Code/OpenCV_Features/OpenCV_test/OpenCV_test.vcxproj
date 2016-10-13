@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DTW.cpp" />
+    <ClCompile Include="Equations.cpp" />
     <ClCompile Include="nbit.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DTW.h" />
+    <ClInclude Include="Equations.h" />
     <ClInclude Include="nbit.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SIFT.h" />

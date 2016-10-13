@@ -1,13 +1,11 @@
 #pragma once
 #ifndef  _DTW_H_
-#define _DTW_H_
 #include <iostream>
 #include <cmath>
+#include "Equations.h"
+#define infinity 100
 
 using namespace std;
-
-template<class T, size_t N>
-size_t size(T(&)[N]) { return N; }
 
 class Dynamic_Time_Warping
 {
@@ -26,5 +24,6 @@ public:
 	int pathWarping();
 };
 #endif // ! _DTW_H_
+#define _DTW_H_
 
 

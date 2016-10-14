@@ -20,8 +20,8 @@ void readme();
 /** @function main */
 int main(int argc, char** argv)
 {
-	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria1.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 	Mat img_org2 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 
 	/*
@@ -133,8 +133,9 @@ int main(int argc, char** argv)
 	//cout << "matching cost gpc = " << DTW.DTWDistance_GPC(121) << endl;
 	*/
 	
-	SIFT1 sift1;
-	sift1.FeatureMatching(img_org, img_org1);
+	//Try using matching in opencv
+	SIFT sift;
+	sift.FeatureMatching(img_org, img_org1, false);
 
 	system("pause");
 	waitKey(0);

@@ -7,14 +7,12 @@
 using namespace cv;
 using namespace std;
 
-class SIFT1
+class SIFT
 {
 private:
 public:
-	SIFT1();
-	void FeatureMatching(
-		Mat img1,			// 画像１のファイル名
-		Mat img2);
+	SIFT();
+	void FeatureMatching(Mat, Mat, bool);
 };
 #endif // ! _SIFT_H_
 #define _SIFT_H_

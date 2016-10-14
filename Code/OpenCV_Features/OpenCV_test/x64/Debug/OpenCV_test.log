@@ -1,3 +1,8 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (OpenCV_SIFT.vcxproj, OpenCV_test.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   SIFT.cpp
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.hpp(1965): warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+d:\thesis\opencv_modify\install\include\opencv2\core\persistence.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+d:\thesis\opencv_modify\install\include\opencv2\core\utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+d:\thesis\opencv_modify\install\include\opencv2\core\utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
   OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Debug\OpenCV_Features.exe
+  OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Debug\OpenCV_Features.pdb (Full PDB)

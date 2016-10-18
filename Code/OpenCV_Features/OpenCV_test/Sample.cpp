@@ -6,7 +6,6 @@
 #include "Projection.h"
 #include "Word_Up.h"
 #include "Word_lp.h"
-#include "nbit.h"
 #include "DTW.h"
 #include "Equations.h"
 #include <time.h>
@@ -20,9 +19,9 @@ void readme();
 /** @function main */
 int main(int argc, char** argv)
 {
-	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	Mat img_org2 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap.png");
+	//Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org2 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 
 	/*
 	if (!img_org.data)
@@ -96,13 +95,6 @@ int main(int argc, char** argv)
 	word_lp.draw_lp();
 	float* wlp = 0;
 	word_lp.get_lp(wlp);
-
-	nbit nbit_p(img_org);
-	nbit_p.cal_nbit();
-	nbit_p.interpolated_value();
-	nbit_p.draw_nbit();
-	//nbit_p.get_nbit();
-
 	------------DTW---------
 
 	clock_t tStart = clock();
@@ -133,11 +125,41 @@ int main(int argc, char** argv)
 	//cout << "matching cost gpc = " << DTW.DTWDistance_GPC(121) << endl;
 	*/
 	
+	/*
 	//Try using matching in opencv
 	SIFT sift;
 	sift.FeatureMatching(img_org, img_org1, false);
+	*/
 
-	system("pause");
+	//Try using morphological
+	/*
+	src : Source (input) image
+	dst: Output image
+	operation: The kind of morphology transformation to be performed. Note that we have 5 alternatives:
+
+	Opening: MORPH_OPEN : 2
+	Closing: MORPH_CLOSE: 3
+	Gradient: MORPH_GRADIENT: 4
+	Top Hat: MORPH_TOPHAT: 5
+	Black Hat: MORPH_BLACKHAT: 6
+
+	*/
+	Mat dilation_dst, erode_dst, open_dst, open_dst_fn; 
+	int erosion_size = 1;
+	Mat element = getStructuringElement(cv::MORPH_CROSS,
+		cv::Size(2 * erosion_size + 1, 2 * erosion_size + 1),
+		cv::Point(erosion_size, erosion_size));
+	erode(img_org, erode_dst, element);
+	dilate(img_org, dilation_dst, element);
+	dilate(erode_dst, open_dst, element);
+
+	morphologyEx(img_org, open_dst_fn, MORPH_OPEN, element);
+	imshow("original", img_org);
+	imshow("erode", erode_dst);
+	imshow("dilate", dilation_dst);
+	imshow("open", open_dst);
+	imshow("open fn", open_dst);
+
 	waitKey(0);
 
 	return 0;

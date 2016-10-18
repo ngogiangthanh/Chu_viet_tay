@@ -154,7 +154,6 @@
   <ItemGroup>
     <ClCompile Include="DTW.cpp" />
     <ClCompile Include="Equations.cpp" />
-    <ClCompile Include="nbit.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="SIFT.cpp" />
@@ -164,10 +163,8 @@
   <ItemGroup>
     <ClInclude Include="DTW.h" />
     <ClInclude Include="Equations.h" />
-    <ClInclude Include="nbit.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SIFT.h" />
-    <ClInclude Include="SURF.h" />
     <ClInclude Include="Word_lp.h" />
     <ClInclude Include="Word_Up.h" />
   </ItemGroup>

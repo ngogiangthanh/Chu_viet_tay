@@ -27,9 +27,6 @@
     <ClCompile Include="Word_lp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nbit.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DTW.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,16 +44,10 @@
     <ClInclude Include="SIFT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SURF.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Word_Up.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Word_lp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="nbit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DTW.h">

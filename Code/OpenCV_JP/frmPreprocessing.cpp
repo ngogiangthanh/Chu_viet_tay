@@ -43,9 +43,6 @@ System::Void OpenCV_JP::frmPreprocessing::trbMedian_Scroll(System::Object ^ send
 
 System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object ^ sender, System::ComponentModel::DoWorkEventArgs ^ e)
 {
-	while (true)
-	{
-		cout << "do work" << endl;
 		string path_image;
 		this->extent->MarshalString(lbInput->Text, path_image);
 		fs::path directory(path_image);
@@ -53,6 +50,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 
 		for (; iter != end; ++iter)
 		{
+			cout << "do work" << endl;
 			if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG")
 			{
 
@@ -105,14 +103,13 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 				//end saving
 			}
 
+			if (backgroundWorker->CancellationPending) //if it was cancelled
+			{
+				e->Cancel = true;
+				break;
+			}
 		}
 
-		if (backgroundWorker->CancellationPending) //if it was cancelled
-		{
-			e->Cancel = true;
-			break;
-		}
-	}
 }
 
 System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(System::Object ^ sender, System::ComponentModel::ProgressChangedEventArgs ^ e)

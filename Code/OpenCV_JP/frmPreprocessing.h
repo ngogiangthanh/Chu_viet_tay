@@ -1,4 +1,11 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <windows.h>
+#include <vector>
+#include <filesystem>
+#include "Extent.h"
+#include "Preprocess.h"
 
 namespace OpenCV_JP {
 
@@ -84,6 +91,8 @@ namespace OpenCV_JP {
 
 	private: System::Windows::Forms::Label^  lbKernelLaplacian;
 	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog;
+	private: System::Windows::Forms::Button^  btnCancel;
+	private: System::ComponentModel::BackgroundWorker^  backgroundWorker;
 
 	protected:
 
@@ -101,6 +110,7 @@ namespace OpenCV_JP {
 		void InitializeComponent(void)
 		{
 			this->pnMain = (gcnew System::Windows::Forms::Panel());
+			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->lbKernelOpening = (gcnew System::Windows::Forms::Label());
 			this->lbValThresholding = (gcnew System::Windows::Forms::Label());
 			this->lbKernelLaplacian = (gcnew System::Windows::Forms::Label());
@@ -125,6 +135,7 @@ namespace OpenCV_JP {
 			this->lbTittleOutput = (gcnew System::Windows::Forms::Label());
 			this->lbInputTittle = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog = (gcnew System::Windows::Forms::FolderBrowserDialog());
+			this->backgroundWorker = (gcnew System::ComponentModel::BackgroundWorker());
 			this->pnMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbOpening))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbThresholding))->BeginInit();
@@ -134,6 +145,7 @@ namespace OpenCV_JP {
 			// 
 			// pnMain
 			// 
+			this->pnMain->Controls->Add(this->btnCancel);
 			this->pnMain->Controls->Add(this->lbKernelOpening);
 			this->pnMain->Controls->Add(this->lbValThresholding);
 			this->pnMain->Controls->Add(this->lbKernelLaplacian);
@@ -162,6 +174,16 @@ namespace OpenCV_JP {
 			this->pnMain->Size = System::Drawing::Size(598, 411);
 			this->pnMain->TabIndex = 0;
 			// 
+			// btnCancel
+			// 
+			this->btnCancel->Location = System::Drawing::Point(376, 378);
+			this->btnCancel->Name = L"btnCancel";
+			this->btnCancel->Size = System::Drawing::Size(105, 30);
+			this->btnCancel->TabIndex = 23;
+			this->btnCancel->Text = L"Cancel";
+			this->btnCancel->UseVisualStyleBackColor = true;
+			this->btnCancel->Click += gcnew System::EventHandler(this, &frmPreprocessing::btnCancel_Click);
+			// 
 			// lbKernelOpening
 			// 
 			this->lbKernelOpening->AutoSize = true;
@@ -178,7 +200,7 @@ namespace OpenCV_JP {
 			this->lbValThresholding->Name = L"lbValThresholding";
 			this->lbValThresholding->Size = System::Drawing::Size(31, 15);
 			this->lbValThresholding->TabIndex = 21;
-			this->lbValThresholding->Text = L"128";
+			this->lbValThresholding->Text = L"200";
 			// 
 			// lbKernelLaplacian
 			// 
@@ -219,7 +241,7 @@ namespace OpenCV_JP {
 			this->trbThresholding->Name = L"trbThresholding";
 			this->trbThresholding->Size = System::Drawing::Size(252, 56);
 			this->trbThresholding->TabIndex = 17;
-			this->trbThresholding->Value = 128;
+			this->trbThresholding->Value = 200;
 			this->trbThresholding->Scroll += gcnew System::EventHandler(this, &frmPreprocessing::trbThresholding_Scroll);
 			// 
 			// trbLaplacian
@@ -395,6 +417,14 @@ namespace OpenCV_JP {
 			this->lbInputTittle->TabIndex = 0;
 			this->lbInputTittle->Text = L"Input folder:";
 			// 
+			// backgroundWorker
+			// 
+			this->backgroundWorker->WorkerReportsProgress = true;
+			this->backgroundWorker->WorkerSupportsCancellation = true;
+			this->backgroundWorker->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &frmPreprocessing::backgroundWorker_DoWork);
+			this->backgroundWorker->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &frmPreprocessing::backgroundWorker_ProgressChanged);
+			this->backgroundWorker->RunWorkerCompleted += gcnew System::ComponentModel::RunWorkerCompletedEventHandler(this, &frmPreprocessing::backgroundWorker_RunWorkerCompleted);
+			// 
 			// frmPreprocessing
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
@@ -418,11 +448,19 @@ namespace OpenCV_JP {
 		}
 #pragma endregion
 private: System::Void btnOpenInput_Click(System::Object^  sender, System::EventArgs^  e);
+		 System::Void btnCancel_Click(System::Object^  sender, System::EventArgs^  e);
 		 System::Void btnStart_Click(System::Object^  sender, System::EventArgs^  e);
 		 System::Void btnOpenOutput_Click(System::Object^  sender, System::EventArgs^  e);
 		 System::Void trbOpening_Scroll(System::Object^  sender, System::EventArgs^  e);
 		 System::Void trbLaplacian_Scroll(System::Object^  sender, System::EventArgs^  e);
 		 System::Void trbThresholding_Scroll(System::Object^  sender, System::EventArgs^  e);
 		 System::Void trbMedian_Scroll(System::Object^  sender, System::EventArgs^  e);
+		 System::Void backgroundWorker_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
+		 System::Void backgroundWorker_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e);
+		 System::Void backgroundWorker_RunWorkerCompleted(System::Object^  sender, System::ComponentModel::RunWorkerCompletedEventArgs^  e);
+		 //
+private: Extent* extent = new Extent();
+		 Preprocess* preprocess;
+
 };
 }

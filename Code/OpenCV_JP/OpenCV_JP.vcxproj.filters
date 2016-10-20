@@ -42,6 +42,9 @@
     <ClCompile Include="Preprocess.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Extent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmMain.h">
@@ -71,9 +74,15 @@
     <ClInclude Include="Preprocess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Extent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPreprocessing.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

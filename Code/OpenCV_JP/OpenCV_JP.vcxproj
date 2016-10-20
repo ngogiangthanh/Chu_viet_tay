@@ -146,6 +146,7 @@
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\SIFT.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_lp.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_Up.cpp" />
+    <ClCompile Include="Extent.cpp" />
     <ClCompile Include="frmMain.cpp" />
     <ClCompile Include="frmPreprocessing.cpp" />
     <ClCompile Include="Preprocess.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\SIFT.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_lp.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_Up.h" />
+    <ClInclude Include="Extent.h" />
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>

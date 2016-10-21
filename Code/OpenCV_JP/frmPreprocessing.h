@@ -93,6 +93,9 @@ namespace OpenCV_JP {
 	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog;
 	private: System::Windows::Forms::Button^  btnCancel;
 	private: System::ComponentModel::BackgroundWorker^  backgroundWorker;
+	private: System::Windows::Forms::Label^  lbInform;
+
+
 
 	protected:
 
@@ -136,6 +139,7 @@ namespace OpenCV_JP {
 			this->lbInputTittle = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker = (gcnew System::ComponentModel::BackgroundWorker());
+			this->lbInform = (gcnew System::Windows::Forms::Label());
 			this->pnMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbOpening))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbThresholding))->BeginInit();
@@ -145,6 +149,7 @@ namespace OpenCV_JP {
 			// 
 			// pnMain
 			// 
+			this->pnMain->Controls->Add(this->lbInform);
 			this->pnMain->Controls->Add(this->btnCancel);
 			this->pnMain->Controls->Add(this->lbKernelOpening);
 			this->pnMain->Controls->Add(this->lbValThresholding);
@@ -176,6 +181,7 @@ namespace OpenCV_JP {
 			// 
 			// btnCancel
 			// 
+			this->btnCancel->Enabled = false;
 			this->btnCancel->Location = System::Drawing::Point(376, 378);
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(105, 30);
@@ -424,6 +430,14 @@ namespace OpenCV_JP {
 			this->backgroundWorker->DoWork += gcnew System::ComponentModel::DoWorkEventHandler(this, &frmPreprocessing::backgroundWorker_DoWork);
 			this->backgroundWorker->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &frmPreprocessing::backgroundWorker_ProgressChanged);
 			this->backgroundWorker->RunWorkerCompleted += gcnew System::ComponentModel::RunWorkerCompletedEventHandler(this, &frmPreprocessing::backgroundWorker_RunWorkerCompleted);
+			// 
+			// lbInform
+			// 
+			this->lbInform->AutoSize = true;
+			this->lbInform->Location = System::Drawing::Point(39, 383);
+			this->lbInform->Name = L"lbInform";
+			this->lbInform->Size = System::Drawing::Size(0, 15);
+			this->lbInform->TabIndex = 24;
 			// 
 			// frmPreprocessing
 			// 

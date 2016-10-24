@@ -94,6 +94,7 @@ namespace OpenCV_JP {
 	private: System::Windows::Forms::Button^  btnCancel;
 	private: System::ComponentModel::BackgroundWorker^  backgroundWorker;
 	private: System::Windows::Forms::Label^  lbInform;
+	private: System::Windows::Forms::CheckBox^  cbAdaptiveThresholding;
 
 
 
@@ -113,6 +114,8 @@ namespace OpenCV_JP {
 		void InitializeComponent(void)
 		{
 			this->pnMain = (gcnew System::Windows::Forms::Panel());
+			this->cbAdaptiveThresholding = (gcnew System::Windows::Forms::CheckBox());
+			this->lbInform = (gcnew System::Windows::Forms::Label());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->lbKernelOpening = (gcnew System::Windows::Forms::Label());
 			this->lbValThresholding = (gcnew System::Windows::Forms::Label());
@@ -139,7 +142,6 @@ namespace OpenCV_JP {
 			this->lbInputTittle = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker = (gcnew System::ComponentModel::BackgroundWorker());
-			this->lbInform = (gcnew System::Windows::Forms::Label());
 			this->pnMain->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbOpening))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbThresholding))->BeginInit();
@@ -149,6 +151,7 @@ namespace OpenCV_JP {
 			// 
 			// pnMain
 			// 
+			this->pnMain->Controls->Add(this->cbAdaptiveThresholding);
 			this->pnMain->Controls->Add(this->lbInform);
 			this->pnMain->Controls->Add(this->btnCancel);
 			this->pnMain->Controls->Add(this->lbKernelOpening);
@@ -178,6 +181,25 @@ namespace OpenCV_JP {
 			this->pnMain->Name = L"pnMain";
 			this->pnMain->Size = System::Drawing::Size(598, 411);
 			this->pnMain->TabIndex = 0;
+			// 
+			// cbAdaptiveThresholding
+			// 
+			this->cbAdaptiveThresholding->AutoSize = true;
+			this->cbAdaptiveThresholding->Location = System::Drawing::Point(331, 289);
+			this->cbAdaptiveThresholding->Name = L"cbAdaptiveThresholding";
+			this->cbAdaptiveThresholding->Size = System::Drawing::Size(168, 19);
+			this->cbAdaptiveThresholding->TabIndex = 25;
+			this->cbAdaptiveThresholding->Text = L"Adaptive Thresholding";
+			this->cbAdaptiveThresholding->UseVisualStyleBackColor = true;
+			this->cbAdaptiveThresholding->CheckedChanged += gcnew System::EventHandler(this, &frmPreprocessing::cbAdaptiveThresholding_CheckedChanged);
+			// 
+			// lbInform
+			// 
+			this->lbInform->AutoSize = true;
+			this->lbInform->Location = System::Drawing::Point(39, 383);
+			this->lbInform->Name = L"lbInform";
+			this->lbInform->Size = System::Drawing::Size(0, 15);
+			this->lbInform->TabIndex = 24;
 			// 
 			// btnCancel
 			// 
@@ -290,12 +312,13 @@ namespace OpenCV_JP {
 			this->cbThresholding->AutoSize = true;
 			this->cbThresholding->Checked = true;
 			this->cbThresholding->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->cbThresholding->Location = System::Drawing::Point(331, 265);
+			this->cbThresholding->Location = System::Drawing::Point(331, 250);
 			this->cbThresholding->Name = L"cbThresholding";
 			this->cbThresholding->Size = System::Drawing::Size(261, 19);
 			this->cbThresholding->TabIndex = 13;
 			this->cbThresholding->Text = L"Convert to bin-image (Thresholding)";
 			this->cbThresholding->UseVisualStyleBackColor = true;
+			this->cbThresholding->CheckedChanged += gcnew System::EventHandler(this, &frmPreprocessing::cbThresholding_CheckedChanged);
 			// 
 			// cbLaplacian
 			// 
@@ -431,14 +454,6 @@ namespace OpenCV_JP {
 			this->backgroundWorker->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &frmPreprocessing::backgroundWorker_ProgressChanged);
 			this->backgroundWorker->RunWorkerCompleted += gcnew System::ComponentModel::RunWorkerCompletedEventHandler(this, &frmPreprocessing::backgroundWorker_RunWorkerCompleted);
 			// 
-			// lbInform
-			// 
-			this->lbInform->AutoSize = true;
-			this->lbInform->Location = System::Drawing::Point(39, 383);
-			this->lbInform->Name = L"lbInform";
-			this->lbInform->Size = System::Drawing::Size(0, 15);
-			this->lbInform->TabIndex = 24;
-			// 
 			// frmPreprocessing
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
@@ -472,6 +487,8 @@ private: System::Void btnOpenInput_Click(System::Object^  sender, System::EventA
 		 System::Void backgroundWorker_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
 		 System::Void backgroundWorker_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e);
 		 System::Void backgroundWorker_RunWorkerCompleted(System::Object^  sender, System::ComponentModel::RunWorkerCompletedEventArgs^  e);
+		 System::Void cbAdaptiveThresholding_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+		 System::Void cbThresholding_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 		 //
 private: Extent* extent = new Extent();
 		 Preprocess* preprocess;

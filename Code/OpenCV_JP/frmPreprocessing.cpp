@@ -112,6 +112,16 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 				this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY);
 			}
 		}
+		//3.1 - Adaptive Thresholding check
+		if (cbAdaptiveThresholding->Checked) {
+			this->preprocess->setSrc(this->preprocess->getDist());
+			this->preprocess->adaptive(false, false, 39, 2);
+
+			this->preprocess->setSrc(this->preprocess->getDist());
+			int kernelMedian = trbMedian->Value * 2 + 1;
+			//Processing
+			this->preprocess->medianBlur(kernelMedian);
+		}
 		//4 - Opening check
 		if (cbOpening->Checked) {
 			this->preprocess->setSrc(this->preprocess->getDist());
@@ -141,6 +151,16 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_RunWorkerCompleted(Sy
 	}
 	btnStart->Enabled = true;
 	btnCancel->Enabled = false;
+}
+
+System::Void OpenCV_JP::frmPreprocessing::cbAdaptiveThresholding_CheckedChanged(System::Object ^ sender, System::EventArgs ^ e)
+{
+	cbThresholding->Checked = !cbAdaptiveThresholding->Checked;
+}
+
+System::Void OpenCV_JP::frmPreprocessing::cbThresholding_CheckedChanged(System::Object ^ sender, System::EventArgs ^ e)
+{
+	cbAdaptiveThresholding->Checked = !cbThresholding->Checked;
 }
 
 System::Void OpenCV_JP::frmPreprocessing::trbLaplacian_Scroll(System::Object ^ sender, System::EventArgs ^ e)

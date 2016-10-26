@@ -1,1 +1,35 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppClean.targets(76,5): warning : The process cannot access the file 'd:\thesis\chu_viet_tay\code\opencv_features\x64\release\opencv_jp.pdb' because it is being used by another process.
+﻿  Preprocess.cpp
+D:\Thesis\opencv_modify\install\include\opencv2/core/mat.hpp(1965): warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/persistence.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+Preprocess.cpp(55): warning C4018: '<': signed/unsigned mismatch
+Preprocess.cpp(56): warning C4018: '<': signed/unsigned mismatch
+Preprocess.cpp(58): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Preprocess.cpp(61): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Preprocess.cpp(63): warning C4018: '>=': signed/unsigned mismatch
+Preprocess.cpp(63): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Preprocess.cpp(64): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+Preprocess.cpp(88): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Preprocess.cpp(93): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Preprocess.cpp(101): warning C4018: '<': signed/unsigned mismatch
+Preprocess.cpp(111): warning C4018: '<': signed/unsigned mismatch
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\chu_viet_tay\code\opencv_jp\preprocess.cpp(89): warning C4700: uninitialized local variable 'B1' used
+d:\thesis\chu_viet_tay\code\opencv_jp\preprocess.cpp(90): warning C4700: uninitialized local variable 'B2' used
+d:\thesis\chu_viet_tay\code\opencv_jp\preprocess.cpp(91): warning C4700: uninitialized local variable 'Zxy' used
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+  OpenCV_JP.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Release\OpenCV_JP.exe
+  OpenCV_JP.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Release\OpenCV_JP.pdb (Full PDB)

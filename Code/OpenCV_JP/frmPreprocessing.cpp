@@ -33,6 +33,34 @@ System::Void OpenCV_JP::frmPreprocessing::btnOpenOutput_Click(System::Object ^ s
 System::Void OpenCV_JP::frmPreprocessing::btnStart_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 
+	//int* mask = ( int*)calloc(3, sizeof( int));
+	//// Set myArray to all 0's
+	//memset(mask, -1, 3 * sizeof(int));
+
+	//mask = (int*)realloc(mask, 5 * sizeof( int));
+
+	//for (int i = 3; i < 8; ++i) {
+	//	*(mask + i) = -1;
+	//}
+
+	//this->preprocess = new Preprocess(Mat(), Mat());
+	//int val = 3;
+	//this->preprocess->addElement(mask, val, 8);
+	//val = 4;
+	//this->preprocess->addElement(mask, val, 8);
+	//val = 1;
+	//this->preprocess->addElement(mask, val, 8);
+	//val = 3;
+	//this->preprocess->addElement(mask, val, 8);
+	//val = 5;
+	//this->preprocess->addElement(mask, val, 8);
+	//val = 0;
+	//this->preprocess->addElement(mask, val, 8);
+
+	//for (int i = 0; i < 8; ++i) {
+	//	cout << *(mask + i) << endl;
+	//}
+
 	btnStart->Enabled = false;
 	btnCancel->Enabled = true;
 
@@ -89,7 +117,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 		if (cbMedian->Checked) {
 			int kernelMedian = trbMedian->Value * 2 + 1;
 			//Processing
-			this->preprocess->medianBlur(kernelMedian);
+			this->preprocess->adaptiveMedian();
 		}
 		//2 - Laplacian check
 		if (cbLaplacian->Checked) {
@@ -124,6 +152,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 		}
 		//4 - Opening check
 		if (cbOpening->Checked) {
+			//this->preprocess->adaptiveMedian();
 			this->preprocess->setSrc(this->preprocess->getDist());
 			int kernelOpening = trbOpening->Value;
 			//Processing

@@ -1,4 +1,4 @@
-#include "Preprocess.h"
+﻿#include "Preprocess.h"
 
 Preprocess::Preprocess(Mat src)
 {
@@ -28,7 +28,6 @@ void Preprocess::averageBlur(unsigned int kernel_size)
 {
 	cout << "- Average filter;" << endl;
 	cv::blur(this->src, this->dist, cv::Size(kernel_size, kernel_size), cv::Point(-1, -1));
-
 }
 
 void Preprocess::medianBlur(unsigned int kernel_size)
@@ -36,6 +35,94 @@ void Preprocess::medianBlur(unsigned int kernel_size)
 	cout << "- Median filter;" << endl;
 	cv::medianBlur(this->src, this->dist, kernel_size);
 }
+
+void Preprocess::adaptiveMedian(unsigned int Smax)
+{
+	unsigned int Smin = 3;
+	unsigned int Zmin = 255;//	Zmin = minimum gray level value in Sxy
+	unsigned int Zmax = 0;//	Zmax = maximum gray level value in Sxy
+	unsigned int Zmed;//	Zmed = median of gray levels in Sxy
+	unsigned int Zxy;//		Zxy = gray level at coordinates(x, y)
+	int A1, A2, B1, B2;
+	unsigned int windowSize = Smin;
+	int* mask = (int*)calloc(Smin * Smin - 1, sizeof(int));
+	memset(mask, -1, (Smin * Smin - 1) * sizeof(int));
+	Size size = this->src.size();
+	unsigned int width = size.width;
+	unsigned int height = size.height;
+	bool isFirst = true;
+
+	for (int i = 0; i < width; i++) {
+		for (int j = 0; j < height; j++) {
+			while (windowSize < Smax) {
+				int mid = floor(windowSize / 2);
+				for (int k = -mid; k <= mid; k++) {
+					for (int z = -mid; z <= mid; z++) {
+						if (abs(z) == mid | abs(k) == mid) {//không phải lần đầu
+							//Lấy giá trị ra
+							Scalar intensity = this->src.at<uchar>((j + k < 0 | j + k >= height) ? j : j + k, (i + z < 0 | i + z >= width) ? i : i + z);
+							int val = intensity[0];
+							//Gán vào mảng có thứ tự từ bé đến lớn.
+							this->addElement(mask, val, windowSize * windowSize - 1);
+							
+						}
+						//else if (isFirst & abs(z) != mid & abs(k) != mid) {//Nếu đây là lần đầu thì duyệt toàn bộ
+						//	//Lấy giá trị gán vào mảng
+						//	Scalar intensity = this->src.at<uchar>((j + k < 0 | j + k >= height) ? j : j + k, (i + z < 0 | i + z >= width) ? i : i + z);
+						//	int val = intensity[0];
+						//	//Gán vào mảng có thứ tự từ bé đến lớn.
+						//	this->addElement(mask, val, windowSize * windowSize - 1);
+						//	isFirst = false;
+						//}
+					}//for z
+				}//for k
+					//Lấy giá trị Zmin, Zmax, Zmed, Zxy
+					Zmin = *(mask + 0);
+					Zmed = *(mask + (windowSize * windowSize - 2) / 2);
+					Zmax = *(mask + windowSize * windowSize - 2);
+					//Xử lý 2 bước
+					A1 = Zmed - Zmin;
+					A2 = Zmed - Zmax;
+					cout << "A1 " << A1 << endl;
+					cout << "A2 " << A2 << endl;
+					if (A1 > 0 & A2 < 0) {
+						cout << "B1 " << B1 << endl;
+						cout << "B2 " << B2 << endl;
+						B1 = Zxy - Zmin;
+						B2 = Zxy - Zmax;
+						if (B1 <= 0 | B2 >= 0)
+							this->dist.at<uchar>(j, i) = Zmed;
+						break;
+					}
+					else {
+						windowSize += 2;
+						cout << "windowSize " << windowSize << endl;
+						mask = (int*)realloc(mask, 8 * sizeof(int));
+						for (int h = windowSize * windowSize - 8; h < windowSize * windowSize - 1; h++)
+							*(mask + h) = -1;
+					}
+			}//while
+		}//for j
+	}//for i 
+}
+
+void Preprocess::addElement(int *arr, int element , unsigned int length)
+{
+	for (int i = 0; i < length; i++) {
+		if (*(arr + i) > element) {
+			for (int j = length - 1; j > i; j--)
+				*(arr + j) = *(arr + j - 1);
+
+			*(arr + i) = element;
+			break;
+		}
+		else if (*(arr + i) < 0) {
+			*(arr + i) = element;
+			break;
+		}
+	}
+}
+
 
 void Preprocess::laplacian(unsigned int kernel_size, int ddepth, int scale, int delta)
 {

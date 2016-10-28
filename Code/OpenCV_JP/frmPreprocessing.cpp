@@ -33,31 +33,35 @@ System::Void OpenCV_JP::frmPreprocessing::btnOpenOutput_Click(System::Object ^ s
 System::Void OpenCV_JP::frmPreprocessing::btnStart_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 
-	//int* mask = ( int*)calloc(3, sizeof( int));
-	//// Set myArray to all 0's
-	//memset(mask, -1, 3 * sizeof(int));
+	/*int* mask = (int*)calloc(3, sizeof( int));
+	memset(mask, -1, 3 * sizeof(int));
 
-	//mask = (int*)realloc(mask, 5 * sizeof( int));
+	mask = (int*)realloc(mask, 8 * sizeof( int));
+	for (int i = 3; i < 8; i++) {
+		*(mask + i) = -1;
+	}
 
-	//for (int i = 3; i < 8; ++i) {
-	//	*(mask + i) = -1;
-	//}
+	this->preprocess = new Preprocess(Mat(), Mat());
+	int val = 4;
+	this->preprocess->addElement(mask, val, 8);
+	val = 3;
+	this->preprocess->addElement(mask, val, 8);
+	val = 1;
+	this->preprocess->addElement(mask, val, 8);
+	val = 3;
+	this->preprocess->addElement(mask, val, 8);
+	val = 5;
+	this->preprocess->addElement(mask, val, 8);
+	val = 0;
+	this->preprocess->addElement(mask, val, 8);
+	val = 0;
+	this->preprocess->addElement(mask, val, 8);
+	val = 1;
+	this->preprocess->addElement(mask, val, 8);
+	val = 9;
+	this->preprocess->addElement(mask, val, 8);*/
 
-	//this->preprocess = new Preprocess(Mat(), Mat());
-	//int val = 3;
-	//this->preprocess->addElement(mask, val, 8);
-	//val = 4;
-	//this->preprocess->addElement(mask, val, 8);
-	//val = 1;
-	//this->preprocess->addElement(mask, val, 8);
-	//val = 3;
-	//this->preprocess->addElement(mask, val, 8);
-	//val = 5;
-	//this->preprocess->addElement(mask, val, 8);
-	//val = 0;
-	//this->preprocess->addElement(mask, val, 8);
-
-	//for (int i = 0; i < 8; ++i) {
+	//for (int i = 0; i < 8; i++) {
 	//	cout << *(mask + i) << endl;
 	//}
 
@@ -83,7 +87,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 
 	for (; iter != end; ++iter)
 	{
-		if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG")
+		if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG" | iter->path().extension() == ".png" | iter->path().extension() == ".PNG" | iter->path().extension() == ".BMP" | iter->path().extension() == ".bmp")
 		{
 			string str = iter->path().string();
 			System::String^ path = gcnew System::String(iter->path().string().c_str()); 
@@ -115,7 +119,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 
 		//1 - Median check
 		if (cbMedian->Checked) {
-			int kernelMedian = trbMedian->Value * 2 + 1;
+			//int kernelMedian = trbMedian->Value * 2 + 1;
 			//Processing
 			this->preprocess->adaptiveMedian();
 		}
@@ -133,22 +137,22 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 
 			if (cbLaplacian->Checked) {
 				//Processing
-				this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY_INV);
+			//	this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY_INV);
 			}
 			else {
 				//Processing
-				this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY);
+			//	this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY);
 			}
 		}
 		//3.1 - Adaptive Thresholding check
 		if (cbAdaptiveThresholding->Checked) {
-			this->preprocess->setSrc(this->preprocess->getDist());
+		/*	this->preprocess->setSrc(this->preprocess->getDist());
 			this->preprocess->adaptive(false, false, 39, 2);
 
 			this->preprocess->setSrc(this->preprocess->getDist());
-			int kernelMedian = trbMedian->Value * 2 + 1;
+			int kernelMedian = trbMedian->Value * 2 + 1;*/
 			//Processing
-			this->preprocess->medianBlur(kernelMedian);
+			//this->preprocess->medianBlur(kernelMedian);
 		}
 		//4 - Opening check
 		if (cbOpening->Checked) {

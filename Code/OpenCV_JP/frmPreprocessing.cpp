@@ -1,8 +1,4 @@
 ﻿#include "frmPreprocessing.h"
-#include "opencv2/core/core.hpp"
-#include "opencv2/highgui/highgui.hpp"
-#include <algorithm>
-
 
 using namespace std;
 namespace fs = std::experimental::filesystem;
@@ -29,42 +25,8 @@ System::Void OpenCV_JP::frmPreprocessing::btnOpenOutput_Click(System::Object ^ s
 		this->lbOutput->Text = folderBrowserDialog->SelectedPath;
 }
 
-
 System::Void OpenCV_JP::frmPreprocessing::btnStart_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-
-	/*int* mask = (int*)calloc(3, sizeof( int));
-	memset(mask, -1, 3 * sizeof(int));
-
-	mask = (int*)realloc(mask, 8 * sizeof( int));
-	for (int i = 3; i < 8; i++) {
-		*(mask + i) = -1;
-	}
-
-	this->preprocess = new Preprocess(Mat(), Mat());
-	int val = 4;
-	this->preprocess->addElement(mask, val, 8);
-	val = 3;
-	this->preprocess->addElement(mask, val, 8);
-	val = 1;
-	this->preprocess->addElement(mask, val, 8);
-	val = 3;
-	this->preprocess->addElement(mask, val, 8);
-	val = 5;
-	this->preprocess->addElement(mask, val, 8);
-	val = 0;
-	this->preprocess->addElement(mask, val, 8);
-	val = 0;
-	this->preprocess->addElement(mask, val, 8);
-	val = 1;
-	this->preprocess->addElement(mask, val, 8);
-	val = 9;
-	this->preprocess->addElement(mask, val, 8);*/
-
-	//for (int i = 0; i < 8; i++) {
-	//	cout << *(mask + i) << endl;
-	//}
-
 	btnStart->Enabled = false;
 	btnCancel->Enabled = true;
 
@@ -91,7 +53,6 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 		{
 			string str = iter->path().string();
 			System::String^ path = gcnew System::String(iter->path().string().c_str()); 
-			cout << iter->path().string().c_str() << endl;
 			backgroundWorker->ReportProgress(1, path);  //reporting progress
 		}
 
@@ -100,67 +61,74 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 			e->Cancel = true;
 			break;
 		}
-	}
+	}//for iter
 }
-
-
 
 System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(System::Object ^ sender, System::ComponentModel::ProgressChangedEventArgs ^ e)
 {
 		System::String^ path = e->UserState->ToString();
 		string str_path;
 		this->extent->MarshalString(path, str_path);
+		Mat src = imread(str_path, CV_LOAD_IMAGE_GRAYSCALE);
 
-		Mat src = imread(str_path, CV_LOAD_IMAGE_COLOR);
-		//Khởi tạo object preprocess
-		cv::cvtColor(src, src, COLOR_BGR2GRAY);
+		//Resize
+		cv::Size size = src.size();
+		if (MAX_WIDTH < size.width)
+			cv::resize(src, src, cv::Size(MAX_WIDTH, MAX_WIDTH * size.height / size.width), 0, 0);
+
+		//Initing object preprocess
 		Mat dst = src.clone();
 		this->preprocess = new Preprocess(src, dst);
-
+		cout << str_path << " is processing..." << endl;
 		//1 - Median check
-		if (cbMedian->Checked) {
-			//int kernelMedian = trbMedian->Value * 2 + 1;
+		if (cbbSaltPepperFilter->Text == "Median") {
+			int kernelMedian = trbMedian->Value * 2 + 1;
+			//Processing
+			this->preprocess->medianBlur(kernelMedian);
+		}
+		//1.1 - adaptive Median check
+		if (cbbSaltPepperFilter->Text == "Adaptive median") {
 			//Processing
 			this->preprocess->adaptiveMedian();
 		}
-		//2 - Laplacian check
-		if (cbLaplacian->Checked) {
-			this->preprocess->setSrc(this->preprocess->getDist());
-			int kernelLaplacian = trbLaplacian->Value * 2 + 1;
-			//Processing
-			this->preprocess->laplacian(kernelLaplacian);
-		}
 		//3 - Thresholding check
-		if (cbThresholding->Checked) {
-			this->preprocess->setSrc(this->preprocess->getDist());
-			int thresholding_val = trbThresholding->Value;
+		if (cbbConvert2Bin->Text == "Otsu thresholding") {
 
-			if (cbLaplacian->Checked) {
-				//Processing
-			//	this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY_INV);
-			}
-			else {
-				//Processing
-			//	this->preprocess->threshold(thresholding_val, 255, THRESH_BINARY);
-			}
+			this->preprocess->setSrc(this->preprocess->getDist());
+			this->preprocess->gaussianBlur(3);
+			this->preprocess->setSrc(this->preprocess->getDist());
+			this->preprocess->threshold();
 		}
 		//3.1 - Adaptive Thresholding check
-		if (cbAdaptiveThresholding->Checked) {
-		/*	this->preprocess->setSrc(this->preprocess->getDist());
-			this->preprocess->adaptive(false, false, 39, 2);
-
+		if (cbbConvert2Bin->Text == "Adaptive thresholding") {
 			this->preprocess->setSrc(this->preprocess->getDist());
-			int kernelMedian = trbMedian->Value * 2 + 1;*/
-			//Processing
-			//this->preprocess->medianBlur(kernelMedian);
+			this->preprocess->adaptive(false, false, 99, 0);
 		}
 		//4 - Opening check
-		if (cbOpening->Checked) {
+		if (cbbMorphologyTransformations->Text != "- Nothing -") {
 			//this->preprocess->adaptiveMedian();
 			this->preprocess->setSrc(this->preprocess->getDist());
-			int kernelOpening = trbOpening->Value;
+			int kernel = trbOpening->Value;
+			int type = MORPH_OPEN;
+
+			if (cbbMorphologyTransformations->Text == "Opening") {
+				type = MORPH_OPEN;
+			}
+			else if (cbbMorphologyTransformations->Text == "Closing") {
+				type = MORPH_CLOSE;
+			}
+			else if (cbbMorphologyTransformations->Text == "Gradient") {
+				type = MORPH_GRADIENT;
+			}
+			else if (cbbMorphologyTransformations->Text == "Top Hat") {
+				type = MORPH_TOPHAT;
+			}
+			else if (cbbMorphologyTransformations->Text == "Black Hat") {
+				type = MORPH_BLACKHAT;
+			}
 			//Processing
-			this->preprocess->Morphology_Operations(MORPH_OPEN, MORPH_RECT, kernelOpening);
+		
+			this->preprocess->Morphology_Operations(type, MORPH_RECT, kernel);
 		}
 
 		//saving
@@ -186,28 +154,31 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_RunWorkerCompleted(Sy
 	btnCancel->Enabled = false;
 }
 
-System::Void OpenCV_JP::frmPreprocessing::cbAdaptiveThresholding_CheckedChanged(System::Object ^ sender, System::EventArgs ^ e)
+System::Void OpenCV_JP::frmPreprocessing::btnAddNoise_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	cbThresholding->Checked = !cbAdaptiveThresholding->Checked;
-}
+	string path_image;
+	this->extent->MarshalString(lbInput->Text, path_image);
+	fs::path directory(path_image);
+	fs::directory_iterator iter(directory), end;
+	int val = trbNumNoise->Value;
 
-System::Void OpenCV_JP::frmPreprocessing::cbThresholding_CheckedChanged(System::Object ^ sender, System::EventArgs ^ e)
-{
-	cbAdaptiveThresholding->Checked = !cbThresholding->Checked;
-}
+	for (; iter != end; ++iter)
+	{
+		if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG" | iter->path().extension() == ".png" | iter->path().extension() == ".PNG" | iter->path().extension() == ".BMP" | iter->path().extension() == ".bmp")
+		{
+			string str = iter->path().string();
+			Noise addNoise(imread(str, CV_LOAD_IMAGE_GRAYSCALE));
+			addNoise.Salt(val);
+			addNoise.Pepper(val);
 
-System::Void OpenCV_JP::frmPreprocessing::trbLaplacian_Scroll(System::Object ^ sender, System::EventArgs ^ e)
-{
-	string model(to_string(trbLaplacian->Value * 2 + 1));
-	System::String^ val = gcnew System::String(model.c_str());
-	lbKernelLaplacian->Text = val;
-}
-
-System::Void OpenCV_JP::frmPreprocessing::trbThresholding_Scroll(System::Object ^ sender, System::EventArgs ^ e)
-{
-	string model(to_string(trbThresholding->Value));
-	System::String^ val = gcnew System::String(model.c_str());
-	lbValThresholding->Text = val;
+			//saving
+			vector<string> arrPath = this->extent->split(str, '\\');
+		//	this->extent->MarshalString(lbOutput->Text, str);
+			std::string savePath = "D:\\Noise\\" + arrPath.back();
+			imwrite(savePath, addNoise.getImage());
+			//end saving
+		}
+	}//for iter
 }
 
 System::Void OpenCV_JP::frmPreprocessing::trbOpening_Scroll(System::Object ^ sender, System::EventArgs ^ e)
@@ -215,5 +186,12 @@ System::Void OpenCV_JP::frmPreprocessing::trbOpening_Scroll(System::Object ^ sen
 	string model(to_string(trbOpening->Value * 2 + 1));
 	System::String^ val = gcnew System::String(model.c_str());
 	lbKernelOpening->Text = val;
+}
+
+System::Void OpenCV_JP::frmPreprocessing::trbNumNoise_Scroll(System::Object ^ sender, System::EventArgs ^ e)
+{
+	string model(to_string(trbNumNoise->Value));
+	System::String^ val = gcnew System::String(model.c_str());
+	lbNumberNoise->Text = val+"%";
 }
 

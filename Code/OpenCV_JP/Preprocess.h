@@ -1,5 +1,5 @@
 #pragma once
-#ifndef Preprocess_H
+#define Preprocess_H
 #include "iostream"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -14,11 +14,11 @@ private:
 public:
 	Preprocess(Mat);
 	Preprocess(Mat, Mat);
-	void threshold(unsigned int, unsigned int, unsigned int);
+	void threshold(unsigned int = 0, unsigned int = 255, unsigned int = CV_THRESH_OTSU);
 	void gaussianBlur(unsigned int);
 	void averageBlur(unsigned int);
 	void medianBlur(unsigned int);
-	void adaptiveMedian(unsigned int = 39);
+	void adaptiveMedian(unsigned int = 11);
 	void addElement(int*, int, unsigned int);
 	void laplacian(unsigned int, int = CV_8U, int = 1, int = 0);
 	void adaptive(bool, bool, unsigned int, unsigned int);
@@ -28,5 +28,5 @@ public:
 	Mat getSrc();
 	Mat getDist();
 };
+#ifndef Preprocess_H
 #endif
-#define Preprocess_H

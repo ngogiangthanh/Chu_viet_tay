@@ -149,6 +149,7 @@
     <ClCompile Include="Extent.cpp" />
     <ClCompile Include="frmMain.cpp" />
     <ClCompile Include="frmPreprocessing.cpp" />
+    <ClCompile Include="Noise.cpp" />
     <ClCompile Include="Preprocess.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +166,7 @@
     <ClInclude Include="frmPreprocessing.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Noise.h" />
     <ClInclude Include="Preprocess.h" />
   </ItemGroup>
   <ItemGroup>

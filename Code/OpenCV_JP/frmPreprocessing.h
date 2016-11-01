@@ -1,11 +1,16 @@
 #pragma once
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
 #include <iostream>
 #include <string>
 #include <windows.h>
 #include <vector>
 #include <filesystem>
+#include <algorithm>
 #include "Extent.h"
 #include "Preprocess.h"
+#include "Noise.h"
+#define MAX_WIDTH 1366
 
 namespace OpenCV_JP {
 
@@ -25,6 +30,9 @@ namespace OpenCV_JP {
 		frmPreprocessing(void)
 		{
 			InitializeComponent();
+			this->cbbConvert2Bin->SelectedIndex = 0;
+			this->cbbMorphologyTransformations->SelectedIndex = 0;
+			this->cbbSaltPepperFilter->SelectedIndex = 0;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -44,27 +52,19 @@ namespace OpenCV_JP {
 	private: System::Windows::Forms::Panel^  pnMain;
 	private: System::Windows::Forms::TrackBar^  trbOpening;
 
-	private: System::Windows::Forms::TrackBar^  trbThresholding;
-	private: System::Windows::Forms::TrackBar^  trbLaplacian;
+
+
 
 
 
 	private: System::Windows::Forms::TrackBar^  trbMedian;
-	private: System::Windows::Forms::CheckBox^  cbOpening;
 
-
-
-	private: System::Windows::Forms::CheckBox^  cbThresholding;
-
-	private: System::Windows::Forms::CheckBox^  cbLaplacian;
-
-	private: System::Windows::Forms::CheckBox^  cbMedian;
 	private: System::Windows::Forms::Label^  lbOrder4;
 
 
-	private: System::Windows::Forms::Label^  lbOrder3;
 
-	private: System::Windows::Forms::Label^  lbOrder2;
+
+
 
 	private: System::Windows::Forms::Label^  lbOrder1;
 
@@ -87,14 +87,27 @@ namespace OpenCV_JP {
 
 	private: System::Windows::Forms::Label^  lbKernelOpening;
 
-	private: System::Windows::Forms::Label^  lbValThresholding;
 
-	private: System::Windows::Forms::Label^  lbKernelLaplacian;
+
+
 	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog;
 	private: System::Windows::Forms::Button^  btnCancel;
 	private: System::ComponentModel::BackgroundWorker^  backgroundWorker;
 	private: System::Windows::Forms::Label^  lbInform;
-	private: System::Windows::Forms::CheckBox^  cbAdaptiveThresholding;
+
+
+
+	private: System::Windows::Forms::Label^  lbTitlePepperSalt;
+	private: System::Windows::Forms::ComboBox^  cbbMorphologyTransformations;
+	private: System::Windows::Forms::ComboBox^  cbbConvert2Bin;
+
+	private: System::Windows::Forms::ComboBox^  cbbSaltPepperFilter;
+	private: System::Windows::Forms::TrackBar^  trbNumNoise;
+	private: System::Windows::Forms::Button^  btnAddNoise;
+	private: System::Windows::Forms::Label^  lbNumberNoise;
+	private: System::Windows::Forms::Label^  lbOrder3;
+
+
 
 
 
@@ -114,24 +127,20 @@ namespace OpenCV_JP {
 		void InitializeComponent(void)
 		{
 			this->pnMain = (gcnew System::Windows::Forms::Panel());
-			this->cbAdaptiveThresholding = (gcnew System::Windows::Forms::CheckBox());
+			this->lbNumberNoise = (gcnew System::Windows::Forms::Label());
+			this->btnAddNoise = (gcnew System::Windows::Forms::Button());
+			this->cbbMorphologyTransformations = (gcnew System::Windows::Forms::ComboBox());
+			this->cbbConvert2Bin = (gcnew System::Windows::Forms::ComboBox());
+			this->cbbSaltPepperFilter = (gcnew System::Windows::Forms::ComboBox());
+			this->trbNumNoise = (gcnew System::Windows::Forms::TrackBar());
+			this->lbTitlePepperSalt = (gcnew System::Windows::Forms::Label());
 			this->lbInform = (gcnew System::Windows::Forms::Label());
 			this->btnCancel = (gcnew System::Windows::Forms::Button());
 			this->lbKernelOpening = (gcnew System::Windows::Forms::Label());
-			this->lbValThresholding = (gcnew System::Windows::Forms::Label());
-			this->lbKernelLaplacian = (gcnew System::Windows::Forms::Label());
 			this->lbKernelMedian = (gcnew System::Windows::Forms::Label());
 			this->trbOpening = (gcnew System::Windows::Forms::TrackBar());
-			this->trbThresholding = (gcnew System::Windows::Forms::TrackBar());
-			this->trbLaplacian = (gcnew System::Windows::Forms::TrackBar());
 			this->trbMedian = (gcnew System::Windows::Forms::TrackBar());
-			this->cbOpening = (gcnew System::Windows::Forms::CheckBox());
-			this->cbThresholding = (gcnew System::Windows::Forms::CheckBox());
-			this->cbLaplacian = (gcnew System::Windows::Forms::CheckBox());
-			this->cbMedian = (gcnew System::Windows::Forms::CheckBox());
 			this->lbOrder4 = (gcnew System::Windows::Forms::Label());
-			this->lbOrder3 = (gcnew System::Windows::Forms::Label());
-			this->lbOrder2 = (gcnew System::Windows::Forms::Label());
 			this->lbOrder1 = (gcnew System::Windows::Forms::Label());
 			this->btnStart = (gcnew System::Windows::Forms::Button());
 			this->btnOpenOutput = (gcnew System::Windows::Forms::Button());
@@ -142,33 +151,30 @@ namespace OpenCV_JP {
 			this->lbInputTittle = (gcnew System::Windows::Forms::Label());
 			this->folderBrowserDialog = (gcnew System::Windows::Forms::FolderBrowserDialog());
 			this->backgroundWorker = (gcnew System::ComponentModel::BackgroundWorker());
+			this->lbOrder3 = (gcnew System::Windows::Forms::Label());
 			this->pnMain->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbNumNoise))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbOpening))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbThresholding))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbLaplacian))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbMedian))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// pnMain
 			// 
-			this->pnMain->Controls->Add(this->cbAdaptiveThresholding);
+			this->pnMain->Controls->Add(this->lbNumberNoise);
+			this->pnMain->Controls->Add(this->btnAddNoise);
+			this->pnMain->Controls->Add(this->cbbMorphologyTransformations);
+			this->pnMain->Controls->Add(this->cbbConvert2Bin);
+			this->pnMain->Controls->Add(this->cbbSaltPepperFilter);
+			this->pnMain->Controls->Add(this->trbNumNoise);
+			this->pnMain->Controls->Add(this->lbTitlePepperSalt);
 			this->pnMain->Controls->Add(this->lbInform);
 			this->pnMain->Controls->Add(this->btnCancel);
 			this->pnMain->Controls->Add(this->lbKernelOpening);
-			this->pnMain->Controls->Add(this->lbValThresholding);
-			this->pnMain->Controls->Add(this->lbKernelLaplacian);
 			this->pnMain->Controls->Add(this->lbKernelMedian);
 			this->pnMain->Controls->Add(this->trbOpening);
-			this->pnMain->Controls->Add(this->trbThresholding);
-			this->pnMain->Controls->Add(this->trbLaplacian);
 			this->pnMain->Controls->Add(this->trbMedian);
-			this->pnMain->Controls->Add(this->cbOpening);
-			this->pnMain->Controls->Add(this->cbThresholding);
-			this->pnMain->Controls->Add(this->cbLaplacian);
-			this->pnMain->Controls->Add(this->cbMedian);
 			this->pnMain->Controls->Add(this->lbOrder4);
 			this->pnMain->Controls->Add(this->lbOrder3);
-			this->pnMain->Controls->Add(this->lbOrder2);
 			this->pnMain->Controls->Add(this->lbOrder1);
 			this->pnMain->Controls->Add(this->btnStart);
 			this->pnMain->Controls->Add(this->btnOpenOutput);
@@ -179,24 +185,84 @@ namespace OpenCV_JP {
 			this->pnMain->Controls->Add(this->lbInputTittle);
 			this->pnMain->Location = System::Drawing::Point(12, 12);
 			this->pnMain->Name = L"pnMain";
-			this->pnMain->Size = System::Drawing::Size(598, 411);
+			this->pnMain->Size = System::Drawing::Size(678, 480);
 			this->pnMain->TabIndex = 0;
 			// 
-			// cbAdaptiveThresholding
+			// lbNumberNoise
 			// 
-			this->cbAdaptiveThresholding->AutoSize = true;
-			this->cbAdaptiveThresholding->Location = System::Drawing::Point(331, 289);
-			this->cbAdaptiveThresholding->Name = L"cbAdaptiveThresholding";
-			this->cbAdaptiveThresholding->Size = System::Drawing::Size(168, 19);
-			this->cbAdaptiveThresholding->TabIndex = 25;
-			this->cbAdaptiveThresholding->Text = L"Adaptive Thresholding";
-			this->cbAdaptiveThresholding->UseVisualStyleBackColor = true;
-			this->cbAdaptiveThresholding->CheckedChanged += gcnew System::EventHandler(this, &frmPreprocessing::cbAdaptiveThresholding_CheckedChanged);
+			this->lbNumberNoise->AutoSize = true;
+			this->lbNumberNoise->Location = System::Drawing::Point(253, 81);
+			this->lbNumberNoise->Name = L"lbNumberNoise";
+			this->lbNumberNoise->Size = System::Drawing::Size(23, 15);
+			this->lbNumberNoise->TabIndex = 35;
+			this->lbNumberNoise->Text = L"0%";
+			// 
+			// btnAddNoise
+			// 
+			this->btnAddNoise->Location = System::Drawing::Point(495, 107);
+			this->btnAddNoise->Name = L"btnAddNoise";
+			this->btnAddNoise->Size = System::Drawing::Size(105, 30);
+			this->btnAddNoise->TabIndex = 34;
+			this->btnAddNoise->Text = L"Add";
+			this->btnAddNoise->UseVisualStyleBackColor = true;
+			this->btnAddNoise->Click += gcnew System::EventHandler(this, &frmPreprocessing::btnAddNoise_Click);
+			// 
+			// cbbMorphologyTransformations
+			// 
+			this->cbbMorphologyTransformations->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cbbMorphologyTransformations->FormattingEnabled = true;
+			this->cbbMorphologyTransformations->Items->AddRange(gcnew cli::array< System::Object^  >(6) {
+				L"- Nothing -", L"Opening",
+					L"Closing", L"Gradient", L"Top Hat", L"Black Hat"
+			});
+			this->cbbMorphologyTransformations->Location = System::Drawing::Point(495, 403);
+			this->cbbMorphologyTransformations->Name = L"cbbMorphologyTransformations";
+			this->cbbMorphologyTransformations->Size = System::Drawing::Size(160, 23);
+			this->cbbMorphologyTransformations->TabIndex = 33;
+			// 
+			// cbbConvert2Bin
+			// 
+			this->cbbConvert2Bin->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cbbConvert2Bin->FormattingEnabled = true;
+			this->cbbConvert2Bin->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"- Nothing -", L"Otsu thresholding", L"Adaptive thresholding" });
+			this->cbbConvert2Bin->Location = System::Drawing::Point(495, 330);
+			this->cbbConvert2Bin->Name = L"cbbConvert2Bin";
+			this->cbbConvert2Bin->Size = System::Drawing::Size(160, 23);
+			this->cbbConvert2Bin->TabIndex = 32;
+			// 
+			// cbbSaltPepperFilter
+			// 
+			this->cbbSaltPepperFilter->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cbbSaltPepperFilter->FormattingEnabled = true;
+			this->cbbSaltPepperFilter->Items->AddRange(gcnew cli::array< System::Object^  >(3) { L"- Nothing -", L"Median", L"Adaptive median" });
+			this->cbbSaltPepperFilter->Location = System::Drawing::Point(495, 184);
+			this->cbbSaltPepperFilter->Name = L"cbbSaltPepperFilter";
+			this->cbbSaltPepperFilter->Size = System::Drawing::Size(160, 23);
+			this->cbbSaltPepperFilter->TabIndex = 30;
+			// 
+			// trbNumNoise
+			// 
+			this->trbNumNoise->Location = System::Drawing::Point(73, 99);
+			this->trbNumNoise->Maximum = 100;
+			this->trbNumNoise->Name = L"trbNumNoise";
+			this->trbNumNoise->Size = System::Drawing::Size(380, 56);
+			this->trbNumNoise->TabIndex = 29;
+			this->trbNumNoise->Value = 1;
+			this->trbNumNoise->Scroll += gcnew System::EventHandler(this, &frmPreprocessing::trbNumNoise_Scroll);
+			// 
+			// lbTitlePepperSalt
+			// 
+			this->lbTitlePepperSalt->AutoSize = true;
+			this->lbTitlePepperSalt->Location = System::Drawing::Point(23, 107);
+			this->lbTitlePepperSalt->Name = L"lbTitlePepperSalt";
+			this->lbTitlePepperSalt->Size = System::Drawing::Size(58, 15);
+			this->lbTitlePepperSalt->TabIndex = 27;
+			this->lbTitlePepperSalt->Text = L"Impulse:";
 			// 
 			// lbInform
 			// 
 			this->lbInform->AutoSize = true;
-			this->lbInform->Location = System::Drawing::Point(39, 383);
+			this->lbInform->Location = System::Drawing::Point(39, 439);
 			this->lbInform->Name = L"lbInform";
 			this->lbInform->Size = System::Drawing::Size(0, 15);
 			this->lbInform->TabIndex = 24;
@@ -204,7 +270,7 @@ namespace OpenCV_JP {
 			// btnCancel
 			// 
 			this->btnCancel->Enabled = false;
-			this->btnCancel->Location = System::Drawing::Point(376, 378);
+			this->btnCancel->Location = System::Drawing::Point(459, 447);
 			this->btnCancel->Name = L"btnCancel";
 			this->btnCancel->Size = System::Drawing::Size(105, 30);
 			this->btnCancel->TabIndex = 23;
@@ -215,34 +281,16 @@ namespace OpenCV_JP {
 			// lbKernelOpening
 			// 
 			this->lbKernelOpening->AutoSize = true;
-			this->lbKernelOpening->Location = System::Drawing::Point(214, 321);
+			this->lbKernelOpening->Location = System::Drawing::Point(253, 385);
 			this->lbKernelOpening->Name = L"lbKernelOpening";
 			this->lbKernelOpening->Size = System::Drawing::Size(15, 15);
 			this->lbKernelOpening->TabIndex = 22;
 			this->lbKernelOpening->Text = L"3";
 			// 
-			// lbValThresholding
-			// 
-			this->lbValThresholding->AutoSize = true;
-			this->lbValThresholding->Location = System::Drawing::Point(198, 250);
-			this->lbValThresholding->Name = L"lbValThresholding";
-			this->lbValThresholding->Size = System::Drawing::Size(31, 15);
-			this->lbValThresholding->TabIndex = 21;
-			this->lbValThresholding->Text = L"200";
-			// 
-			// lbKernelLaplacian
-			// 
-			this->lbKernelLaplacian->AutoSize = true;
-			this->lbKernelLaplacian->Location = System::Drawing::Point(214, 175);
-			this->lbKernelLaplacian->Name = L"lbKernelLaplacian";
-			this->lbKernelLaplacian->Size = System::Drawing::Size(15, 15);
-			this->lbKernelLaplacian->TabIndex = 20;
-			this->lbKernelLaplacian->Text = L"3";
-			// 
 			// lbKernelMedian
 			// 
 			this->lbKernelMedian->AutoSize = true;
-			this->lbKernelMedian->Location = System::Drawing::Point(214, 98);
+			this->lbKernelMedian->Location = System::Drawing::Point(253, 162);
 			this->lbKernelMedian->Name = L"lbKernelMedian";
 			this->lbKernelMedian->Size = System::Drawing::Size(15, 15);
 			this->lbKernelMedian->TabIndex = 19;
@@ -251,130 +299,39 @@ namespace OpenCV_JP {
 			// trbOpening
 			// 
 			this->trbOpening->LargeChange = 1;
-			this->trbOpening->Location = System::Drawing::Point(73, 339);
+			this->trbOpening->Location = System::Drawing::Point(73, 403);
 			this->trbOpening->Maximum = 3;
 			this->trbOpening->Minimum = 1;
 			this->trbOpening->Name = L"trbOpening";
-			this->trbOpening->Size = System::Drawing::Size(252, 56);
+			this->trbOpening->Size = System::Drawing::Size(380, 56);
 			this->trbOpening->TabIndex = 18;
 			this->trbOpening->Value = 1;
 			this->trbOpening->Scroll += gcnew System::EventHandler(this, &frmPreprocessing::trbOpening_Scroll);
 			// 
-			// trbThresholding
-			// 
-			this->trbThresholding->LargeChange = 1;
-			this->trbThresholding->Location = System::Drawing::Point(73, 262);
-			this->trbThresholding->Maximum = 200;
-			this->trbThresholding->Minimum = 128;
-			this->trbThresholding->Name = L"trbThresholding";
-			this->trbThresholding->Size = System::Drawing::Size(252, 56);
-			this->trbThresholding->TabIndex = 17;
-			this->trbThresholding->Value = 200;
-			this->trbThresholding->Scroll += gcnew System::EventHandler(this, &frmPreprocessing::trbThresholding_Scroll);
-			// 
-			// trbLaplacian
-			// 
-			this->trbLaplacian->LargeChange = 1;
-			this->trbLaplacian->Location = System::Drawing::Point(73, 191);
-			this->trbLaplacian->Maximum = 3;
-			this->trbLaplacian->Minimum = 1;
-			this->trbLaplacian->Name = L"trbLaplacian";
-			this->trbLaplacian->Size = System::Drawing::Size(252, 56);
-			this->trbLaplacian->TabIndex = 16;
-			this->trbLaplacian->Value = 1;
-			this->trbLaplacian->Scroll += gcnew System::EventHandler(this, &frmPreprocessing::trbLaplacian_Scroll);
-			// 
 			// trbMedian
 			// 
-			this->trbMedian->Location = System::Drawing::Point(73, 116);
+			this->trbMedian->Location = System::Drawing::Point(73, 180);
 			this->trbMedian->Maximum = 3;
 			this->trbMedian->Minimum = 1;
 			this->trbMedian->Name = L"trbMedian";
-			this->trbMedian->Size = System::Drawing::Size(252, 56);
+			this->trbMedian->Size = System::Drawing::Size(380, 56);
 			this->trbMedian->TabIndex = 15;
 			this->trbMedian->Value = 1;
 			this->trbMedian->Scroll += gcnew System::EventHandler(this, &frmPreprocessing::trbMedian_Scroll);
 			// 
-			// cbOpening
-			// 
-			this->cbOpening->AutoSize = true;
-			this->cbOpening->Checked = true;
-			this->cbOpening->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->cbOpening->Location = System::Drawing::Point(331, 339);
-			this->cbOpening->Name = L"cbOpening";
-			this->cbOpening->Size = System::Drawing::Size(210, 19);
-			this->cbOpening->TabIndex = 14;
-			this->cbOpening->Text = L"Make thick border (Opening)";
-			this->cbOpening->UseVisualStyleBackColor = true;
-			// 
-			// cbThresholding
-			// 
-			this->cbThresholding->AutoSize = true;
-			this->cbThresholding->Checked = true;
-			this->cbThresholding->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->cbThresholding->Location = System::Drawing::Point(331, 250);
-			this->cbThresholding->Name = L"cbThresholding";
-			this->cbThresholding->Size = System::Drawing::Size(261, 19);
-			this->cbThresholding->TabIndex = 13;
-			this->cbThresholding->Text = L"Convert to bin-image (Thresholding)";
-			this->cbThresholding->UseVisualStyleBackColor = true;
-			this->cbThresholding->CheckedChanged += gcnew System::EventHandler(this, &frmPreprocessing::cbThresholding_CheckedChanged);
-			// 
-			// cbLaplacian
-			// 
-			this->cbLaplacian->AutoSize = true;
-			this->cbLaplacian->Checked = true;
-			this->cbLaplacian->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->cbLaplacian->Location = System::Drawing::Point(331, 197);
-			this->cbLaplacian->Name = L"cbLaplacian";
-			this->cbLaplacian->Size = System::Drawing::Size(191, 19);
-			this->cbLaplacian->TabIndex = 12;
-			this->cbLaplacian->Text = L"Detect border (Laplacian)";
-			this->cbLaplacian->UseVisualStyleBackColor = true;
-			// 
-			// cbMedian
-			// 
-			this->cbMedian->AutoSize = true;
-			this->cbMedian->Checked = true;
-			this->cbMedian->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->cbMedian->Location = System::Drawing::Point(331, 120);
-			this->cbMedian->Name = L"cbMedian";
-			this->cbMedian->Size = System::Drawing::Size(213, 19);
-			this->cbMedian->TabIndex = 11;
-			this->cbMedian->Text = L"Remove salt pepper (Median)";
-			this->cbMedian->UseVisualStyleBackColor = true;
-			// 
 			// lbOrder4
 			// 
 			this->lbOrder4->AutoSize = true;
-			this->lbOrder4->Location = System::Drawing::Point(34, 343);
+			this->lbOrder4->Location = System::Drawing::Point(23, 403);
 			this->lbOrder4->Name = L"lbOrder4";
 			this->lbOrder4->Size = System::Drawing::Size(33, 15);
 			this->lbOrder4->TabIndex = 10;
 			this->lbOrder4->Text = L"4 - ";
 			// 
-			// lbOrder3
-			// 
-			this->lbOrder3->AutoSize = true;
-			this->lbOrder3->Location = System::Drawing::Point(34, 269);
-			this->lbOrder3->Name = L"lbOrder3";
-			this->lbOrder3->Size = System::Drawing::Size(33, 15);
-			this->lbOrder3->TabIndex = 9;
-			this->lbOrder3->Text = L"3 - ";
-			// 
-			// lbOrder2
-			// 
-			this->lbOrder2->AutoSize = true;
-			this->lbOrder2->Location = System::Drawing::Point(34, 201);
-			this->lbOrder2->Name = L"lbOrder2";
-			this->lbOrder2->Size = System::Drawing::Size(33, 15);
-			this->lbOrder2->TabIndex = 8;
-			this->lbOrder2->Text = L"2 - ";
-			// 
 			// lbOrder1
 			// 
 			this->lbOrder1->AutoSize = true;
-			this->lbOrder1->Location = System::Drawing::Point(34, 120);
+			this->lbOrder1->Location = System::Drawing::Point(23, 180);
 			this->lbOrder1->Name = L"lbOrder1";
 			this->lbOrder1->Size = System::Drawing::Size(28, 15);
 			this->lbOrder1->TabIndex = 7;
@@ -382,7 +339,7 @@ namespace OpenCV_JP {
 			// 
 			// btnStart
 			// 
-			this->btnStart->Location = System::Drawing::Point(487, 378);
+			this->btnStart->Location = System::Drawing::Point(570, 447);
 			this->btnStart->Name = L"btnStart";
 			this->btnStart->Size = System::Drawing::Size(105, 30);
 			this->btnStart->TabIndex = 6;
@@ -392,7 +349,7 @@ namespace OpenCV_JP {
 			// 
 			// btnOpenOutput
 			// 
-			this->btnOpenOutput->Location = System::Drawing::Point(487, 55);
+			this->btnOpenOutput->Location = System::Drawing::Point(550, 38);
 			this->btnOpenOutput->Name = L"btnOpenOutput";
 			this->btnOpenOutput->Size = System::Drawing::Size(105, 30);
 			this->btnOpenOutput->TabIndex = 5;
@@ -402,7 +359,7 @@ namespace OpenCV_JP {
 			// 
 			// btnOpenInput
 			// 
-			this->btnOpenInput->Location = System::Drawing::Point(487, 19);
+			this->btnOpenInput->Location = System::Drawing::Point(550, 2);
 			this->btnOpenInput->Name = L"btnOpenInput";
 			this->btnOpenInput->Size = System::Drawing::Size(105, 30);
 			this->btnOpenInput->TabIndex = 4;
@@ -413,7 +370,7 @@ namespace OpenCV_JP {
 			// lbOutput
 			// 
 			this->lbOutput->AutoSize = true;
-			this->lbOutput->Location = System::Drawing::Point(139, 67);
+			this->lbOutput->Location = System::Drawing::Point(149, 46);
 			this->lbOutput->Name = L"lbOutput";
 			this->lbOutput->Size = System::Drawing::Size(72, 15);
 			this->lbOutput->TabIndex = 3;
@@ -422,7 +379,7 @@ namespace OpenCV_JP {
 			// lbInput
 			// 
 			this->lbInput->AutoSize = true;
-			this->lbInput->Location = System::Drawing::Point(136, 27);
+			this->lbInput->Location = System::Drawing::Point(146, 10);
 			this->lbInput->Name = L"lbInput";
 			this->lbInput->Size = System::Drawing::Size(60, 15);
 			this->lbInput->TabIndex = 2;
@@ -431,7 +388,7 @@ namespace OpenCV_JP {
 			// lbTittleOutput
 			// 
 			this->lbTittleOutput->AutoSize = true;
-			this->lbTittleOutput->Location = System::Drawing::Point(34, 67);
+			this->lbTittleOutput->Location = System::Drawing::Point(44, 46);
 			this->lbTittleOutput->Name = L"lbTittleOutput";
 			this->lbTittleOutput->Size = System::Drawing::Size(95, 15);
 			this->lbTittleOutput->TabIndex = 1;
@@ -440,7 +397,7 @@ namespace OpenCV_JP {
 			// lbInputTittle
 			// 
 			this->lbInputTittle->AutoSize = true;
-			this->lbInputTittle->Location = System::Drawing::Point(34, 27);
+			this->lbInputTittle->Location = System::Drawing::Point(44, 10);
 			this->lbInputTittle->Name = L"lbInputTittle";
 			this->lbInputTittle->Size = System::Drawing::Size(83, 15);
 			this->lbInputTittle->TabIndex = 0;
@@ -454,23 +411,31 @@ namespace OpenCV_JP {
 			this->backgroundWorker->ProgressChanged += gcnew System::ComponentModel::ProgressChangedEventHandler(this, &frmPreprocessing::backgroundWorker_ProgressChanged);
 			this->backgroundWorker->RunWorkerCompleted += gcnew System::ComponentModel::RunWorkerCompletedEventHandler(this, &frmPreprocessing::backgroundWorker_RunWorkerCompleted);
 			// 
+			// lbOrder3
+			// 
+			this->lbOrder3->AutoSize = true;
+			this->lbOrder3->Location = System::Drawing::Point(23, 329);
+			this->lbOrder3->Name = L"lbOrder3";
+			this->lbOrder3->Size = System::Drawing::Size(33, 15);
+			this->lbOrder3->TabIndex = 9;
+			this->lbOrder3->Text = L"3 - ";
+			// 
 			// frmPreprocessing
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 15);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(622, 435);
+			this->ClientSize = System::Drawing::Size(702, 495);
 			this->Controls->Add(this->pnMain);
 			this->HelpButton = true;
-			this->MaximumSize = System::Drawing::Size(640, 480);
-			this->MinimumSize = System::Drawing::Size(640, 480);
+			this->MaximumSize = System::Drawing::Size(720, 540);
+			this->MinimumSize = System::Drawing::Size(720, 540);
 			this->Name = L"frmPreprocessing";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Pre-processing";
 			this->pnMain->ResumeLayout(false);
 			this->pnMain->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbNumNoise))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbOpening))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbThresholding))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbLaplacian))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trbMedian))->EndInit();
 			this->ResumeLayout(false);
 
@@ -480,18 +445,15 @@ private: System::Void btnOpenInput_Click(System::Object^  sender, System::EventA
 		 System::Void btnCancel_Click(System::Object^  sender, System::EventArgs^  e);
 		 System::Void btnStart_Click(System::Object^  sender, System::EventArgs^  e);
 		 System::Void btnOpenOutput_Click(System::Object^  sender, System::EventArgs^  e);
+		 System::Void trbNumNoise_Scroll(System::Object^  sender, System::EventArgs^  e);
 		 System::Void trbOpening_Scroll(System::Object^  sender, System::EventArgs^  e);
-		 System::Void trbLaplacian_Scroll(System::Object^  sender, System::EventArgs^  e);
-		 System::Void trbThresholding_Scroll(System::Object^  sender, System::EventArgs^  e);
-		 System::Void trbMedian_Scroll(System::Object^  sender, System::EventArgs^  e);
+		 System::Void trbMedian_Scroll(System::Object^  sender, System::EventArgs^  e); 
 		 System::Void backgroundWorker_DoWork(System::Object^  sender, System::ComponentModel::DoWorkEventArgs^  e);
 		 System::Void backgroundWorker_ProgressChanged(System::Object^  sender, System::ComponentModel::ProgressChangedEventArgs^  e);
 		 System::Void backgroundWorker_RunWorkerCompleted(System::Object^  sender, System::ComponentModel::RunWorkerCompletedEventArgs^  e);
-		 System::Void cbAdaptiveThresholding_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
-		 System::Void cbThresholding_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+		 System::Void btnAddNoise_Click(System::Object^  sender, System::EventArgs^  e);
 		 //
 private: Extent* extent = new Extent();
 		 Preprocess* preprocess;
-
 };
 }

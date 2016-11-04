@@ -43,8 +43,7 @@ void Preprocess::adaptiveMedian(unsigned int Smax)
 	unsigned int windowSize = Smin;
 	int A1, A2, B1, B2;
 	int* mask;
-	Size size = this->src.size();
-	unsigned int width = size.width,height = size.height;
+	unsigned int width = this->src.cols,height = this->src.rows;
 	Scalar intensity;
 	int val;
 
@@ -53,9 +52,10 @@ void Preprocess::adaptiveMedian(unsigned int Smax)
 			windowSize = Smin; 
 			mask = (int*)calloc(windowSize * windowSize - 1, sizeof(int));
 			//Init all val -1
-			memset(mask, -1, (windowSize * windowSize - 1) * sizeof(int));
+			for (int h = 0; h < windowSize * windowSize - 1; h++)
+				*(mask + h) = INIT_VAL;
 
-			intensity = this->dist.at<uchar>(j, i);
+			intensity = this->src.at<uchar>(j, i);
 			Zxy = intensity[0];
 
 			while (windowSize <= Smax) {
@@ -65,19 +65,19 @@ void Preprocess::adaptiveMedian(unsigned int Smax)
 						if (abs(z) == mid | abs(k) == mid) {
 							if (k == 0 & z == 0) continue;
 							if ((j + k >= 0 & j + k < height) & (i + z >= 0 & i + z < width)) {
-								intensity = this->dist.at<uchar>(j + k, i + z);
+								intensity = this->src.at<uchar>(j + k, i + z);
 								val = intensity[0];
 							}
 							else
-								val = 0;
+								val = 255;
 							this->addElement(mask, val, windowSize * windowSize - 1);
 						}
 					}//for z
 				}//for k
-					//Lấy giá trị Zmin, Zmax, Zmed, Zxy
+					//Zmin, Zmax, Zmed
 					Zmin = *(mask);
 					int mid_id = floor(((windowSize * windowSize) - 2) / 2);
-					Zmed = *(mask + mid_id);
+					Zmed = (*(mask + mid_id) + *(mask + mid_id + 1))/2;
 					Zmax = *(mask + (windowSize * windowSize - 2));
 					//Xử lý 2 bước
 					A1 = Zmed - Zmin;
@@ -85,10 +85,8 @@ void Preprocess::adaptiveMedian(unsigned int Smax)
 					if (A1 > 0 & A2 < 0) {
 						B1 = Zxy - Zmin;
 						B2 = Zxy - Zmax;
-						if (B1 <= 0 | B2 >= 0)
+						if (B1 <= 0 || B2 >= 0)
 							this->dist.at<uchar>(j, i) = Zmed;
-						else
-							this->dist.at<uchar>(j, i) = Zxy;
 						break;
 					}
 					else {
@@ -96,12 +94,10 @@ void Preprocess::adaptiveMedian(unsigned int Smax)
 						mask = (int*)realloc(mask,  (windowSize * windowSize - 1) * sizeof(int));
 						int min = (windowSize - 1) * 4;
 						for (int h = windowSize * windowSize - 1 - min; h < windowSize * windowSize - 1; h++)
-							*(mask + h) = -1;
+							*(mask + h) = INIT_VAL;
 					}
 			}//while
 
-			if (windowSize > Smax)
-				this->dist.at<uchar>(j, i) = Zxy;
 			delete[] mask;//delete all vals
 		}//for j
 	}//for i 

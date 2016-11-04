@@ -97,6 +97,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 			this->preprocess->setSrc(this->preprocess->getDist());
 			this->preprocess->gaussianBlur(3);
 			this->preprocess->setSrc(this->preprocess->getDist());
+			//this->preprocess->threshold(0,255,THRESH_BINARY);
 			this->preprocess->threshold();
 		}
 		//3.1 - Adaptive Thresholding check

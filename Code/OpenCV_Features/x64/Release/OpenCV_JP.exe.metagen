@@ -21,3 +21,5 @@ Class OpenCV_JP.frmMain: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
 Class OpenCV_JP.frmPreprocessing: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Boolean instance : Public, Static

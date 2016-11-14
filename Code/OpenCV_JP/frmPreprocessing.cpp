@@ -1,16 +1,12 @@
 ﻿#include "frmPreprocessing.h"
 
-using namespace std;
-namespace fs = std::experimental::filesystem;
-using namespace System;
-using namespace System::IO;
-using namespace System::Threading;
-
 System::Void OpenCV_JP::frmPreprocessing::btnOpenInput_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	folderBrowserDialog->SelectedPath = "D:\\Input\\";
-	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		this->lbInput->Text = folderBrowserDialog->SelectedPath;
+		tbInform->Text = tbInform->Text + "\r\nChoose input: "+folderBrowserDialog->SelectedPath;
+	}
 }
 
 System::Void OpenCV_JP::frmPreprocessing::btnCancel_Click(System::Object ^ sender, System::EventArgs ^ e)
@@ -21,15 +17,17 @@ System::Void OpenCV_JP::frmPreprocessing::btnCancel_Click(System::Object ^ sende
 System::Void OpenCV_JP::frmPreprocessing::btnOpenOutput_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	folderBrowserDialog->SelectedPath = "D:\\Output\\";
-	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		this->lbOutput->Text = folderBrowserDialog->SelectedPath;
+		tbInform->Text = tbInform->Text + "\r\nChoose output: " + folderBrowserDialog->SelectedPath;
+	}
 }
 
 System::Void OpenCV_JP::frmPreprocessing::btnStart_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
 	btnStart->Enabled = false;
 	btnCancel->Enabled = true;
-
+	tbInform->Text = tbInform->Text + "\r\nPre-processing is starting...";
 	backgroundWorker->RunWorkerAsync();  //starting background worker
 }
 
@@ -52,13 +50,14 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 		if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG" | iter->path().extension() == ".png" | iter->path().extension() == ".PNG" | iter->path().extension() == ".BMP" | iter->path().extension() == ".bmp")
 		{
 			string str = iter->path().string();
-			System::String^ path = gcnew System::String(iter->path().string().c_str()); 
-			backgroundWorker->ReportProgress(1, path);  //reporting progress
+			System::String^ path = gcnew System::String(iter->path().string().c_str());
+			backgroundWorker->ReportProgress(1,path);  //reporting progress
 		}
 
 		if (backgroundWorker->CancellationPending) //if it was cancelled
 		{
 			e->Cancel = true;
+			tbInform->Text = tbInform->Text + "\r\nPre-processing is aborted...";
 			break;
 		}
 	}//for iter
@@ -67,6 +66,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_DoWork(System::Object
 System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(System::Object ^ sender, System::ComponentModel::ProgressChangedEventArgs ^ e)
 {
 		System::String^ path = e->UserState->ToString();
+		tbInform->Text = tbInform->Text + "\r\n" + path + " is processing...";
 		string str_path;
 		this->extent->MarshalString(path, str_path);
 		Mat src = imread(str_path, CV_LOAD_IMAGE_GRAYSCALE);
@@ -79,7 +79,6 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 		//Initing object preprocess
 		Mat dst = src.clone();
 		this->preprocess = new Preprocess(src, dst);
-		cout << str_path << " is processing..." << endl;
 		//1 - Median check
 		if (cbbSaltPepperFilter->Text == "Median") {
 			int kernelMedian = trbMedian->Value * 2 + 1;
@@ -145,11 +144,11 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_RunWorkerCompleted(Sy
 {
 	if (e->Cancelled)    //Messages for the events
 	{
-		lbInform->Text = "You have cancelled background worker!!!";
+		tbInform->Text = tbInform->Text + "\r\nYou have cancelled background worker!!!";
 	}
 	else
 	{
-		lbInform->Text = "Work completed!!";
+		tbInform->Text = tbInform->Text + "\r\nWork completed!!";
 	}
 	btnStart->Enabled = true;
 	btnCancel->Enabled = false;
@@ -174,7 +173,6 @@ System::Void OpenCV_JP::frmPreprocessing::btnAddNoise_Click(System::Object ^ sen
 
 			//saving
 			vector<string> arrPath = this->extent->split(str, '\\');
-		//	this->extent->MarshalString(lbOutput->Text, str);
 			std::string savePath = "D:\\Noise\\" + arrPath.back();
 			imwrite(savePath, addNoise.getImage());
 			//end saving
@@ -195,4 +193,5 @@ System::Void OpenCV_JP::frmPreprocessing::trbNumNoise_Scroll(System::Object ^ se
 	System::String^ val = gcnew System::String(model.c_str());
 	lbNumberNoise->Text = val+"%";
 }
+
 

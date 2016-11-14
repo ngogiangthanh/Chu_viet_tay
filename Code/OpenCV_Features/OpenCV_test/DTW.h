@@ -1,5 +1,4 @@
 #pragma once
-#ifndef  _DTW_H_
 #include <iostream>
 #include <cmath>
 #include "Equations.h"
@@ -7,7 +6,7 @@
 
 using namespace std;
 
-class Dynamic_Time_Warping
+ref class Dynamic_Time_Warping
 {
 private:
 	float** DTW; //results matrix
@@ -23,7 +22,5 @@ public:
 	float DTWDistance_GPC(int);
 	int pathWarping();
 };
-#endif // ! _DTW_H_
-#define _DTW_H_
 
 

@@ -1,5 +1,4 @@
 ﻿#pragma once
-#ifndef Extent_H
 #include <iostream>
 #include "opencv2/core/core.hpp"
 
@@ -23,5 +22,3 @@ public:
 	vector<string> split(const string &, char);
 	void ReplaceStringInPlace(std::string& subject, const std::string& search, const std::string& replace);
 };
-#endif
-#define Extent_H

@@ -1,5 +1,4 @@
 #pragma once
-#define Preprocess_H
 #include "iostream"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -29,5 +28,3 @@ public:
 	Mat getSrc();
 	Mat getDist();
 };
-#ifndef Preprocess_H
-#endif

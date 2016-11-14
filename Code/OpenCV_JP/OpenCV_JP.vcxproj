@@ -146,11 +146,17 @@
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\SIFT.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_lp.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_Up.cpp" />
+    <ClCompile Include="DrawDecision.cpp" />
+    <ClCompile Include="Element.cpp" />
     <ClCompile Include="Extent.cpp" />
     <ClCompile Include="frmMain.cpp" />
     <ClCompile Include="frmPreprocessing.cpp" />
+    <ClCompile Include="MatModifies.cpp" />
     <ClCompile Include="Noise.cpp" />
+    <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="Preprocess.cpp" />
+    <ClCompile Include="Segmentation.cpp" />
+    <ClCompile Include="ShortestPath.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\DTW.h" />
@@ -159,6 +165,8 @@
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\SIFT.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_lp.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_Up.h" />
+    <ClInclude Include="DrawDecision.h" />
+    <ClInclude Include="Element.h" />
     <ClInclude Include="Extent.h" />
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
@@ -166,8 +174,13 @@
     <ClInclude Include="frmPreprocessing.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MatModifies.h" />
     <ClInclude Include="Noise.h" />
+    <ClInclude Include="Obstructing.h" />
     <ClInclude Include="Preprocess.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Segmentation.h" />
+    <ClInclude Include="ShortestPath.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">
@@ -176,6 +189,9 @@
     <EmbeddedResource Include="frmPreprocessing.resx">
       <DependentUpon>frmPreprocessing.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="OpenCV_JP.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

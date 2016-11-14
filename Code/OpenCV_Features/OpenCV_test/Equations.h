@@ -1,5 +1,4 @@
 #pragma once
-#ifndef  _Equations_H_
 #include <iostream>
 #include <cmath>
 
@@ -16,7 +15,5 @@ public:
 	float getX();
 	float getY();
 };
-#endif // ! _DTW_H_
-#define _Equations_H_
 
 

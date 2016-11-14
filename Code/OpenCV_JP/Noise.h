@@ -1,5 +1,4 @@
 #pragma once
-#define Noise_H
 #include "opencv2/core/core.hpp"
 
 using namespace cv;
@@ -16,5 +15,3 @@ public:
 	void setImage(Mat);
 	Mat getImage();
 };
-#ifndef Noise_H
-#endif

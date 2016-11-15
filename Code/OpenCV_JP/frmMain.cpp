@@ -1,5 +1,4 @@
 #include "frmMain.h"
-#include "frmPreprocessing.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -25,7 +24,11 @@ System::Void OpenCV_JP::frmMain::btnPre_Click(System::Object ^ sender, System::E
 
 System::Void OpenCV_JP::frmMain::btnSeg_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	return System::Void();
+	if (!frmSegmentation::instance) {
+		frmSegmentation^ seg = gcnew frmSegmentation();
+		seg->Show();
+		frmSegmentation::instance = true;
+	}
 }
 
 System::Void OpenCV_JP::frmMain::btnNormal_Click(System::Object ^ sender, System::EventArgs ^ e)

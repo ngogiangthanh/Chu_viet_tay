@@ -18,6 +18,7 @@ int main( int argc, char** argv )
 	Mat src;
 
 	src = imread("D:\\test.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat copy = src.clone();
 	src.convertTo(src, CV_8UC1);
 	Obstructing* obstructing = new Obstructing();
 	obstructing->setSrc(src);
@@ -28,7 +29,18 @@ int main( int argc, char** argv )
 	Mat rs = obstructing->obstructing(2, y_min, y_max);
 	cv::Rect crop(obstructing->getXMin(), obstructing->getYMin(), obstructing->getXMax() - obstructing->getXMin(), obstructing->getYMax() - obstructing->getYMin());
 	Mat imageUpSource = rs(crop);
+
+	int y_min_0 = obstructing->convert(obstructing->getYMin(), y_min, true);
+	int y_max_0 = obstructing->convert(obstructing->getYMax(), y_min, true);
+
+	cv::line(copy, cv::Point(0, y_min), cv::Point(copy.cols, y_min), Scalar(128, 0, 0));
+	cv::line(copy, cv::Point(0, y_max), cv::Point(copy.cols, y_max), Scalar(128, 0, 0));
+	cv::line(copy, cv::Point(obstructing->getXMin(), y_min_0), cv::Point(obstructing->getXMax(), y_min_0), Scalar(128, 0, 0));
+	cv::line(copy, cv::Point(obstructing->getXMax(), y_min_0), cv::Point(obstructing->getXMax(), y_max_0), Scalar(128, 0, 0));
+	cv::line(copy, cv::Point(obstructing->getXMax(), y_max_0), cv::Point(obstructing->getXMin(), y_max_0), Scalar(128, 0, 0));
+	cv::line(copy, cv::Point(obstructing->getXMin(), y_max_0), cv::Point(obstructing->getXMin(), y_min_0), Scalar(128, 0, 0));
 	imwrite("D:\\rs.jpg", imageUpSource);
+	imwrite("D:\\rs_1.jpg", copy);
 	cout << "test" << endl;
 	system("pause");
 

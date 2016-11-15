@@ -1,4 +1,6 @@
 #pragma once
+#include "frmPreprocessing.h"
+#include "frmSegmentation.h"
 
 namespace OpenCV_JP {
 

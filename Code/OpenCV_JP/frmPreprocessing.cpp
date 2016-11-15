@@ -2,7 +2,7 @@
 
 System::Void OpenCV_JP::frmPreprocessing::btnOpenInput_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	folderBrowserDialog->SelectedPath = "D:\\Input\\";
+	folderBrowserDialog->SelectedPath = "D:\\Input_Pre\\";
 	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		this->lbInput->Text = folderBrowserDialog->SelectedPath;
 		tbInform->Text = tbInform->Text + "\r\nChoose input: "+folderBrowserDialog->SelectedPath;
@@ -16,7 +16,7 @@ System::Void OpenCV_JP::frmPreprocessing::btnCancel_Click(System::Object ^ sende
 
 System::Void OpenCV_JP::frmPreprocessing::btnOpenOutput_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	folderBrowserDialog->SelectedPath = "D:\\Output\\";
+	folderBrowserDialog->SelectedPath = "D:\\Output_Pre\\";
 	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		this->lbOutput->Text = folderBrowserDialog->SelectedPath;
 		tbInform->Text = tbInform->Text + "\r\nChoose output: " + folderBrowserDialog->SelectedPath;
@@ -193,5 +193,3 @@ System::Void OpenCV_JP::frmPreprocessing::trbNumNoise_Scroll(System::Object ^ se
 	System::String^ val = gcnew System::String(model.c_str());
 	lbNumberNoise->Text = val+"%";
 }
-
-

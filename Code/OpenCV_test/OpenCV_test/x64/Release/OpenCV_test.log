@@ -1,6 +1,19 @@
-﻿  Generating code
-  1 of 1 functions (100.0%) were compiled, the rest were copied from previous compilation.
+﻿  Sample.cpp
+Sample.cpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/mat.hpp(1965): warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/persistence.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+D:\Thesis\opencv_modify\install\include\opencv2/core/utility.hpp : warning C4819: The file contains a character that cannot be represented in the current code page (932). Save the file in Unicode format to prevent data loss
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\ShortestPath.h(10): warning C4005: 'UP': macro redefinition
+  d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\Obstructing.h(10): note: see previous definition of 'UP'
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\ShortestPath.h(11): warning C4005: 'DOWN': macro redefinition
+  d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\Obstructing.h(11): note: see previous definition of 'DOWN'
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\ShortestPath.h(20): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\opencv_test\opencv_test\ShortestPath.h(26): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
+  Generating code
+  Finished generating code
+  3 of 87 functions ( 3.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
   OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_test\x64\Release\OpenCV_test.exe
+  OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_test\x64\Release\OpenCV_test.pdb (Full PDB)

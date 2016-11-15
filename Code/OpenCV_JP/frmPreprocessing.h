@@ -54,49 +54,7 @@ namespace OpenCV_JP {
 				delete components;
 			}
 		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::FolderBrowserDialog^  folderBrowserDialog;
-
 	private: System::ComponentModel::BackgroundWorker^  backgroundWorker;
 	private: System::Windows::Forms::TabPage^  tabPagePreprocess;
 	private: System::Windows::Forms::Panel^  pnMain;
@@ -450,18 +408,18 @@ namespace OpenCV_JP {
 			this->lbOutput->AutoSize = true;
 			this->lbOutput->Location = System::Drawing::Point(127, 64);
 			this->lbOutput->Name = L"lbOutput";
-			this->lbOutput->Size = System::Drawing::Size(72, 15);
+			this->lbOutput->Size = System::Drawing::Size(99, 15);
 			this->lbOutput->TabIndex = 3;
-			this->lbOutput->Text = L"D:/Output";
+			this->lbOutput->Text = L"D:/Output_Pre";
 			// 
 			// lbInput
 			// 
 			this->lbInput->AutoSize = true;
 			this->lbInput->Location = System::Drawing::Point(127, 27);
 			this->lbInput->Name = L"lbInput";
-			this->lbInput->Size = System::Drawing::Size(60, 15);
+			this->lbInput->Size = System::Drawing::Size(87, 15);
 			this->lbInput->TabIndex = 2;
-			this->lbInput->Text = L"D:/Input";
+			this->lbInput->Text = L"D:/Input_Pre";
 			// 
 			// lbTittleOutput
 			// 

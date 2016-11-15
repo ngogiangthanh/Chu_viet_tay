@@ -1,4 +1,6 @@
 #pragma once
+#ifndef MatModifies_H
+#define MatModifies_H
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
@@ -19,3 +21,4 @@ public:
 	Mat cut(Mat, vector<cv::Point>);
 	void addPts(Mat, cv::Point, cv::Point, int);
 };
+#endif

@@ -124,10 +124,10 @@ Mat Obstructing::obstructing(int obstructing_type, int y_min, int y_max)
 			}
 	}
 	this->findMaxMin(dist);
-	cout << "x_min" << this->x_min << endl;
+	/*cout << "x_min" << this->x_min << endl;
 	cout << "y_min" << this->y_min << endl;
 	cout << "x_max" << this->x_max << endl;
-	cout << "y_max" << this->y_max << endl;
+	cout << "y_max" << this->y_max << endl;*/
 
 	imwrite("D:\\src.jpg", imageUpSource);
 	imwrite("D:\\dist.jpg", dist);

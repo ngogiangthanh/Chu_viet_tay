@@ -6,6 +6,9 @@
 #define DOWN_DOWN 3
 #define THROUGH 4
 #include <iostream>
+#include <stdio.h>
+
+using namespace std;
 
 class DrawDecision
 {

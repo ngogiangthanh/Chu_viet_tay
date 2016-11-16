@@ -61,7 +61,8 @@ int DrawDecision::getYNextValley()
 
 int DrawDecision::decision()
 {
-	if(!this->isLinesOverride())
+	if (!this->isLinesOverride()) {
+		cout << "khong phai dong chong" << endl;
 		if (this->distance(this->y_u, this->y_curr_valley) > this->distance(this->y_u, this->y_pre_valley))
 			if (this->distance(this->y_d, this->y_curr_valley) > this->distance(this->y_d, this->y_next_valley))
 				return UP_DOWN;
@@ -72,12 +73,14 @@ int DrawDecision::decision()
 				return UP_DOWN;
 			else
 				return UP_UP;
+	}
 	else
 		return THROUGH;
 }
 
 bool DrawDecision::isLinesOverride()
 {
+	cout << "kiem tra dong chong" << endl;
 	return (this->distance(this->y_u, this->y_curr_valley) > this->distance(this->y_u, this->y_pre_valley) &
 		this->distance(this->y_d, this->y_curr_valley) > this->distance(this->y_d, this->y_next_valley));
 }

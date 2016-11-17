@@ -129,8 +129,8 @@ Mat Obstructing::obstructing(int obstructing_type, int y_min, int y_max)
 	cout << "x_max" << this->x_max << endl;
 	cout << "y_max" << this->y_max << endl;*/
 
-	imwrite("D:\\src.jpg", imageUpSource);
-	imwrite("D:\\dist.jpg", dist);
+	//imwrite("D:\\src.jpg", imageUpSource);
+	//imwrite("D:\\dist.jpg", dist);
 	return dist;
 }
 

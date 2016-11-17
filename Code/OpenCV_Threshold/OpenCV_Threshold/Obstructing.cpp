@@ -164,13 +164,21 @@ bool Obstructing::isCut()
 	cv::Scalar pix_curr = this->src.at<uchar>(this->y, this->x);
 	if (pix_curr[0] <= THRESHOLD) {
 		cv::Scalar pix_top = (this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x) : pix_curr;
+		cout << "pix_top" << endl;
 		cv::Scalar pix_tl = (this->x - 1 >= 0 & this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x - 1) : pix_curr;
+		cout << "pix_tl" << endl;
 		cv::Scalar pix_tr = (this->x + 1 < this->width & this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x + 1) : pix_curr;
+		cout << "pix_tr" << endl;
 		cv::Scalar pix_l = (this->x - 1 >= 0) ? this->src.at<uchar>(this->y, this->x - 1) : pix_curr;
+		cout << "pix_l" << endl;
 		cv::Scalar pix_r = (this->x + 1 < this->width) ? this->src.at<uchar>(this->y, this->x + 1) : pix_curr;
+		cout << "pix_r" << endl;
 		cv::Scalar pix_bot = (this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x) : pix_curr;
+		cout << "pix_bot" << endl;
 		cv::Scalar pix_bl = (this->x - 1 >= 0 & this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x - 1) : pix_curr;
+		cout << "pix_bl" << endl;
 		cv::Scalar pix_br = (this->x + 1 < this->width & this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x + 1) : pix_curr;
+		cout << "pix_br" << endl;
 		//check condition
 		if (pix_top[0] <= THRESHOLD)
 			return true;

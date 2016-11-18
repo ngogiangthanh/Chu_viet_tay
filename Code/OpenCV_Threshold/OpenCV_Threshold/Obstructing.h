@@ -9,7 +9,7 @@
 #define ALL 0
 #define UP 1
 #define DOWN 2
-#define THRESHOLD 200
+#define THRESHOLD 220
 
 using namespace cv;
 using namespace std;

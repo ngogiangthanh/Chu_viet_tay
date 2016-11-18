@@ -97,12 +97,12 @@ bool Element::isIterator()
 
 void Element::setX(unsigned int x)
 {
-	this->x = x;
+		this->x = x;
 }
 
 void Element::setY(unsigned int y)
 {
-	this->y = y;
+		this->y = y;
 }
 
 void Element::setOrder(unsigned int order)
@@ -158,4 +158,11 @@ void Element::setIterator(bool iterator)
 void Element::setCorner(cv::Point corner)
 {
 	this->corner = corner;
+}
+
+bool Element::isHasCorner()
+{
+	if (this->corner.x < 0 | this->corner.y < 0)
+		return false;
+	return true;
 }

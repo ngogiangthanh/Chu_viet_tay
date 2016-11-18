@@ -221,7 +221,7 @@ vector<cv::Point>* ShortestPath::print(Node* X, Mat& rs, int x, int y)
 	rs.convertTo(rs, CV_8UC1);
 	for (i = size - 1; i >= 0; i--)
 	{
-		rs.at<uchar>(y + results[i]->state.rows, x + results[i]->state.cols) = 200;
+		//rs.at<uchar>(y + results[i]->state.rows, x + results[i]->state.cols) = 200;
 		v_pts->push_back(cv::Point(x + results[i]->state.cols, y + results[i]->state.rows));
 	}
 

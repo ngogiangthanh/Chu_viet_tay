@@ -94,6 +94,7 @@ void Obstructing::setHeightOfLines(int height_of_lines)
 */
 Mat Obstructing::obstructing(int obstructing_type, int y_min, int y_max)
 {
+	//cout << "Bat dau tim phan lien thong" << endl;
 	cv::Rect crop(0, y_min, this->width, y_max - y_min);
 	Mat imageUpSource = this->src(crop);
 	this->height = y_max - y_min;
@@ -136,27 +137,34 @@ Mat Obstructing::obstructing(int obstructing_type, int y_min, int y_max)
 	}
 	this->findMaxMin(dist);
 
+	//imwrite("D:\\src.jpg", imageUpSource);
+	//imwrite("D:\\dist.jpg", dist);
 	return dist;
 }
 
 void Obstructing::findMaxMin(Mat dist)
 {
 	//Init max min
-	this->x_min = this->width;
-	this->y_min = this->height;
+	this->x_min = dist.cols;
+	this->y_min = dist.rows;
 	this->x_max = 0;
 	this->y_max = 0;
 	//Find
-	for (int i = 0; i < this->width; i++)
-		for (int j = 0; j < this->height; j++) {
+	for (int i = 0; i < dist.cols; i++)
+		for (int j = 0; j < dist.rows; j++) {
 			cv::Scalar intentsity = dist.at<uchar>(j, i);
 			if (intentsity[0] <= THRESHOLD) {
 				if (i < this->x_min) this->x_min = i;
-				else if (i > this->x_max) this->x_max = i;
+				if (i > this->x_max) this->x_max = i;
 				if (j < this->y_min) this->y_min = j;
-				else if (j > this->y_max) this->y_max = j;
+				if (j > this->y_max) this->y_max = j;
 			}
 		}
+	this->x_max = (this->x_max == this->x_min) ? this->x_max + 1 : this->x_max;
+	this->y_max = (this->y_max == this->y_min) ? this->y_max + 1 : this->y_max;
+
+	//cout << "x_min, y_min = " << x_min << ", " << y_min << endl;
+	//cout << "x_max, y_max = " << x_max << ", " << y_max << endl;
 }
 
 bool Obstructing::isCut()
@@ -164,21 +172,13 @@ bool Obstructing::isCut()
 	cv::Scalar pix_curr = this->src.at<uchar>(this->y, this->x);
 	if (pix_curr[0] <= THRESHOLD) {
 		cv::Scalar pix_top = (this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x) : pix_curr;
-		cout << "pix_top" << endl;
 		cv::Scalar pix_tl = (this->x - 1 >= 0 & this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x - 1) : pix_curr;
-		cout << "pix_tl" << endl;
 		cv::Scalar pix_tr = (this->x + 1 < this->width & this->y - 1 >= 0) ? this->src.at<uchar>(this->y - 1, this->x + 1) : pix_curr;
-		cout << "pix_tr" << endl;
 		cv::Scalar pix_l = (this->x - 1 >= 0) ? this->src.at<uchar>(this->y, this->x - 1) : pix_curr;
-		cout << "pix_l" << endl;
 		cv::Scalar pix_r = (this->x + 1 < this->width) ? this->src.at<uchar>(this->y, this->x + 1) : pix_curr;
-		cout << "pix_r" << endl;
 		cv::Scalar pix_bot = (this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x) : pix_curr;
-		cout << "pix_bot" << endl;
 		cv::Scalar pix_bl = (this->x - 1 >= 0 & this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x - 1) : pix_curr;
-		cout << "pix_bl" << endl;
 		cv::Scalar pix_br = (this->x + 1 < this->width & this->y + 1 < this->height) ? this->src.at<uchar>(this->y + 1, this->x + 1) : pix_curr;
-		cout << "pix_br" << endl;
 		//check condition
 		if (pix_top[0] <= THRESHOLD)
 			return true;

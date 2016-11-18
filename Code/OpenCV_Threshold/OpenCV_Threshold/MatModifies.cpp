@@ -26,9 +26,8 @@ Mat MatModifies::addRowBegin(Mat mat)
 Mat MatModifies::cut(Mat src, vector<Point> pts)
 {
 	//Tim x_max, y_max, x_min, y_min
-	cv::Size size = src.size();
-	int x_min = size.width;
-	int y_min = size.height;
+	int x_min = src.cols;
+	int y_min = src.rows;
 	int x_max = 0;
 	int y_max = 0;
 
@@ -61,13 +60,15 @@ Mat MatModifies::cut(Mat src, vector<Point> pts)
 	return Destination;
 }
 
-void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_lines, int y_pre_valley, int y_next_valley)
+void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_lines, int y_pre_valley, int y_next_valley, vector<cv::Point>& pts)
 {
-	cv::Size size = src.size();
+	y_pre_valley = (y_pre_valley < start.y) ? y_pre_valley : start.y - 1;
+	y_next_valley = (y_next_valley > start.y) ? y_next_valley : start.y + 1;
+	//
 	int x_max = 0;
 	int y_max = 0;
-	int x_min = size.width;
-	int y_min = size.height;
+	int x_min = src.cols;
+	int y_min = src.rows;
 	int x_line = 0;
 	int x_line_end = 0;
 	Obstructing* obstructing = new Obstructing();
@@ -78,11 +79,10 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 	obstructing->setHeightOfLines(height_of_lines);
 	//Tiến hành lấy phần liên thông
 
-	vector<cv::Point>* pts = new vector<cv::Point>();
 	vector<cv::Point>* v_pts;
-	cout << "Kiem tra.... " << start.x  << ", " << start.y << endl;
-	cout << "y pre valley = " << y_pre_valley << endl;
-	cout << "y next valley = " << y_next_valley << endl;
+	//cout << "Kiem tra.... " << start.x  << ", " << start.y << endl;
+	//cout << "y pre valley = " << y_pre_valley << endl;
+	//cout << "y next valley = " << y_next_valley << endl;
 
 	for (int i = start.x; i < end.x; i++) {
 
@@ -92,16 +92,17 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 			cout << "Bat dau cat tai x,y = " << i << ", " << start.y << endl;
 			x_line_end = i;
 
-			pts->push_back(cv::Point(x_line, start.y));
-			pts->push_back(cv::Point(x_line_end, start.y));
+			//pts.push_back(cv::Point(x_line, start.y));
+			//pts.push_back(cv::Point(x_line_end, start.y));
 
 			Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
 			x_max = obstructing->getXMax();
 			y_max = obstructing->getYMax();
 			x_min = obstructing->getXMin();
 			y_min = obstructing->getYMin();
-			y_min = obstructing->convert(obstructing->getYMin(), y_pre_valley, true);
-			y_max = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
+
+			//y_min = obstructing->convert(obstructing->getYMin(), y_pre_valley, true);
+			//y_max = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
 
 			//Tìm phần cắt cuối cùng
 			int z = 0;
@@ -114,10 +115,13 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				}
 			}
 
-			Mat rsCrop = this->cropImage(src, x_min - 1, y_min, x_max + 1, y_max);
+			//cout << "x_min - 1, y_min = " << x_min - 1 << ", " << y_min << endl;
+			//cout << "x_max + 1, y_max = " << x_max + 1 << ", " << y_max << endl;
+			Mat rsCrop = this->cropImage(rs, x_min - 1, y_min, x_max + 1, y_max);
 			cv::line(rsCrop, cv::Point(0, 0), cv::Point(0, rsCrop.rows), Scalar(255, 255, 255));
 			cv::line(rsCrop, cv::Point(rsCrop.cols - 1, 0), cv::Point(rsCrop.cols - 1, rsCrop.rows), Scalar(255, 255, 255));
 
+			imwrite("D:\\rscrop.jpg", rsCrop);
 			//Decision draw
 			drawDecision->setYu(y_min);
 			drawDecision->setYd(y_max);
@@ -141,7 +145,7 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				X = shortest->Astar();
 				//Thêm
 				v_pts = shortest->print(X, src, x_min, y_min);
-				pts->insert(pts->end(), v_pts->begin(), v_pts->end());
+				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
 				break;
 			case DOWN_DOWN:
 				cout << "Ke xuong duoi phan lien thong duoi" << endl;
@@ -156,19 +160,19 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				X = shortest->Astar();
 				//Thêm
 				v_pts = shortest->print(X, src, x_min, y_min);
-				pts->insert(pts->end(), v_pts->begin(), v_pts->end());
-				pts->push_back(cv::Point(z + 2, start.y));
-				pts->push_back(cv::Point(x_max, start.y));
+				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
+				//pts.push_back(cv::Point(z + 2, start.y));
+				//pts.push_back(cv::Point(x_max, start.y));
 
-				cv::line(src, cv::Point(z + 2, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
+				//cv::line(src, cv::Point(z + 2, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
 				break;
 			case UP_DOWN:
 			case THROUGH:
 				cout << "Ke cat ngang" << endl;
-				pts->push_back(cv::Point(i, start.y));
-				pts->push_back(cv::Point(x_max, start.y));
+				pts.push_back(cv::Point(i, start.y));
+				pts.push_back(cv::Point(x_max, start.y));
 
-				cv::line(src, cv::Point(i, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
+				//cv::line(src, cv::Point(i, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
 				break;
 			}
 

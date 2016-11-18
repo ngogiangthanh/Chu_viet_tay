@@ -1,7 +1,6 @@
 #pragma once
 #ifndef Element_H
 #define Element_H
-
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
@@ -52,6 +51,7 @@ public:
 	void setPunctuationMarks(bool);
 	void setIterator(bool);
 	void setCorner(cv::Point);
+	bool isHasCorner();
 };
 
 #endif

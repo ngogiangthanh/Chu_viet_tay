@@ -20,7 +20,7 @@ public:
 	Mat addRowEnd(Mat);
 	Mat addRowBegin(Mat);
 	Mat cut(Mat, vector<cv::Point>);
-	void addPts(Mat, cv::Point, cv::Point, int, int, int);
+	void addPts(Mat, cv::Point, cv::Point, int, int, int, vector<cv::Point>&);
 	int getValleyY(vector<cv::Point>, int);
 };
 #endif

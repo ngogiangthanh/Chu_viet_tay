@@ -22,5 +22,6 @@ public:
 	Mat cut(Mat, vector<cv::Point>);
 	void addPts(Mat, cv::Point, cv::Point, int, int, int, vector<cv::Point>&);
 	int getValleyY(vector<cv::Point>, int);
+	void insert(vector<cv::Point>&, vector<cv::Point>);
 };
 #endif

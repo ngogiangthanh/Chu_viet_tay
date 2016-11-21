@@ -9,6 +9,7 @@ ShortestPath::ShortestPath(Mat src)
 void ShortestPath::setData(Mat src)
 {
 	this->data = src.clone();
+	this->size = this->data.size();
 }
 
 Mat ShortestPath::getData()

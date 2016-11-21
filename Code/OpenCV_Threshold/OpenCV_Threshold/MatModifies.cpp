@@ -73,118 +73,181 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 	int x_line_end = 0;
 	Obstructing* obstructing = new Obstructing();
 	DrawDecision* drawDecision = new DrawDecision();
-	ShortestPath* shortest = new ShortestPath(src);
+	//ShortestPath* shortest = new ShortestPath(src);
 
 	obstructing->setSrc(src);
 	obstructing->setHeightOfLines(height_of_lines);
 	//Tiến hành lấy phần liên thông
-
 	vector<cv::Point>* v_pts;
-	//cout << "Kiem tra.... " << start.x  << ", " << start.y << endl;
-	//cout << "y pre valley = " << y_pre_valley << endl;
-	//cout << "y next valley = " << y_next_valley << endl;
+	if (start.x == end.x) {
+		int start_y = (start.y < end.y) ? start.y : end.y;
+		int end_y = (start.y > end.y) ? start.y : end.y;
+		for (int i = start_y; i < end_y; i++) {
+			obstructing->setX(start.x);
+			obstructing->setY(i);
+			if (obstructing->isCut()) {
+				cout << "Kiem tra cat DOC........ " << start.x << ", " << start.y << endl;
+				cout << "y pre valley = " << y_pre_valley << endl;
+				cout << "y next valley = " << y_next_valley << endl;
+				cout << "Bat dau cat tai x,y = " << start.x << ", " << i << endl;
 
-	for (int i = start.x; i < end.x; i++) {
+				Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
+				x_max = obstructing->getXMax();
+				y_max = obstructing->getYMax();
+				x_min = obstructing->getXMin();
+				y_min = obstructing->getYMin();
 
-		obstructing->setX(i);
-		obstructing->setY(start.y);
-		if (obstructing->isCut()) {
-			cout << "Bat dau cat tai x,y = " << i << ", " << start.y << endl;
-			x_line_end = i;
+				Mat rsCrop = this->cropImage(rs, x_min - 1, y_min, x_max + 1, y_max);
+				cv::line(rsCrop, cv::Point(0, 0), cv::Point(0, rsCrop.rows), Scalar(255, 255, 255));
+				cv::line(rsCrop, cv::Point(rsCrop.cols - 1, 0), cv::Point(rsCrop.cols - 1, rsCrop.rows), Scalar(255, 255, 255));
+				rsCrop = this->addRowBegin(rsCrop);
+				rsCrop = this->addRowEnd(rsCrop);
+				int y_u = obstructing->convert(obstructing->getYMin(), y_pre_valley, true);
+				int y_d = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
 
-			//pts.push_back(cv::Point(x_line, start.y));
-			//pts.push_back(cv::Point(x_line_end, start.y));
+				Node* X;
+				ShortestPath* shortest = new ShortestPath(rsCrop);
 
-			Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
-			x_max = obstructing->getXMax();
-			y_max = obstructing->getYMax();
-			x_min = obstructing->getXMin();
-			y_min = obstructing->getYMin();
+				cout << "(x_start, y_start) " << start.x - x_min - 1 << ", " << i - y_u + 1 << endl;
+				cout << "(x_end, y_end) " << start.x - x_min - 1 << ", " << rsCrop.rows - 1 << endl;
 
-			//y_min = obstructing->convert(obstructing->getYMin(), y_pre_valley, true);
-			//y_max = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
+				shortest->setX_start(start.x - x_min - 1);
+				shortest->setY_start(i - y_u + 1);
+				shortest->setX_goal(start.x - x_min - 1);
+				shortest->setY_goal(rsCrop.rows - 1);
+				shortest->init();
+				X = shortest->Astar();
+				//Thêm
+				v_pts = shortest->print(X, rsCrop, x_min - 1, y_u);
+				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
 
-			//Tìm phần cắt cuối cùng
-			int z = 0;
-			for (z = x_max; z > i; z--) {
-				obstructing->setX(z);
-				obstructing->setY(start.y);
-				if (obstructing->isCut()) {
-					cout << "Ket thuc cat tai x,y = " << z << ", " << start.y << endl;
+				//saving - nho xoa
+				string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_doc_" + std::to_string(start.x) + "_" + std::to_string(i) + ".jpg";
+				imwrite(savePath, rsCrop);
+				//saving - nho xoa
+				break;
+			}//if
+		}
+	}//if (start.x == end.x) 
+	else {
+		for (int i = start.x; i < end.x; i++) {
+			obstructing->setX(i);
+			obstructing->setY(start.y);
+			if (obstructing->isCut()) {
+				cout << "Kiem tra.... " << start.x << ", " << start.y << endl;
+				cout << "y pre valley = " << y_pre_valley << endl;
+				cout << "y next valley = " << y_next_valley << endl;
+				cout << "Bat dau cat tai x,y = " << i << ", " << start.y << endl;
+				//x_line_end = i;
+
+				//pts.push_back(cv::Point(i, start.y));
+				//pts.push_back(cv::Point(x_line_end, start.y));
+
+				Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
+				x_max = obstructing->getXMax();
+				y_max = obstructing->getYMax();
+				x_min = obstructing->getXMin();
+				y_min = obstructing->getYMin();
+
+
+				//Tìm phần cắt cuối cùng
+				int z = 0;
+				for (z = x_max; z > i; z--) {
+					obstructing->setX(z);
+					obstructing->setY(start.y);
+					if (obstructing->isCut()) {
+						cout << "Ket thuc cat tai x,y = " << z << ", " << start.y << endl;
+						break;
+					}
+				}
+
+				Mat rsCrop = this->cropImage(rs, x_min - 1, y_min, x_max + 1, y_max);
+				cv::line(rsCrop, cv::Point(0, 0), cv::Point(0, rsCrop.rows), Scalar(255, 255, 255));
+				cv::line(rsCrop, cv::Point(rsCrop.cols - 1, 0), cv::Point(rsCrop.cols - 1, rsCrop.rows), Scalar(255, 255, 255));
+
+
+				//Decision draw
+				int y_u = obstructing->convert(obstructing->getYMin(), y_pre_valley, true);
+				int y_d = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
+
+				drawDecision->setYu(y_u);
+				drawDecision->setYd(y_d);
+				drawDecision->setYCurrValley(start.y);
+				drawDecision->setYPreValley(y_pre_valley);
+				drawDecision->setYNextValley(y_next_valley);
+				Node* X;
+
+				ShortestPath* shortest = new ShortestPath(rsCrop);
+				switch (drawDecision->decision()) {
+				case UP_UP:
+					rsCrop = this->addRowBegin(rsCrop);
+					shortest->setData(rsCrop);
+					cout << "Ke len tren phan lien thong tren" << endl;
+					//nho xoa
+					cout << "(x_start, y_start) " << 0 << ", " << start.y - y_u + 1 << endl;
+					cout << "(x_end, y_end) " << rsCrop.cols - 1 << ", " << start.y - y_u + 1 << endl;
+					//nho xoa
+					shortest->setX_start(0);
+					shortest->setY_start(start.y - y_u + 1);
+					shortest->setX_goal(rsCrop.cols - 1);
+					shortest->setY_goal(start.y - y_u + 1);
+					shortest->init();
+					X = shortest->Astar();
+					//Thêm
+					v_pts = shortest->print(X, rsCrop, x_min - 1, y_u);
+					//nho xoa
+					cout << "v_pts size is " << v_pts->size() << endl;
+					//nho xoa
+					pts.insert(pts.end(), v_pts->begin(), v_pts->end());
+					break;
+				case DOWN_DOWN:
+					cout << "Ke xuong duoi phan lien thong duoi" << endl;
+					rsCrop = this->addRowEnd(rsCrop);
+					shortest->setData(rsCrop);
+
+					shortest->setX_start(0);
+					shortest->setY_start(start.y - y_u);
+					shortest->setX_goal(rsCrop.cols - 1);
+					shortest->setY_goal(start.y - y_u);
+					shortest->init();
+					X = shortest->Astar();
+					//Thêm
+					v_pts = shortest->print(X, rsCrop, x_min - 1, y_u);
+					//nho xoa
+					cout << "v_pts size is " << v_pts->size() << endl;
+					//nho xoa
+					pts.insert(pts.end(), v_pts->begin(), v_pts->end());
+					//pts.push_back(cv::Point(z + 2, start.y));
+					//pts.push_back(cv::Point(x_max, start.y));
+
+					//cv::line(src, cv::Point(z + 2, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
+					break;
+				case UP_DOWN:
+				case THROUGH:
+					cout << "Ke cat ngang" << endl;
+					pts.push_back(cv::Point(i, start.y));
+					pts.push_back(cv::Point(x_max, start.y));
+
+					//cv::line(src, cv::Point(i, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
 					break;
 				}
-			}
 
-			//cout << "x_min - 1, y_min = " << x_min - 1 << ", " << y_min << endl;
-			//cout << "x_max + 1, y_max = " << x_max + 1 << ", " << y_max << endl;
-			Mat rsCrop = this->cropImage(rs, x_min - 1, y_min, x_max + 1, y_max);
-			cv::line(rsCrop, cv::Point(0, 0), cv::Point(0, rsCrop.rows), Scalar(255, 255, 255));
-			cv::line(rsCrop, cv::Point(rsCrop.cols - 1, 0), cv::Point(rsCrop.cols - 1, rsCrop.rows), Scalar(255, 255, 255));
+				//saving - nho xoa
+				string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_ngang_" + std::to_string(i) + "_" + std::to_string(start.y) + ".jpg";
+				imwrite(savePath, rsCrop);
+				//saving - nho xoa
 
-			imwrite("D:\\rscrop.jpg", rsCrop);
-			//Decision draw
-			drawDecision->setYu(y_min);
-			drawDecision->setYd(y_max);
-			drawDecision->setYCurrValley(start.y);
-			drawDecision->setYPreValley(y_pre_valley);
-			drawDecision->setYNextValley(y_next_valley);
-			Node* X;
+				//Bắt đầu lặp từ phần cuối phần liên thông trước đó
+				if (end.x > x_max) {
+					i = x_max + 1;
+					x_line = i;
+				}
+				else
+					break;
 
-			switch (drawDecision->decision()) {
-			case UP_UP:
-				rsCrop = this->addRowBegin(rsCrop);
-
-				cout << "Ke len tren phan lien thong tren" << endl;
-				shortest = new ShortestPath(rsCrop);
-
-				shortest->setX_start(i - x_min - 2);
-				shortest->setY_start(start.y - y_min);
-				shortest->setX_goal(z - x_min + 2);
-				shortest->setY_goal(start.y - y_min);
-				shortest->init();
-				X = shortest->Astar();
-				//Thêm
-				v_pts = shortest->print(X, src, x_min, y_min);
-				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
-				break;
-			case DOWN_DOWN:
-				cout << "Ke xuong duoi phan lien thong duoi" << endl;
-				rsCrop = this->addRowEnd(rsCrop);
-				shortest = new ShortestPath(rsCrop);
-
-				shortest->setX_start(i - x_min - 2);
-				shortest->setY_start(start.y - y_min);
-				shortest->setX_goal(z - x_min + 2);
-				shortest->setY_goal(start.y - y_min);
-				shortest->init();
-				X = shortest->Astar();
-				//Thêm
-				v_pts = shortest->print(X, src, x_min, y_min);
-				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
-				//pts.push_back(cv::Point(z + 2, start.y));
-				//pts.push_back(cv::Point(x_max, start.y));
-
-				//cv::line(src, cv::Point(z + 2, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
-				break;
-			case UP_DOWN:
-			case THROUGH:
-				cout << "Ke cat ngang" << endl;
-				pts.push_back(cv::Point(i, start.y));
-				pts.push_back(cv::Point(x_max, start.y));
-
-				//cv::line(src, cv::Point(i, start.y), cv::Point(x_max, start.y), Scalar(200, 200, 200));
-				break;
-			}
-
-			//Bắt đầu lặp từ phần cuối phần liên thông trước đó
-			if (end.x > x_max) {
-				i = x_max + 1;
-				x_line = i;
-			}
-			else
-				break;
-		}//if
-	}//for i
+			}//if
+		}//for i
+	}//else (start.x == end.x) 
 }
 
 int MatModifies::getValleyY(vector<cv::Point> pts, int x)
@@ -197,4 +260,24 @@ int MatModifies::getValleyY(vector<cv::Point> pts, int x)
 			return pts.at(k - 1).y;
 	}
 	return -2;
+}
+
+void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line)
+{
+	int size_a_part_line = a_part_line.size();
+	int x_min_part_line = a_part_line.at(0).x;
+	int x_max_part_line = a_part_line.at(size_a_part_line - 1).x;
+	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ++it) {
+		if (it->x >= x_min_part_line & it->x <= x_max_part_line) {
+			line.erase(it);
+		}
+	}
+
+	int size_line = line.size();
+	for (vector<int>::size_type k = 0; k != size_line; k++) {
+		if (line.at(k).x > x_min_part_line) {
+			line.insert(line.begin() + k, a_part_line.begin(), a_part_line.end());
+			break;
+		}
+	}
 }

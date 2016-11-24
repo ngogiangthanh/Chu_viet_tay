@@ -60,7 +60,7 @@ Mat MatModifies::cut(Mat src, vector<Point> pts)
 	return Destination;
 }
 
-void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_lines, int y_pre_valley, int y_next_valley, vector<cv::Point>& pts)
+int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_lines, int y_pre_valley, int y_next_valley, vector<cv::Point>& pts)
 {
 	y_pre_valley = (y_pre_valley < start.y) ? y_pre_valley : start.y - 1;
 	y_next_valley = (y_next_valley > start.y) ? y_next_valley : start.y + 1;
@@ -73,10 +73,10 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 	int x_line_end = 0;
 	Obstructing* obstructing = new Obstructing();
 	DrawDecision* drawDecision = new DrawDecision();
-	//ShortestPath* shortest = new ShortestPath(src);
 
 	obstructing->setSrc(src);
 	obstructing->setHeightOfLines(height_of_lines);
+
 	//Tiến hành lấy phần liên thông
 	vector<cv::Point>* v_pts;
 	if (start.x == end.x) {
@@ -97,6 +97,17 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				x_min = obstructing->getXMin();
 				y_min = obstructing->getYMin();
 
+				//Tìm phần cắt cuối cùng
+				int z = 0;
+				for (z = y_max; z > i; z--) {
+					obstructing->setX(start.x);
+					obstructing->setY(z);
+					if (obstructing->isCut()) {
+						cout << "Ket thuc cat tai x,y = " << start.x << ", " << z << endl;
+						break;
+					}
+				}
+
 				Mat rsCrop = this->cropImage(rs, x_min - 1, y_min, x_max + 1, y_max);
 				cv::line(rsCrop, cv::Point(0, 0), cv::Point(0, rsCrop.rows), Scalar(255, 255, 255));
 				cv::line(rsCrop, cv::Point(rsCrop.cols - 1, 0), cv::Point(rsCrop.cols - 1, rsCrop.rows), Scalar(255, 255, 255));
@@ -108,13 +119,13 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				Node* X;
 				ShortestPath* shortest = new ShortestPath(rsCrop);
 
-				cout << "(x_start, y_start) " << start.x - x_min - 1 << ", " << i - y_u + 1 << endl;
-				cout << "(x_end, y_end) " << start.x - x_min - 1 << ", " << rsCrop.rows - 1 << endl;
+				cout << "(x_start, y_start) " << start.x - x_min << ", " << i - y_u<< endl;
+				cout << "(x_end, y_end) " << start.x - x_min << ", " << z + 1 - y_min<< endl;
 
-				shortest->setX_start(start.x - x_min - 1);
-				shortest->setY_start(i - y_u + 1);
-				shortest->setX_goal(start.x - x_min - 1);
-				shortest->setY_goal(rsCrop.rows - 1);
+				shortest->setX_start(start.x - x_min);
+				shortest->setY_start(i - y_u);
+				shortest->setX_goal(start.x - x_min);
+				shortest->setY_goal(z + 1 - y_min);
 				shortest->init();
 				X = shortest->Astar();
 				//Thêm
@@ -125,7 +136,7 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_doc_" + std::to_string(start.x) + "_" + std::to_string(i) + ".jpg";
 				imwrite(savePath, rsCrop);
 				//saving - nho xoa
-				break;
+				return -1;
 			}//if
 		}
 	}//if (start.x == end.x) 
@@ -138,17 +149,13 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 				cout << "y pre valley = " << y_pre_valley << endl;
 				cout << "y next valley = " << y_next_valley << endl;
 				cout << "Bat dau cat tai x,y = " << i << ", " << start.y << endl;
-				//x_line_end = i;
 
-				//pts.push_back(cv::Point(i, start.y));
-				//pts.push_back(cv::Point(x_line_end, start.y));
 
 				Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
 				x_max = obstructing->getXMax();
 				y_max = obstructing->getYMax();
 				x_min = obstructing->getXMin();
 				y_min = obstructing->getYMin();
-
 
 				//Tìm phần cắt cuối cùng
 				int z = 0;
@@ -243,11 +250,12 @@ void MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_
 					x_line = i;
 				}
 				else
-					break;
+					return 1;
 
 			}//if
 		}//for i
 	}//else (start.x == end.x) 
+	return 0;
 }
 
 int MatModifies::getValleyY(vector<cv::Point> pts, int x)
@@ -262,20 +270,29 @@ int MatModifies::getValleyY(vector<cv::Point> pts, int x)
 	return -2;
 }
 
-void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line)
+void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line, int flag)
 {
 	int size_a_part_line = a_part_line.size();
 	int x_min_part_line = a_part_line.at(0).x;
 	int x_max_part_line = a_part_line.at(size_a_part_line - 1).x;
+	int y_min_part_line = a_part_line.at(0).y;
+	int y_max_part_line = a_part_line.at(size_a_part_line - 1).y;
 	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ++it) {
-		if (it->x >= x_min_part_line & it->x <= x_max_part_line) {
+		if (flag == 1 & it->x >= x_min_part_line & it->x <= x_max_part_line) {
+			line.erase(it);
+		}
+		else if (flag == -1 & it->y >= y_min_part_line & it->y <= y_max_part_line & it->x >= x_min_part_line & it->x <= x_max_part_line) {
 			line.erase(it);
 		}
 	}
 
 	int size_line = line.size();
 	for (vector<int>::size_type k = 0; k != size_line; k++) {
-		if (line.at(k).x > x_min_part_line) {
+		if (flag == 1 & line.at(k).x > x_min_part_line) {
+			line.insert(line.begin() + k, a_part_line.begin(), a_part_line.end());
+			break;
+		}
+		else if (flag == -1 & line.at(k).x > x_min_part_line & line.at(k).y > y_min_part_line) {
 			line.insert(line.begin() + k, a_part_line.begin(), a_part_line.end());
 			break;
 		}

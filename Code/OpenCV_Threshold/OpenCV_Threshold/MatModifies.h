@@ -20,8 +20,8 @@ public:
 	Mat addRowEnd(Mat);
 	Mat addRowBegin(Mat);
 	Mat cut(Mat, vector<cv::Point>);
-	void addPts(Mat, cv::Point, cv::Point, int, int, int, vector<cv::Point>&);
+	int addPts(Mat, cv::Point, cv::Point, int, int, int, vector<cv::Point>&);//1 cat ngang, -1 cat doc, 0 khong cat
 	int getValleyY(vector<cv::Point>, int);
-	void insert(vector<cv::Point>&, vector<cv::Point>);
+	void insert(vector<cv::Point>&, vector<cv::Point>, int);
 };
 #endif

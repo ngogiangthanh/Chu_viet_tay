@@ -146,6 +146,8 @@
     <ClCompile Include="Preprocess.cpp" />
     <ClCompile Include="Segmentation.cpp" />
     <ClCompile Include="ShortestPath.cpp" />
+    <ClCompile Include="Word_Element.cpp" />
+    <ClCompile Include="X_Element.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawDecision.h" />
@@ -159,6 +161,8 @@
     <ClInclude Include="Preprocess.h" />
     <ClInclude Include="Segmentation.h" />
     <ClInclude Include="ShortestPath.h" />
+    <ClInclude Include="Word_Element.h" />
+    <ClInclude Include="X_Element.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">

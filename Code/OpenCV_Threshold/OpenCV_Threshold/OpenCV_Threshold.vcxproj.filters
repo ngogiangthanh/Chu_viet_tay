@@ -42,6 +42,12 @@
     <ClCompile Include="ShortestPath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Word_Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmMain.h">
@@ -69,6 +75,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ShortestPath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_Element.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

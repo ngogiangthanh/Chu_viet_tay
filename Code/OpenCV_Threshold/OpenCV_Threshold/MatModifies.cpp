@@ -133,8 +133,8 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
 
 				//saving - nho xoa
-				string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_doc_" + std::to_string(start.x) + "_" + std::to_string(i) + ".jpg";
-				imwrite(savePath, rsCrop);
+				//string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_doc_" + std::to_string(start.x) + "_" + std::to_string(i) + ".jpg";
+				//imwrite(savePath, rsCrop);
 				//saving - nho xoa
 				return -1;
 			}//if
@@ -191,8 +191,8 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 					shortest->setData(rsCrop);
 					cout << "Ke len tren phan lien thong tren" << endl;
 					//nho xoa
-					cout << "(x_start, y_start) " << 0 << ", " << start.y - y_u + 1 << endl;
-					cout << "(x_end, y_end) " << rsCrop.cols - 1 << ", " << start.y - y_u + 1 << endl;
+					//cout << "(x_start, y_start) " << 0 << ", " << start.y - y_u + 1 << endl;
+					//cout << "(x_end, y_end) " << rsCrop.cols - 1 << ", " << start.y - y_u + 1 << endl;
 					//nho xoa
 					shortest->setX_start(0);
 					shortest->setY_start(start.y - y_u + 1);
@@ -203,7 +203,7 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 					//Thêm
 					v_pts = shortest->print(X, rsCrop, x_min - 1, y_u);
 					//nho xoa
-					cout << "v_pts size is " << v_pts->size() << endl;
+					//cout << "v_pts size is " << v_pts->size() << endl;
 					//nho xoa
 					pts.insert(pts.end(), v_pts->begin(), v_pts->end());
 					break;
@@ -221,7 +221,7 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 					//Thêm
 					v_pts = shortest->print(X, rsCrop, x_min - 1, y_u);
 					//nho xoa
-					cout << "v_pts size is " << v_pts->size() << endl;
+					//cout << "v_pts size is " << v_pts->size() << endl;
 					//nho xoa
 					pts.insert(pts.end(), v_pts->begin(), v_pts->end());
 					//pts.push_back(cv::Point(z + 2, start.y));
@@ -240,8 +240,8 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				}
 
 				//saving - nho xoa
-				string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_ngang_" + std::to_string(i) + "_" + std::to_string(start.y) + ".jpg";
-				imwrite(savePath, rsCrop);
+				//string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_ngang_" + std::to_string(i) + "_" + std::to_string(start.y) + ".jpg";
+				//imwrite(savePath, rsCrop);
 				//saving - nho xoa
 
 				//Bắt đầu lặp từ phần cuối phần liên thông trước đó

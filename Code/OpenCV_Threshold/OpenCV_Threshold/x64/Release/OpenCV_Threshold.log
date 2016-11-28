@@ -47,14 +47,15 @@ Segmentation.cpp(369): warning C4018: '<': signed/unsigned mismatch
 Segmentation.cpp(373): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
 Segmentation.cpp(455): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
 Segmentation.cpp(458): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(500): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-Segmentation.cpp(522): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-Segmentation.cpp(555): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-Segmentation.cpp(561): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(605): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-Segmentation.cpp(609): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(612): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
-Segmentation.cpp(624): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(504): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(525): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(490): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+Segmentation.cpp(557): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(565): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(643): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(647): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(659): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:

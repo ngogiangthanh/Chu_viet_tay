@@ -23,11 +23,11 @@ Mat MatModifies::addRowBegin(Mat mat)
 	return row;
 }
 
-Mat MatModifies::cut(Mat src, vector<Point> pts)
+Mat MatModifies::cut(Mat src, vector<Point> pts, int& y_min)
 {
 	//Tim x_max, y_max, x_min, y_min
 	int x_min = src.cols;
-	int y_min = src.rows;
+	y_min = src.rows;
 	int x_max = 0;
 	int y_max = 0;
 
@@ -57,7 +57,7 @@ Mat MatModifies::cut(Mat src, vector<Point> pts)
 
 	bitwise_xor(mMask, Destination, Destination);
 
-	return Destination;
+	return Destination.clone();
 }
 
 int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_lines, int y_pre_valley, int y_next_valley, vector<cv::Point>& pts)
@@ -297,4 +297,38 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 			break;
 		}
 	}
+}
+
+void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y_max)
+{
+	int check_kernel_size = 3;
+	int middle_kernel_size = check_kernel_size / 2;
+	float PROBABILITY_ACCEPTED = 0.4;
+	int count = 0;
+
+	x_min = img.cols;
+	y_min = img.rows;
+	x_max = 0;
+	y_max = 0;
+	//Find
+	for (int i = 0; i < img.cols; i++)
+		for (int j = 0; j < img.rows; j++) {
+			count = 0;
+			for (int k = 1; k <= check_kernel_size; k++) {
+				for (int m = 1; m <= check_kernel_size; m++) {
+					cv::Scalar intentsity = img.at<uchar>((j + m >= img.rows) ? j :  j + m,
+															(i + k >= img.cols) ? i : i + k);
+					if (intentsity[0] <= THRESHOLD)
+						count++;
+				}//for m
+			}//for k
+			if (count >= check_kernel_size * check_kernel_size * PROBABILITY_ACCEPTED) {
+				if (i < x_min) x_min = i;
+				if (i > x_max) x_max = i;
+				if (j < y_min) y_min = j;
+				if (j > y_max) y_max = j;
+			}
+		}//for j
+	x_max = (x_max == x_min) ? x_max + 1 : x_max;
+	y_max = (y_max == y_min) ? y_max + 1 : y_max;
 }

@@ -301,34 +301,153 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 
 void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y_max)
 {
-	int check_kernel_size = 3;
-	int middle_kernel_size = check_kernel_size / 2;
-	float PROBABILITY_ACCEPTED = 0.4;
+	vector<X_Element> X_projection;
+	vector<Y_Element> Y_projection;
+	Scalar intensity;
 	int count = 0;
-
-	x_min = img.cols;
-	y_min = img.rows;
-	x_max = 0;
-	y_max = 0;
-	//Find
-	for (int i = 0; i < img.cols; i++)
+	int kernelMAF = 5;
+	//Step 1: Calculating x-projection
+	cout << "Step 1: Calculating X-projection" << endl;
+	for (int i = 0; i < img.cols; i++) {
+		count = 0;
 		for (int j = 0; j < img.rows; j++) {
-			count = 0;
-			for (int k = 1; k <= check_kernel_size; k++) {
-				for (int m = 1; m <= check_kernel_size; m++) {
-					cv::Scalar intentsity = img.at<uchar>((j + m >= img.rows) ? j :  j + m,
-															(i + k >= img.cols) ? i : i + k);
-					if (intentsity[0] <= THRESHOLD)
-						count++;
-				}//for m
-			}//for k
-			if (count >= check_kernel_size * check_kernel_size * PROBABILITY_ACCEPTED) {
-				if (i < x_min) x_min = i;
-				if (i > x_max) x_max = i;
-				if (j < y_min) y_min = j;
-				if (j > y_max) y_max = j;
+			intensity = img.at<uchar>(j, i);
+			if (intensity[0] <= THRESHOLD)
+				count++;
+		}//end for j
+		X_projection.push_back(X_Element(count, i));
+	}//end for i
+	//Step 1.1: MAF x-projection
+	cout << "Step 1': Moving Average Filter X_Projection" << endl;
+	int X_size = X_projection.size();
+	int middle_Kernel = kernelMAF / 2;
+	int MAF_val = 0;
+	for (vector<X_Element>::size_type k = 0; k != X_size; k++) {
+		MAF_val = 0;
+		for (int m = -middle_Kernel; m <= middle_Kernel; m++) {
+			if (m + k < X_size & m + k >= 0) {
+					MAF_val += X_projection.at(m + k).getCurr_Val();
 			}
-		}//for j
-	x_max = (x_max == x_min) ? x_max + 1 : x_max;
-	y_max = (y_max == y_min) ? y_max + 1 : y_max;
+		}
+		MAF_val /= kernelMAF;
+		X_Element x_element = X_projection.at(k);
+		x_element.setMAF_Val(MAF_val);
+		X_projection.at(k) = x_element;
+	}
+	//Step 1.2: Find x_min, x_max
+	cout << "Step 1'': Removing the first and end blank -start" << endl;
+	vector<X_Element>::iterator begin = X_projection.begin();
+	vector<X_Element>::iterator end = X_projection.end();
+	bool stop = false;
+	for (vector<X_Element>::iterator it = begin; it != end - middle_Kernel; ++it) {
+		if (it->getMAF_Val() > 0) {
+			stop = false;
+			for (int m = 1; m < middle_Kernel; m++) {
+				if (it->getMAF_Val() >= (it + m)->getMAF_Val() | (it + m)->getMAF_Val() >= (it + m + 1)->getMAF_Val()) {
+					stop = true;
+					break;
+				}
+			}
+
+			if (!stop) {
+				X_projection.erase(begin, it);
+				break;
+			}
+		}
+	}
+
+	cout << "Step 1'': Removing the first and end blank -end" << endl;
+	begin = X_projection.begin();
+	end = X_projection.end();
+	stop = false;
+	for (vector<X_Element>::iterator it = end - 1; it != begin + middle_Kernel; --it) {
+		if (it->getMAF_Val() > 0) {
+			stop = false;
+			for (int m = 1; m < middle_Kernel; m++) {
+				if (it->getMAF_Val() >= (it - m)->getMAF_Val() | (it - m)->getMAF_Val() >= (it - m - 1)->getMAF_Val()) {
+					stop = true;
+					break;
+				}
+			}
+
+			if (!stop) {
+				X_projection.erase(it, end);
+				break;
+			}
+		}
+	}
+	//Step 2: Calculating y-projection
+	cout << "Step 1: Calculating X-projection" << endl;
+	for (int j = 0; j < img.rows; j++) {
+		count = 0;
+		for (int i = 0; i < img.cols; i++) {
+			intensity = img.at<uchar>(j, i);
+			if (intensity[0] <= THRESHOLD)
+				count++;
+		}//end for j
+		Y_projection.push_back(Y_Element(count, j));
+	}//end for i
+	//Step 2.1: MAF y-projection
+	int Y_size = Y_projection.size();
+	MAF_val = 0;
+	for (vector<Y_Element>::size_type k = 0; k != Y_size; k++) {
+		MAF_val = 0;
+		for (int m = -middle_Kernel; m <= middle_Kernel; m++) {
+			if (m + k < Y_size & m + k >= 0) {
+				MAF_val += Y_projection.at(m + k).getCurr_Val();
+			}
+		}
+		MAF_val /= kernelMAF;
+		Y_Element y_element = Y_projection.at(k);
+		y_element.setMAF_Val(MAF_val);
+		Y_projection.at(k) = y_element;
+	}
+
+	//Step 2.2: Find y_min, y_max
+	cout << "Step 2'': Removing the first and end blank -start" << endl;
+	vector<Y_Element>::iterator begin_Y = Y_projection.begin();
+	vector<Y_Element>::iterator end_Y = Y_projection.end();
+	stop = false;
+	for (vector<Y_Element>::iterator it = begin_Y; it != end_Y - middle_Kernel; ++it) {
+		if (it->getMAF_Val() > 0) {
+			stop = false;
+			for (int m = 1; m < middle_Kernel; m++) {
+				if (it->getMAF_Val() >= (it + m)->getMAF_Val() | (it + m)->getMAF_Val() >= (it + m + 1)->getMAF_Val()) {
+					stop = true;
+					break;
+				}
+			}
+
+			if (!stop) {
+				Y_projection.erase(begin_Y, it);
+				break;
+			}
+		}
+	}
+
+	cout << "Step 2'': Removing the first and end blank -end" << endl;
+	begin_Y = Y_projection.begin();
+	end_Y = Y_projection.end();
+	stop = false;
+	for (vector<Y_Element>::iterator it = end_Y - 1; it != begin_Y + middle_Kernel; --it) {
+		if (it->getMAF_Val() > 0) {
+			stop = false;
+			for (int m = 0; m < middle_Kernel; m++) {
+				if ((it - m)->getMAF_Val() >= (it - m - 1)->getMAF_Val()) {
+					stop = true;
+					break;
+				  }
+			}
+
+			if (!stop) {
+				Y_projection.erase(it, end_Y);
+				break;
+			}
+		}
+	}
+	//return value
+	x_min = X_projection.at(0).getX_Coordinate();
+	y_min = Y_projection.at(0).getY_Coordinate();
+	x_max = X_projection.at(X_projection.size() - 1).getX_Coordinate();
+	y_max = Y_projection.at(Y_projection.size() - 1).getY_Coordinate();
 }

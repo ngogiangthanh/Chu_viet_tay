@@ -8,6 +8,8 @@
 #include "Obstructing.h"
 #include "DrawDecision.h"
 #include "ShortestPath.h"
+#include "X_Element.h"
+#include "Y_Element.h"
 
 using namespace cv;
 using namespace std;

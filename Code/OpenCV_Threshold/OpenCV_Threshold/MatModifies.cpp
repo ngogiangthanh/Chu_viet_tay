@@ -87,9 +87,9 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 			obstructing->setY(i);
 			if (obstructing->isCut()) {
 				cout << "Kiem tra cat DOC........ " << start.x << ", " << start.y << endl;
-				cout << "y pre valley = " << y_pre_valley << endl;
-				cout << "y next valley = " << y_next_valley << endl;
-				cout << "Bat dau cat tai x,y = " << start.x << ", " << i << endl;
+				//cout << "y pre valley = " << y_pre_valley << endl;
+				//cout << "y next valley = " << y_next_valley << endl;
+				//cout << "Bat dau cat tai x,y = " << start.x << ", " << i << endl;
 
 				Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
 				x_max = obstructing->getXMax();
@@ -98,7 +98,7 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				y_min = obstructing->getYMin();
 
 				//Tìm phần cắt cuối cùng
-				int z = 0;
+				/*int z = 0;
 				for (z = y_max; z > i; z--) {
 					obstructing->setX(start.x);
 					obstructing->setY(z);
@@ -106,7 +106,7 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 						cout << "Ket thuc cat tai x,y = " << start.x << ", " << z << endl;
 						break;
 					}
-				}
+				}*/
 
 				Mat rsCrop = this->cropImage(rs, x_min - 1, y_min, x_max + 1, y_max);
 				cv::line(rsCrop, cv::Point(0, 0), cv::Point(0, rsCrop.rows), Scalar(255, 255, 255));
@@ -114,18 +114,18 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				rsCrop = this->addRowBegin(rsCrop);
 				rsCrop = this->addRowEnd(rsCrop);
 				int y_u = obstructing->convert(obstructing->getYMin(), y_pre_valley, true);
-				int y_d = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
+				//int y_d = obstructing->convert(obstructing->getYMax(), y_pre_valley, true);
 
 				Node* X;
 				ShortestPath* shortest = new ShortestPath(rsCrop);
 
-				cout << "(x_start, y_start) " << start.x - x_min << ", " << i - y_u<< endl;
-				cout << "(x_end, y_end) " << start.x - x_min << ", " << z + 1 - y_min<< endl;
+				//cout << "(x_start, y_start) " << start.x - x_min << ", " << i - y_u<< endl;
+				//cout << "(x_end, y_end) " << obstructing->getXMax() - x_min + 1 << ", " << i - y_u << endl;
 
 				shortest->setX_start(start.x - x_min);
 				shortest->setY_start(i - y_u);
-				shortest->setX_goal(start.x - x_min);
-				shortest->setY_goal(z + 1 - y_min);
+				shortest->setX_goal(obstructing->getXMax() - x_min + 1);
+				shortest->setY_goal(i - y_u);
 				shortest->init();
 				X = shortest->Astar();
 				//Thêm
@@ -145,10 +145,10 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 			obstructing->setX(i);
 			obstructing->setY(start.y);
 			if (obstructing->isCut()) {
-				cout << "Kiem tra.... " << start.x << ", " << start.y << endl;
-				cout << "y pre valley = " << y_pre_valley << endl;
-				cout << "y next valley = " << y_next_valley << endl;
-				cout << "Bat dau cat tai x,y = " << i << ", " << start.y << endl;
+				cout << "Kiem tra NGANG.... " << start.x << ", " << start.y << endl;
+				//cout << "y pre valley = " << y_pre_valley << endl;
+				//cout << "y next valley = " << y_next_valley << endl;
+				//cout << "Bat dau cat tai x,y = " << i << ", " << start.y << endl;
 
 
 				Mat rs = obstructing->obstructing(ALL, y_pre_valley, y_next_valley);
@@ -163,7 +163,7 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 					obstructing->setX(z);
 					obstructing->setY(start.y);
 					if (obstructing->isCut()) {
-						cout << "Ket thuc cat tai x,y = " << z << ", " << start.y << endl;
+						//cout << "Ket thuc cat tai x,y = " << z << ", " << start.y << endl;
 						break;
 					}
 				}
@@ -277,14 +277,24 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 	int x_max_part_line = a_part_line.at(size_a_part_line - 1).x;
 	int y_min_part_line = a_part_line.at(0).y;
 	int y_max_part_line = a_part_line.at(size_a_part_line - 1).y;
-	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ++it) {
+	//cout << endl << "truoc khi xoa " <<line.size() << endl;
+
+	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ) {
 		if (flag == 1 & it->x >= x_min_part_line & it->x <= x_max_part_line) {
+			//cout << "xoa " << it->x << endl;
 			line.erase(it);
+			//line.erase(std::remove(line.begin(), line.end(), it), line.end());
 		}
 		else if (flag == -1 & it->y >= y_min_part_line & it->y <= y_max_part_line & it->x >= x_min_part_line & it->x <= x_max_part_line) {
 			line.erase(it);
+			//cout << "xoa " << it->y << endl;
+			//line.erase(std::remove(line.begin(), line.end(), it), line.end());
+		}
+		else {
+			++it;
 		}
 	}
+	//cout << endl << "sau khi xoa " << line.size() << endl;
 
 	int size_line = line.size();
 	for (vector<int>::size_type k = 0; k != size_line; k++) {
@@ -307,7 +317,7 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 	int count = 0;
 	int kernelMAF = 5;
 	//Step 1: Calculating x-projection
-	cout << "Step 1: Calculating X-projection" << endl;
+	//cout << "Step 1: Calculating X-projection" << endl;
 	for (int i = 0; i < img.cols; i++) {
 		count = 0;
 		for (int j = 0; j < img.rows; j++) {
@@ -318,7 +328,7 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 		X_projection.push_back(X_Element(count, i));
 	}//end for i
 	//Step 1.1: MAF x-projection
-	cout << "Step 1': Moving Average Filter X_Projection" << endl;
+	//cout << "Step 1': Moving Average Filter X_Projection" << endl;
 	int X_size = X_projection.size();
 	int middle_Kernel = kernelMAF / 2;
 	int MAF_val = 0;
@@ -335,15 +345,15 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 		X_projection.at(k) = x_element;
 	}
 	//Step 1.2: Find x_min, x_max
-	cout << "Step 1'': Removing the first and end blank -start" << endl;
+	//cout << "Step 1'': Removing the first and end blank -start" << endl;
 	vector<X_Element>::iterator begin = X_projection.begin();
 	vector<X_Element>::iterator end = X_projection.end();
 	bool stop = false;
 	for (vector<X_Element>::iterator it = begin; it != end - middle_Kernel; ++it) {
 		if (it->getMAF_Val() > 0) {
 			stop = false;
-			for (int m = 1; m < middle_Kernel; m++) {
-				if (it->getMAF_Val() >= (it + m)->getMAF_Val() | (it + m)->getMAF_Val() >= (it + m + 1)->getMAF_Val()) {
+			for (int m = 1; m < kernelMAF; m++) {
+				if (it->getMAF_Val() >= (it + m)->getMAF_Val()) {
 					stop = true;
 					break;
 				}
@@ -356,15 +366,15 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 		}
 	}
 
-	cout << "Step 1'': Removing the first and end blank -end" << endl;
+	//cout << "Step 1'': Removing the first and end blank -end" << endl;
 	begin = X_projection.begin();
 	end = X_projection.end();
 	stop = false;
 	for (vector<X_Element>::iterator it = end - 1; it != begin + middle_Kernel; --it) {
 		if (it->getMAF_Val() > 0) {
 			stop = false;
-			for (int m = 1; m < middle_Kernel; m++) {
-				if (it->getMAF_Val() >= (it - m)->getMAF_Val() | (it - m)->getMAF_Val() >= (it - m - 1)->getMAF_Val()) {
+			for (int m = 1; m < kernelMAF; m++) {
+				if (it->getMAF_Val() >= (it - m)->getMAF_Val()) {
 					stop = true;
 					break;
 				}
@@ -377,7 +387,7 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 		}
 	}
 	//Step 2: Calculating y-projection
-	cout << "Step 1: Calculating X-projection" << endl;
+	//cout << "Step 1: Calculating X-projection" << endl;
 	for (int j = 0; j < img.rows; j++) {
 		count = 0;
 		for (int i = 0; i < img.cols; i++) {
@@ -404,15 +414,15 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 	}
 
 	//Step 2.2: Find y_min, y_max
-	cout << "Step 2'': Removing the first and end blank -start" << endl;
+	//cout << "Step 2'': Removing the first and end blank -start" << endl;
 	vector<Y_Element>::iterator begin_Y = Y_projection.begin();
 	vector<Y_Element>::iterator end_Y = Y_projection.end();
 	stop = false;
 	for (vector<Y_Element>::iterator it = begin_Y; it != end_Y - middle_Kernel; ++it) {
 		if (it->getMAF_Val() > 0) {
 			stop = false;
-			for (int m = 1; m < middle_Kernel; m++) {
-				if (it->getMAF_Val() >= (it + m)->getMAF_Val() | (it + m)->getMAF_Val() >= (it + m + 1)->getMAF_Val()) {
+			for (int m = 1; m < kernelMAF; m++) {
+				if (it->getMAF_Val() >= (it + m)->getMAF_Val()) {
 					stop = true;
 					break;
 				}
@@ -425,15 +435,15 @@ void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y
 		}
 	}
 
-	cout << "Step 2'': Removing the first and end blank -end" << endl;
+	//cout << "Step 2'': Removing the first and end blank -end" << endl;
 	begin_Y = Y_projection.begin();
 	end_Y = Y_projection.end();
 	stop = false;
 	for (vector<Y_Element>::iterator it = end_Y - 1; it != begin_Y + middle_Kernel; --it) {
 		if (it->getMAF_Val() > 0) {
 			stop = false;
-			for (int m = 0; m < middle_Kernel; m++) {
-				if ((it - m)->getMAF_Val() >= (it - m - 1)->getMAF_Val()) {
+			for (int m = 1; m < kernelMAF; m++) {
+				if (it->getMAF_Val() >= (it - m)->getMAF_Val()) {
 					stop = true;
 					break;
 				  }

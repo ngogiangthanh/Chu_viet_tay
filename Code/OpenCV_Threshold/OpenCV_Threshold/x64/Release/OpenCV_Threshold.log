@@ -1,1 +1,22 @@
-﻿
+﻿  DrawDecision.cpp
+DrawDecision.cpp(82): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  Element.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\Element.h(4): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  Extent.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\Extent.h(5): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  frmMain.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\Preprocess.h(5): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  MatModifies.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\MatModifies.h(4): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  Obstructing.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\Obstructing.h(4): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  Preprocess.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\Preprocess.h(5): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  Segmentation.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\Segmentation.h(12): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  ShortestPath.cpp
+d:\thesis\chu_viet_tay\code\opencv_threshold\opencv_threshold\ShortestPath.h(6): fatal error C1083: Cannot open include file: 'opencv2/core/core.hpp': No such file or directory
+  Word_Element.cpp
+  X_Element.cpp
+  Y_Element.cpp
+  Generating Code...

@@ -6,7 +6,7 @@
 
 using namespace std;
 
-ref class Dynamic_Time_Warping
+class Dynamic_Time_Warping
 {
 private:
 	float** DTW; //results matrix

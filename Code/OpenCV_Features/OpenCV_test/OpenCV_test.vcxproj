@@ -154,6 +154,7 @@
   <ItemGroup>
     <ClCompile Include="DTW.cpp" />
     <ClCompile Include="Equations.cpp" />
+    <ClCompile Include="Normalized.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
     <ClCompile Include="SIFT.cpp" />
@@ -163,6 +164,7 @@
   <ItemGroup>
     <ClInclude Include="DTW.h" />
     <ClInclude Include="Equations.h" />
+    <ClInclude Include="Normalized.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SIFT.h" />
     <ClInclude Include="Word_lp.h" />

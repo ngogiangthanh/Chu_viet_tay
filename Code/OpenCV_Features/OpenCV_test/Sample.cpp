@@ -10,6 +10,7 @@
 #include "Equations.h"
 #include <time.h>
 #include "SIFT.h"
+#include "Normalized.h"
 
 using namespace cv;
 using namespace std;
@@ -19,9 +20,13 @@ void readme();
 /** @function main */
 int main(int argc, char** argv)
 {
-	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap.png");
+	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\pre_alexandria_UN.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 	//Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 	//Mat img_org2 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	
+	Normalized normalized(img_org);
+	normalized.MeasurementOfAverageStrokeThickness();
+	normalized.StraightLineRemoval();
 
 	/*
 	if (!img_org.data)
@@ -52,9 +57,9 @@ int main(int argc, char** argv)
 	Projection projection_profile(img_org);
 	projection_profile.cal_pp();
 	projection_profile.draw_pp();
-	float *pp = 0;
-	int size_pp = projection_profile.get_pp(pp);
-
+	//float *pp = 0;
+	//int size_pp = projection_profile.get_pp(pp);
+	
 	Projection projection_profile1(img_org1);
 	projection_profile1.cal_pp();
 	projection_profile1.draw_pp();
@@ -66,14 +71,14 @@ int main(int argc, char** argv)
 	projection_profile2.draw_pp();
 	float *pp2 = 0;
 	int size_pp2 = projection_profile2.get_pp(pp2);
-
+	
 	Word_Up word_up(img_org);
 	word_up.cal_up();
 	word_up.interpolated_value();
 	word_up.draw_up();
-	float* wup = 0;
-	int size_wup = word_up.get_up(wup);
-
+	//float* wup = 0;
+	//int size_wup = word_up.get_up(wup);*/
+	/*
 	Word_Up word_up1(img_org1);
 	word_up1.cal_up();
 	word_up1.interpolated_value();
@@ -88,13 +93,16 @@ int main(int argc, char** argv)
 	word_up2.draw_up();
 	float* wup2 = 0;
 	int size_wup2 = word_up2.get_up(wup2);
-
+	*/
+	
 	Word_lp word_lp(img_org);
 	word_lp.cal_lp();
 	word_lp.interpolated_value();
 	word_lp.draw_lp();
-	float* wlp = 0;
-	word_lp.get_lp(wlp);
+	/*
+	//float* wlp = 0;
+	//word_lp.get_lp(wlp);
+	
 	------------DTW---------
 
 	clock_t tStart = clock();
@@ -144,7 +152,7 @@ int main(int argc, char** argv)
 	Black Hat: MORPH_BLACKHAT: 6
 
 	*/
-	Mat dilation_dst, erode_dst, open_dst, open_dst_fn; 
+	/*Mat dilation_dst, erode_dst, open_dst, open_dst_fn; 
 	int erosion_size = 1;
 	Mat element = getStructuringElement(cv::MORPH_CROSS,
 		cv::Size(2 * erosion_size + 1, 2 * erosion_size + 1),
@@ -158,7 +166,7 @@ int main(int argc, char** argv)
 	imshow("erode", erode_dst);
 	imshow("dilate", dilation_dst);
 	imshow("open", open_dst);
-	imshow("open fn", open_dst);
+	imshow("open fn", open_dst);*/
 
 	waitKey(0);
 

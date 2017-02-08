@@ -54,15 +54,13 @@ Mat Projection::draw_pp()
 	for (int i = 0; i < size_of_pp; i++)
 		this->pp[i] = (this->pp[i]) / max;//[0..1]
 
-	//Drawing
+										  //Drawing
 	for (int i = 0; i < size_of_pp - 1; i++)
 		cv::line(dist, Point(i, round(this->pp[i] * (NORMALIZATION_PP - 1))), Point(i, round(this->pp[i + 1] * (NORMALIZATION_PP - 1))), Scalar(0, 0, 0));
-		
+
 	//Show
 	imshow("Projection profile", dist);
 	imwrite("D:/save_pp.jpg", dist);
 
 	return dist;
 }
-
-

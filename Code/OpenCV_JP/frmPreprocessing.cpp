@@ -102,7 +102,7 @@ System::Void OpenCV_JP::frmPreprocessing::backgroundWorker_ProgressChanged(Syste
 		//3.1 - Adaptive Thresholding check
 		if (cbbConvert2Bin->Text == "Adaptive thresholding") {
 			this->preprocess->setSrc(this->preprocess->getDist());
-			this->preprocess->adaptive(false, false, 99, 0);
+			this->preprocess->adaptive(false, false, 17, 0);
 		}
 		//4 - Opening check
 		if (cbbMorphologyTransformations->Text != "- Nothing -") {

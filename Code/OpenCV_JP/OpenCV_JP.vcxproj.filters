@@ -24,9 +24,6 @@
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Equations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\Projection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\SIFT.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Equations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\Projection.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\SIFT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -134,6 +128,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPreprocessing.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSegmentation.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

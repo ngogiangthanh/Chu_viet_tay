@@ -142,7 +142,6 @@
   <ItemGroup>
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\DTW.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Equations.cpp" />
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\Projection.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\SIFT.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_lp.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_Up.cpp" />
@@ -162,7 +161,6 @@
   <ItemGroup>
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\DTW.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Equations.h" />
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\Projection.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\SIFT.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_lp.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_Up.h" />

@@ -11,14 +11,14 @@ using namespace std;
 */
 class Projection
 {
-	private:
-		Mat source;
-		float* pp;
-		float max;
-	public:
-		Projection(Mat);
-		void cal_pp();
-		float I(int, int);
-		int get_pp(float *&);
-		Mat draw_pp();
+private:
+	Mat source;
+	float* pp;
+	float max;
+public:
+	Projection(Mat);
+	void cal_pp();
+	float I(int, int);
+	int get_pp(float *&);
+	Mat draw_pp();
 };

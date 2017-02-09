@@ -11,23 +11,94 @@
 #include <time.h>
 #include "SIFT.h"
 #include "Normalized.h"
+#include <filesystem>
+#include "Extent.h"
 
 using namespace cv;
 using namespace std;
+namespace fs = experimental::filesystem;
 
 void readme();
 
 /** @function main */
 int main(int argc, char** argv)
 {
-	Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\pre_alexandria_UN.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\1.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\2.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\3.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\4.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\5.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\Capture.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\Capture1.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\chattall.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap.png", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap_gachngang.png", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap_nghieng.png", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\evan.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\knlcd.png", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\pre_alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_5.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_10.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_3_4.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_3_11.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_4_3.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\yours.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\pre_alexandria_UN.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_10.png", CV_LOAD_IMAGE_GRAYSCALE);
 	//Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org2 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	
-	Normalized normalized(img_org);
-	normalized.MeasurementOfAverageStrokeThickness();
-	normalized.StraightLineRemoval();
+	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
+	fs::path directory("D:\\Thesis\\Chu_viet_tay\\Outputs\\page-0.jpg\\");
+		//fs::path directory("D:\\Thesis\\Chu_viet_tay\\SIFT\\");
+		fs::directory_iterator iter(directory), end;
+		Extent* extent = new Extent();
 
+		for (; iter != end; ++iter)
+		{
+			if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG" | iter->path().extension() == ".png" | iter->path().extension() == ".PNG" | iter->path().extension() == ".BMP" | iter->path().extension() == ".bmp")
+			{
+				string str = iter->path().string();
+				cout << "str " << str << endl;
+				Mat img_org = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
+
+				Normalized normalized(img_org);
+				normalized.MeasurementOfAverageStrokeThickness();
+				normalized.StraightLineRemoval();
+				int upper, lower; 
+				normalized.BaseLineDetection(img_org.clone(), upper, lower);
+				normalized.SkewDetectionUsesCentreOfMass(upper, lower);
+
+
+				//cv::Rect crop_part_1(0, 0, img_org.cols / 2, img_org.rows);
+				//cv::Rect crop_part_2(img_org.cols / 2, 0, img_org.cols / 2, img_org.rows);
+				//int upper_part_1, lower_part_1;
+				//int upper_part_2, lower_part_2;
+				//Mat Part_1 = img_org(crop_part_1).clone();
+				//Mat Part_2 = img_org(crop_part_2).clone();
+
+				//normalized.BaseLineDetection(Part_1, upper_part_1, lower_part_1);
+				//normalized.BaseLineDetection(Part_2, upper_part_2, lower_part_2);
+				//cv::line(Part_1, cv::Point(0, upper_part_1), cv::Point(Part_1.cols, upper_part_1), Scalar(128, 128, 128));
+				//cv::line(Part_1, cv::Point(0, lower_part_1), cv::Point(Part_1.cols, lower_part_1), Scalar(128, 128, 128));
+				////imshow("Baseline 1", Part_1);
+				//cv::line(Part_2, cv::Point(0, upper_part_2), cv::Point(Part_2.cols, upper_part_2), Scalar(128, 128, 128));
+				//cv::line(Part_2, cv::Point(0, lower_part_2), cv::Point(Part_2.cols, lower_part_2), Scalar(128, 128, 128));
+				////imshow("Baseline 2", Part_2);
+				//normalized.SkewDetectionUsesCentreOfMass(upper_part_1, lower_part_1, upper_part_2, lower_part_2);
+				//normalized.StraightLineRemoval();
+
+				//saving
+				vector<string> arrPath = extent->split(str, '\\');
+				std::string savePath = "D:\\Rs\\" + arrPath.back();
+				imwrite(savePath, normalized.getWord());
+			}
+		}
+	
+
+
+	//Word_lp word_lp(normalized.getWord());
+	//word_lp.cal_lp();
+	//word_lp.interpolated_value();
+	//word_lp.draw_lp();
 	/*
 	if (!img_org.data)
 	{
@@ -94,12 +165,12 @@ int main(int argc, char** argv)
 	float* wup2 = 0;
 	int size_wup2 = word_up2.get_up(wup2);
 	*/
-	
+
+	/*
 	Word_lp word_lp(img_org);
 	word_lp.cal_lp();
 	word_lp.interpolated_value();
 	word_lp.draw_lp();
-	/*
 	//float* wlp = 0;
 	//word_lp.get_lp(wlp);
 	

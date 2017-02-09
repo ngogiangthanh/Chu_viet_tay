@@ -154,6 +154,8 @@
   <ItemGroup>
     <ClCompile Include="DTW.cpp" />
     <ClCompile Include="Equations.cpp" />
+    <ClCompile Include="Extent.cpp" />
+    <ClCompile Include="MatModifies.cpp" />
     <ClCompile Include="Normalized.cpp" />
     <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Sample.cpp" />
@@ -164,6 +166,8 @@
   <ItemGroup>
     <ClInclude Include="DTW.h" />
     <ClInclude Include="Equations.h" />
+    <ClInclude Include="Extent.h" />
+    <ClInclude Include="MatModifies.h" />
     <ClInclude Include="Normalized.h" />
     <ClInclude Include="Projection.h" />
     <ClInclude Include="SIFT.h" />

@@ -39,6 +39,12 @@
     <ClCompile Include="Normalized.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MatModifies.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Extent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SIFT.h">
@@ -60,6 +66,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Normalized.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatModifies.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

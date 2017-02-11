@@ -47,8 +47,8 @@ int main(int argc, char** argv)
 	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_10.png", CV_LOAD_IMAGE_GRAYSCALE);
 	//Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
 	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	fs::path directory("D:\\Thesis\\Chu_viet_tay\\Outputs\\page-0.jpg\\");
-		//fs::path directory("D:\\Thesis\\Chu_viet_tay\\SIFT\\");
+//	fs::path directory("D:\\Thesis\\Chu_viet_tay\\Outputs\\page-0.jpg\\");
+		fs::path directory("D:\\Thesis\\Chu_viet_tay\\SIFT\\");
 		fs::directory_iterator iter(directory), end;
 		Extent* extent = new Extent();
 
@@ -60,36 +60,45 @@ int main(int argc, char** argv)
 				cout << "str " << str << endl;
 				Mat img_org = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
 
+				/*Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+				erode(img_org, img_org, element);*/
+
 				Normalized normalized(img_org);
 				normalized.MeasurementOfAverageStrokeThickness();
 				normalized.StraightLineRemoval();
-				int upper, lower; 
+				/*int upper, lower; 
 				normalized.BaseLineDetection(img_org.clone(), upper, lower);
-				normalized.SkewDetectionUsesCentreOfMass(upper, lower);
+				Mat center = normalized.SkewDetectionUsesCentreOfMass(upper, lower);*/
 
 
-				//cv::Rect crop_part_1(0, 0, img_org.cols / 2, img_org.rows);
-				//cv::Rect crop_part_2(img_org.cols / 2, 0, img_org.cols / 2, img_org.rows);
-				//int upper_part_1, lower_part_1;
-				//int upper_part_2, lower_part_2;
-				//Mat Part_1 = img_org(crop_part_1).clone();
-				//Mat Part_2 = img_org(crop_part_2).clone();
+				cv::Rect crop_part_1(0, 0, img_org.cols / 2, img_org.rows);
+				cv::Rect crop_part_2(img_org.cols / 2, 0, img_org.cols / 2, img_org.rows);
+				int upper_part_1, lower_part_1;
+				int upper_part_2, lower_part_2;
+				Mat Part_1 = img_org(crop_part_1).clone();
+				Mat Part_2 = img_org(crop_part_2).clone();
 
-				//normalized.BaseLineDetection(Part_1, upper_part_1, lower_part_1);
-				//normalized.BaseLineDetection(Part_2, upper_part_2, lower_part_2);
-				//cv::line(Part_1, cv::Point(0, upper_part_1), cv::Point(Part_1.cols, upper_part_1), Scalar(128, 128, 128));
-				//cv::line(Part_1, cv::Point(0, lower_part_1), cv::Point(Part_1.cols, lower_part_1), Scalar(128, 128, 128));
-				////imshow("Baseline 1", Part_1);
-				//cv::line(Part_2, cv::Point(0, upper_part_2), cv::Point(Part_2.cols, upper_part_2), Scalar(128, 128, 128));
-				//cv::line(Part_2, cv::Point(0, lower_part_2), cv::Point(Part_2.cols, lower_part_2), Scalar(128, 128, 128));
-				////imshow("Baseline 2", Part_2);
-				//normalized.SkewDetectionUsesCentreOfMass(upper_part_1, lower_part_1, upper_part_2, lower_part_2);
-				//normalized.StraightLineRemoval();
+				normalized.BaseLineDetection(Part_1, upper_part_1, lower_part_1);
+				normalized.BaseLineDetection(Part_2, upper_part_2, lower_part_2);
+				cv::line(Part_1, cv::Point(0, upper_part_1), cv::Point(Part_1.cols, upper_part_1), Scalar(128, 128, 128));
+				cv::line(Part_1, cv::Point(0, lower_part_1), cv::Point(Part_1.cols, lower_part_1), Scalar(128, 128, 128));
+				//imshow("Baseline 1", Part_1);
+				cv::line(Part_2, cv::Point(0, upper_part_2), cv::Point(Part_2.cols, upper_part_2), Scalar(128, 128, 128));
+				cv::line(Part_2, cv::Point(0, lower_part_2), cv::Point(Part_2.cols, lower_part_2), Scalar(128, 128, 128));
+				//imshow("Baseline 2", Part_2);
+				Mat center = normalized.SkewDetectionUsesCentreOfMass(upper_part_1, lower_part_1, upper_part_2, lower_part_2);
+				normalized.StraightLineRemoval();
 
 				//saving
 				vector<string> arrPath = extent->split(str, '\\');
 				std::string savePath = "D:\\Rs\\" + arrPath.back();
 				imwrite(savePath, normalized.getWord());
+				savePath = "D:\\Rs\\center\\" + arrPath.back();
+				imwrite(savePath, center);
+				savePath = "D:\\Rs\\center\\Part_1_" + arrPath.back();
+				imwrite(savePath, Part_1);
+				savePath = "D:\\Rs\\center\\Part_2_" + arrPath.back();
+				imwrite(savePath, Part_2);
 			}
 		}
 	

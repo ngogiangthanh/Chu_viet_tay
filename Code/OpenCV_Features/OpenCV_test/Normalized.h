@@ -18,15 +18,16 @@ class Normalized
 private:
 	Mat word;
 	int AST;
+	int peak_line;
 public:
 	Normalized(Mat);
 	void MeasurementOfAverageStrokeThickness();
 	void StraightLineRemoval();
-	void BaseLineDetection(Mat,int&,int&);
-	void SkewDetectionUsesCentreOfMass(int, int, int, int );
-	void SkewDetectionUsesCentreOfMass(int, int);
-	int xCentroid(int, int, int, int);
-	int yCentroid(int, int, int);
+	void BaseLineDetection(Mat&,int&,int&);
+	Mat SkewDetectionUsesCentreOfMass(int, int, int, int );
+	Mat SkewDetectionUsesCentreOfMass(int, int);
+	int xCentroid(Mat, int, int, int, int);
+	int yCentroid(Mat, int, int, int);
 	void setWord(Mat);
 	Mat getWord();
 };

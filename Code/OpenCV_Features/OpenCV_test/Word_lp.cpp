@@ -94,15 +94,15 @@ Mat Word_lp::draw_lp()
 
 	//Calculating
 	for (int i = 0; i < size_of_pp; i++)
-		this->lp[i] = 1 - (this->lp[i]) / max;//invert
+		this->lp[i] = (this->lp[i]) / max;//invert
 
 	//Drawing
 	for (int i = 0; i < size_of_pp - 1; i++)
 		cv::line(dist, Point(i, round(this->lp[i] * (NORMALIZATION_WP_LP - 1))), Point(i, round(this->lp[i + 1] * (NORMALIZATION_WP_LP - 1))), Scalar(0, 0, 0));
 
 	//Show
-	imshow("Word lower profile", dist);
-	imwrite("D:/save_lp.jpg", dist);
+	//imshow("Word lower profile", dist);
+	//imwrite("D:/save_lp.jpg", dist);
 
 	return dist;
 }

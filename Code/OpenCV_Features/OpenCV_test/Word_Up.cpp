@@ -101,8 +101,8 @@ Mat Word_Up::draw_up()
 		cv::line(dist, Point(i, round(this->up[i] * (NORMALIZATION_WP_UP - 1))), Point(i, round(this->up[i + 1] * (NORMALIZATION_WP_UP - 1))), Scalar(0, 0, 0));
 
 	//Show
-	imshow("Word upper profile", dist);
-	imwrite("D:/save_up.jpg", dist);
+	//imshow("Word upper profile", dist);
+	//imwrite("D:/save_up.jpg", dist);
 
 	return dist;
 }

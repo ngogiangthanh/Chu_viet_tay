@@ -122,6 +122,8 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				//cout << "(x_start, y_start) " << start.x - x_min << ", " << i - y_u<< endl;
 				//cout << "(x_end, y_end) " << obstructing->getXMax() - x_min + 1 << ", " << i - y_u << endl;
 
+				cout << "start x,y = " << start.x - x_min << ", " << i - y_u << endl;
+				cout << "goal x,y = " << obstructing->getXMax() - x_min + 1 << ", " << i - y_u << endl;
 				shortest->setX_start(start.x - x_min);
 				shortest->setY_start(i - y_u);
 				shortest->setX_goal(obstructing->getXMax() - x_min + 1);
@@ -280,14 +282,9 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 	//cout << endl << "truoc khi xoa " <<line.size() << endl;
 
 	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ) {
-		if (flag == 1 & it->x >= x_min_part_line & it->x <= x_max_part_line) {
+		if ((flag == 1 | (flag == -1 & it->y >= y_min_part_line & it->y <= y_max_part_line )) & it->x >= x_min_part_line & it->x <= x_max_part_line) {
 			//cout << "xoa " << it->x << endl;
 			line.erase(it);
-			//line.erase(std::remove(line.begin(), line.end(), it), line.end());
-		}
-		else if (flag == -1 & it->y >= y_min_part_line & it->y <= y_max_part_line & it->x >= x_min_part_line & it->x <= x_max_part_line) {
-			line.erase(it);
-			//cout << "xoa " << it->y << endl;
 			//line.erase(std::remove(line.begin(), line.end(), it), line.end());
 		}
 		else {
@@ -298,11 +295,7 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 
 	int size_line = line.size();
 	for (vector<int>::size_type k = 0; k != size_line; k++) {
-		if (flag == 1 & line.at(k).x > x_min_part_line) {
-			line.insert(line.begin() + k, a_part_line.begin(), a_part_line.end());
-			break;
-		}
-		else if (flag == -1 & line.at(k).x > x_min_part_line & line.at(k).y > y_min_part_line) {
+		if ((flag == 1 | (flag == -1 & line.at(k).y > y_min_part_line)) & line.at(k).x > x_min_part_line) {
 			line.insert(line.begin() + k, a_part_line.begin(), a_part_line.end());
 			break;
 		}

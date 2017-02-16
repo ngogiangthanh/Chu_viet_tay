@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <iostream>
 #include "opencv2/core/core.hpp"
 #include "opencv2/highgui/highgui.hpp"
@@ -13,6 +13,8 @@
 #include "Normalized.h"
 #include <filesystem>
 #include "Extent.h"
+#include "Element_RS.h"
+#include <iterator>
 
 using namespace cv;
 using namespace std;
@@ -23,116 +25,273 @@ void readme();
 /** @function main */
 int main(int argc, char** argv)
 {
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\1.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\2.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\3.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\4.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\5.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\Capture.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\Capture1.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\chattall.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap.png", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap_gachngang.png", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\dap_nghieng.png", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\evan.JPG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\knlcd.png", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\pre_alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_5.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_10.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_3_4.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_3_11.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_4_3.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\yours.jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\pre_alexandria_UN.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\word_2_10.png", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org1 = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\alexandria.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-	//Mat img_org = imread("D:\\Thesis\\Chu_viet_tay\\SIFT\\nui.PNG", CV_LOAD_IMAGE_GRAYSCALE);
-//	fs::path directory("D:\\Thesis\\Chu_viet_tay\\Outputs\\page-0.jpg\\");
-		fs::path directory("D:\\Thesis\\Chu_viet_tay\\SIFT\\");
-		fs::directory_iterator iter(directory), end;
-		Extent* extent = new Extent();
+
+	//fs::path directory("D:\\Thesis\\Chu_viet_tay\\Outputs\\page-1.jpg\\");
+	//	fs::path directory("D:\\Thesis\\Chu_viet_tay\\SIFT\\");
+	//	fs::directory_iterator iter(directory), end;
+	//	Extent* extent = new Extent();
+
+	//	for (; iter != end; ++iter)
+	//	{
+	//		if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG" | iter->path().extension() == ".png" | iter->path().extension() == ".PNG" | iter->path().extension() == ".BMP" | iter->path().extension() == ".bmp")
+	//		{
+	//			string str = iter->path().string();
+	//			cout << "str " << str << endl;
+	//			Mat img_org = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
+
+	//			/*Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+	//			erode(img_org, img_org, element);*/
+
+	//			Normalized normalized(img_org);
+	//			normalized.MeasurementOfAverageStrokeThickness();
+	//			normalized.StraightLineRemoval();
+	//			/*int upper, lower; 
+	//			normalized.BaseLineDetection(img_org.clone(), upper, lower);
+	//			Mat center = normalized.SkewDetectionUsesCentreOfMass(upper, lower);*/
+
+
+	//			cv::Rect crop_part_1(0, 0, img_org.cols / 2, img_org.rows);
+	//			cv::Rect crop_part_2(img_org.cols / 2, 0, img_org.cols / 2, img_org.rows);
+	//			int upper_part_1, lower_part_1;
+	//			int upper_part_2, lower_part_2;
+	//			Mat Part_1 = img_org(crop_part_1).clone();
+	//			Mat Part_2 = img_org(crop_part_2).clone();
+
+	//			normalized.BaseLineDetection(Part_1, upper_part_1, lower_part_1);
+	//			normalized.BaseLineDetection(Part_2, upper_part_2, lower_part_2);
+	//			cv::line(Part_1, cv::Point(0, upper_part_1), cv::Point(Part_1.cols, upper_part_1), Scalar(128, 128, 128));
+	//			cv::line(Part_1, cv::Point(0, lower_part_1), cv::Point(Part_1.cols, lower_part_1), Scalar(128, 128, 128));
+	//			//imshow("Baseline 1", Part_1);
+	//			cv::line(Part_2, cv::Point(0, upper_part_2), cv::Point(Part_2.cols, upper_part_2), Scalar(128, 128, 128));
+	//			cv::line(Part_2, cv::Point(0, lower_part_2), cv::Point(Part_2.cols, lower_part_2), Scalar(128, 128, 128));
+	//			//imshow("Baseline 2", Part_2);
+	//			Mat center = normalized.SkewDetectionUsesCentreOfMass(upper_part_1, lower_part_1, upper_part_2, lower_part_2);
+	//			normalized.StraightLineRemoval();
+
+	//			//saving
+	//			vector<string> arrPath = extent->split(str, '\\');
+	//			std::string savePath = "D:\\Rs\\" + arrPath.back();
+	//			imwrite(savePath, normalized.getWord());
+	//			savePath = "D:\\Rs\\center\\" + arrPath.back();
+	//			imwrite(savePath, center);
+	//			savePath = "D:\\Rs\\center\\Part_1_" + arrPath.back();
+	//			imwrite(savePath, Part_1);
+	//			savePath = "D:\\Rs\\center\\Part_2_" + arrPath.back();
+	//			imwrite(savePath, Part_2);
+	//		}
+	//	}
+
+
+	Mat pattern_img = imread("D:\\Thesis\\Chu_viet_tay\\DTW\\word_3_12.JPG", CV_LOAD_IMAGE_GRAYSCALE);
+	fs::path directory("D:\\Thesis\\Chu_viet_tay\\DTW\\");
+	Projection pattern_pp(pattern_img);
+	pattern_pp.cal_pp();
+	Mat pattern_draw = pattern_pp.draw_pp();
+	float *pattern = 0;
+	int size_pattern = pattern_pp.get_pp(pattern);
+	//
+	Word_lp pattern_lp(pattern_img);
+	pattern_lp.cal_lp();
+	pattern_lp.interpolated_value();
+	Mat pattern_draw_lp = pattern_lp.draw_lp();
+	float* pattern_a_lp = 0;
+	int size_pattern_lp = pattern_lp.get_lp(pattern_a_lp);
+	//
+	Word_Up pattern_up(pattern_img);
+	pattern_up.cal_up();
+	pattern_up.interpolated_value();
+	Mat pattern_draw_up = pattern_up.draw_up();
+	float* pattern_a_up = 0;
+	int size_pattern_up = pattern_up.get_up(pattern_a_up);
+
+	imshow("Pattern", pattern_img);
+
+	vector<Element_RS> rs_pp;
+	vector<Element_RS> rs_up_lp;
+	vector<Element_RS> rs;
+
+	//-- Step 1: Detect the keypoints using SIFT Detector
+	//Ptr<xfeatures2d::SIFT> sift = xfeatures2d::SIFT::create();
+	//vector<KeyPoint> sift_keypoint;
+	//sift->detect(pattern_img, sift_keypoint);
+	//int size_of_points = sift_keypoint.size();
+	////-- Draw keypoints
+	//Mat img_sift;
+	//cout << sift_keypoint.size() << endl;
+	//cout << sift_keypoint.at(0).angle << ", "<< sift_keypoint.at(0). << ", " << sift_keypoint.at(0).angle << endl;
+	//Mat img_white = pattern_img.clone();
+	//drawKeypoints(img_white, sift_keypoint, img_sift, Scalar::all(-1), DrawMatchesFlags::DEFAULT);
+	////-- Show detected (drawn) keypoints
+	//imshow("SIFT", img_sift);
+
+	fs::directory_iterator iter(directory), end;
+	Extent* extent = new Extent();
 
 		for (; iter != end; ++iter)
 		{
 			if (iter->path().extension() == ".jpg" | iter->path().extension() == ".JPG" | iter->path().extension() == ".png" | iter->path().extension() == ".PNG" | iter->path().extension() == ".BMP" | iter->path().extension() == ".bmp")
 			{
-				string str = iter->path().string();
-				cout << "str " << str << endl;
-				Mat img_org = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
+							//initial file pattern
+							string str = iter->path().string();
+							//cout << "str " << str << endl;
+							Mat search_img = imread(str, CV_LOAD_IMAGE_GRAYSCALE);
+							//---projection profiles
 
-				/*Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
-				erode(img_org, img_org, element);*/
+							Projection search_pp(search_img);
+							search_pp.cal_pp();
+							Mat search_draw = search_pp.draw_pp();
+							float *search = 0;
+							int size_search = search_pp.get_pp(search);
 
-				Normalized normalized(img_org);
-				normalized.MeasurementOfAverageStrokeThickness();
-				normalized.StraightLineRemoval();
-				/*int upper, lower; 
-				normalized.BaseLineDetection(img_org.clone(), upper, lower);
-				Mat center = normalized.SkewDetectionUsesCentreOfMass(upper, lower);*/
+							Dynamic_Time_Warping DTW(pattern, search, size_pattern, size_search);
+							DTW.drawMatching();
+							//cout << "Projection profile - matching cost = " << DTW.DTWDistance_GPC(20) << endl;
+							//saving
+							vector<string> arrPath = extent->split(str, '\\');
+							//std::string savePath = "D:\\rs\\pp_" + arrPath.back();
+							//imwrite(savePath, search_draw);
+							std::string savePath = "D:\\rs\\pp\\" + arrPath.back();
 
+							float cost = DTW.DTWDistance_GPC(20);
+							if (cost < 0.01) {
+								Element_RS element_rs(search_img, cost, savePath, str);
+								rs_pp.push_back(element_rs);
+							}
+							//---end projection profiles
 
-				cv::Rect crop_part_1(0, 0, img_org.cols / 2, img_org.rows);
-				cv::Rect crop_part_2(img_org.cols / 2, 0, img_org.cols / 2, img_org.rows);
-				int upper_part_1, lower_part_1;
-				int upper_part_2, lower_part_2;
-				Mat Part_1 = img_org(crop_part_1).clone();
-				Mat Part_2 = img_org(crop_part_2).clone();
+							//---lower and upper word
+							Word_lp search_lp(search_img);
+							search_lp.cal_lp();
+							search_lp.interpolated_value();
+							Mat search_lp_draw = search_lp.draw_lp();
+							float* search_low = 0;
+							int size_search_lp = search_lp.get_lp(search_low);
+							//savePath = "D:\\rs\\lp_" + arrPath.back();
+							//imwrite(savePath, search_lp_draw);
 
-				normalized.BaseLineDetection(Part_1, upper_part_1, lower_part_1);
-				normalized.BaseLineDetection(Part_2, upper_part_2, lower_part_2);
-				cv::line(Part_1, cv::Point(0, upper_part_1), cv::Point(Part_1.cols, upper_part_1), Scalar(128, 128, 128));
-				cv::line(Part_1, cv::Point(0, lower_part_1), cv::Point(Part_1.cols, lower_part_1), Scalar(128, 128, 128));
-				//imshow("Baseline 1", Part_1);
-				cv::line(Part_2, cv::Point(0, upper_part_2), cv::Point(Part_2.cols, upper_part_2), Scalar(128, 128, 128));
-				cv::line(Part_2, cv::Point(0, lower_part_2), cv::Point(Part_2.cols, lower_part_2), Scalar(128, 128, 128));
-				//imshow("Baseline 2", Part_2);
-				Mat center = normalized.SkewDetectionUsesCentreOfMass(upper_part_1, lower_part_1, upper_part_2, lower_part_2);
-				normalized.StraightLineRemoval();
+							Word_Up search_up(search_img);
+							search_up.cal_up();
+							search_up.interpolated_value();
+							Mat search_up_draw = search_up.draw_up();
+							float* search_upw = 0;
+							int size_search_up = search_up.get_up(search_upw);
+							//savePath = "D:\\rs\\up_" + arrPath.back();
+							//imwrite(savePath, search_up_draw);
 
-				//saving
-				vector<string> arrPath = extent->split(str, '\\');
-				std::string savePath = "D:\\Rs\\" + arrPath.back();
-				imwrite(savePath, normalized.getWord());
-				savePath = "D:\\Rs\\center\\" + arrPath.back();
-				imwrite(savePath, center);
-				savePath = "D:\\Rs\\center\\Part_1_" + arrPath.back();
-				imwrite(savePath, Part_1);
-				savePath = "D:\\Rs\\center\\Part_2_" + arrPath.back();
-				imwrite(savePath, Part_2);
+							Dynamic_Time_Warping DTW_UP(pattern_a_up, search_upw, size_pattern_up, size_search_up);
+							Dynamic_Time_Warping DTW_LP(pattern_a_lp, search_low, size_pattern_lp, size_search_lp);
+							DTW_LP.drawMatching();
+							DTW_UP.drawMatching();
+							float mean_cost = (DTW_LP.DTWDistance_GPC(20) + DTW_UP.DTWDistance_GPC(20))/2;
+							//float cost = DTW_UP.DTWDistance_GPC(20);
+							if (mean_cost < 0.01) {
+								savePath = "D:\\rs\\lp_up\\" + arrPath.back();
+								Element_RS element_up(search_img, mean_cost, savePath, str);
+								rs_up_lp.push_back(element_up);
+							}
+
 			}
 		}
-	
+
+	//Sort by first element in vector
+	std::sort(rs_pp.begin(), rs_pp.end(),
+		[]( Element_RS& a, Element_RS& b) {
+		return a.getCost() < b.getCost();
+	});
+
+	std::sort(rs_up_lp.begin(), rs_up_lp.end(),
+		[](Element_RS& a, Element_RS& b) {
+		return a.getCost() < b.getCost();
+	});
+
+	int s_pp = rs_pp.size();
+	for (vector<Element_RS>::size_type m = 0; m != s_pp; m++) {
+		//if (rs_pp.at(m).getCost() < 0.01) {
+			imwrite(rs_pp.at(m).getPathSave(), rs_pp.at(m).getDraw());
+			cout << rs_pp.at(m).getPathSave() << " | " << rs_pp.at(m).getCost() << endl;
+			imwrite(rs_pp.at(m).getPathSave(), rs_pp.at(m).getDraw());
+		//}
+	}
+	cout << endl;
 
 
-	//Word_lp word_lp(normalized.getWord());
-	//word_lp.cal_lp();
-	//word_lp.interpolated_value();
-	//word_lp.draw_lp();
-	/*
-	if (!img_org.data)
-	{
-		cout << " --(!) Error reading images " << endl;
-		return -1;
+	int count = 0;
+	int s_up = rs_up_lp.size();
+	for (vector<Element_RS>::size_type m = 0; m != s_up; m++) {
+		//if (rs_up.at(m).getCost() < 0.01) {
+			count++;
+			cout << rs_up_lp.at(m).getPathSave() << " | " << rs_up_lp.at(m).getCost() << endl;
+			imwrite(rs_up_lp.at(m).getPathSave(), rs_up_lp.at(m).getDraw());
+		//}
+	}
+	cout << "s_up = " << count << endl;
+
+	cout << endl;
+
+	//int s_lp = rs_lp.size();
+
+	//count = 0;
+	//for (vector<Element_RS>::size_type m = 0; m != s_lp; m++) {
+	//	//if (rs_lp.at(m).getCost() < 0.01) {
+	//		count++;
+	//		cout << rs_lp.at(m).getPathSave() << " | " << rs_lp.at(m).getCost() << endl;
+	//		imwrite(rs_lp.at(m).getPathSave(), rs_lp.at(m).getDraw());
+	//	//}
+	//}
+	//cout << "s_lp = " << count << endl;
+
+	//cout << endl;
+
+	//std::set_intersection(rs_up.begin(), rs_up.end(),
+	//	rs_lp.begin(), rs_lp.end(),
+	//	std::back_inserter(rs_rs), [](Element_RS& a, Element_RS& b) {
+	//	return a.getPathSrc().compare(b.getPathSrc()) == 0;
+	//});
+
+	//set_intersection(rs_up.begin(), rs_up.end(), rs_lp.begin(), rs_lp.end(), std::back_inserter(rs_lp_up)); //myvec3: 1 3 10
+	set_intersection(rs_up_lp.begin(), rs_up_lp.end(), rs_pp.begin(), rs_pp.end(), std::back_inserter(rs)); //myvec3: 1 3 10
+
+	cout << endl;
+
+	//int s_rs_rs = rs_lp_up.size();
+	//cout << "s_rs_lp_up = "<< s_rs_rs << endl;
+	//for (vector<Element_RS>::size_type m = 0; m != s_rs_rs; m++) {
+	//		cout << rs_lp_up.at(m).getPathSave() << " | " << rs_lp_up.at(m).getCost() << endl;
+	//}
+
+	//cout << endl;
+
+
+	int s_rs = rs.size();
+	cout << "s_rs = " << s_rs << endl;
+	for (vector<Element_RS>::size_type m = 0; m != s_rs; m++) {
+		cout << rs.at(m).getPathSave() << " | " << rs.at(m).getCost() << endl;
+		imwrite(rs.at(m).getPathSave(), rs.at(m).getDraw());
 	}
 
-	//-- Step 1: Detect the keypoints using SURF Detector
-	Ptr<xfeatures2d::SIFT> sift = xfeatures2d::SIFT::create();
-	vector<KeyPoint> sift_keypoint;
-	sift->detect(img_org, sift_keypoint);
-	int size_of_points = sift_keypoint.size();
+	cout << endl;
 
-	//-- Draw keypoints
-	Mat img_sift;
-	cv::Size size = img_org.size();
-	Mat img_white = Mat(size.height, size.width, CV_8UC3, Scalar(255, 255, 255));
-	drawKeypoints(img_white, sift_keypoint, img_sift, Scalar::all(-1), DrawMatchesFlags::DEFAULT);
+	/*
+	Projection pp_img_2(img2);
+	pp_img_2.cal_pp();
+	Mat draw_pp_2 = pp_img_2.draw_pp();
+	float *pp2 = 0;
+	int s_pp2 = pp_img_2.get_pp(pp2);
 
-	//-- Show detected (drawn) keypoints
-	imshow("Ảnh gốc", img_org);
-	imshow("SIFT", img_sift);
-	*/
+
+	clock_t tStart = clock();
+	Dynamic_Time_Warping DTW(pp1, pp2, s_pp1, s_pp2);
+	DTW.drawMatching();
+	cout << "Projection profile - matching cost = " << DTW.DTWDistance_GPC(20) << endl;
+	printf("Time taken: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);*/
+
+	/*Word_Up word_up(img_org);
+	word_up.cal_up();
+	word_up.interpolated_value();
+	word_up.draw_up();*/
+
+	/*
 	
-	//-----------------------
 	/*
 	Projection projection_profile(img_org);
 	projection_profile.cal_pp();
@@ -184,69 +343,16 @@ int main(int argc, char** argv)
 	//word_lp.get_lp(wlp);
 	
 	------------DTW---------
-
-	clock_t tStart = clock();
-	Dynamic_Time_Warping DTW(pp2, pp1, size_pp2, size_pp1);
-	cout << "Projection profile - matching cost [nui-dap1] = " << DTW.DTWDistance() << endl;
-	printf("Time taken: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
-	tStart = clock();
-	Dynamic_Time_Warping DTW1(pp2, pp1, size_pp2, size_pp1);
-	cout << "Projection profile - matching cost [nui-dap1] = " << DTW.DTWDistance_GPC(100) << endl;
-	printf("Time taken: %.2fs\n", (double)(clock() - tStart) / CLOCKS_PER_SEC);
-	//cout << "Projection profile - matching cost [dap-nui] = " << DTW1.DTWDistance() << endl;
-	Dynamic_Time_Warping DTW2(pp2, pp1, size_pp2, size_pp1);
-	cout << "Projection profile - matching cost [nui-dap1] = " << DTW2.DTWDistance() << endl;
-	////
-	Dynamic_Time_Warping DTW3(wup, wup1, size_wup, size_wup1);
-	cout << "Upper Upper profile - matching cost [dap-dap1] = " << DTW3.DTWDistance() << endl;
-	Dynamic_Time_Warping DTW4(wup, wup2, size_wup, size_wup2);
-	cout << "Upper Upper profile - matching cost [dap-nui] = " << DTW4.DTWDistance() << endl;
-	Dynamic_Time_Warping DTW5(wup2, wup1, size_wup2, size_wup1);
-	cout << "Upper Upper profile - matching cost [nui-dap1] = " << DTW5.DTWDistance() << endl;
-	*/
+*/
+	//float  a[] = { 0.2,0.3,0.4,0.5,0.7,0.1,0.2,0.3,0.4,0.5 };
+	//float b[] = { 0.2,0.4,0.4,0.5,0.9,0.4,0.5,0.6,0.3 };
+	//Dynamic_Time_Warping DTW(a, b, 10, 9);
+	//DTW.drawMatching();
+	//cout << "matching cost = " << DTW.DTWDistance() << endl;
+	//cout << "matching cost gpc = " << DTW.DTWDistance_GPC(5) << endl;
 	
-	/*
-	float  a[] = { 2,3,4,5,7,1,2,3,4,5 };
-	float b[] = { 2,4,4,5,9,4,5,6,3 };
-	Dynamic_Time_Warping DTW(a, b, 10, 9);
-	cout << "matching cost = " << DTW.DTWDistance() << endl;
-	//cout << "matching cost gpc = " << DTW.DTWDistance_GPC(121) << endl;
-	*/
-	
-	/*
-	//Try using matching in opencv
-	SIFT sift;
-	sift.FeatureMatching(img_org, img_org1, false);
-	*/
 
-	//Try using morphological
-	/*
-	src : Source (input) image
-	dst: Output image
-	operation: The kind of morphology transformation to be performed. Note that we have 5 alternatives:
 
-	Opening: MORPH_OPEN : 2
-	Closing: MORPH_CLOSE: 3
-	Gradient: MORPH_GRADIENT: 4
-	Top Hat: MORPH_TOPHAT: 5
-	Black Hat: MORPH_BLACKHAT: 6
-
-	*/
-	/*Mat dilation_dst, erode_dst, open_dst, open_dst_fn; 
-	int erosion_size = 1;
-	Mat element = getStructuringElement(cv::MORPH_CROSS,
-		cv::Size(2 * erosion_size + 1, 2 * erosion_size + 1),
-		cv::Point(erosion_size, erosion_size));
-	erode(img_org, erode_dst, element);
-	dilate(img_org, dilation_dst, element);
-	dilate(erode_dst, open_dst, element);
-
-	morphologyEx(img_org, open_dst_fn, MORPH_OPEN, element);
-	imshow("original", img_org);
-	imshow("erode", erode_dst);
-	imshow("dilate", dilation_dst);
-	imshow("open", open_dst);
-	imshow("open fn", open_dst);*/
 
 	waitKey(0);
 

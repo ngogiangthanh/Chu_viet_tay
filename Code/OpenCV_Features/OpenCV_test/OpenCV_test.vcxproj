@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DTW.cpp" />
+    <ClCompile Include="Element_RS.cpp" />
     <ClCompile Include="Equations.cpp" />
     <ClCompile Include="Extent.cpp" />
     <ClCompile Include="MatModifies.cpp" />
@@ -165,6 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DTW.h" />
+    <ClInclude Include="Element_RS.h" />
     <ClInclude Include="Equations.h" />
     <ClInclude Include="Extent.h" />
     <ClInclude Include="MatModifies.h" />

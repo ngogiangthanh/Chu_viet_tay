@@ -45,6 +45,9 @@
     <ClCompile Include="Extent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Element_RS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SIFT.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Extent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Element_RS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -62,15 +62,17 @@ float Dynamic_Time_Warping::DTWDistance() {
 		for (int w = 0; w < this->N; w++)
 			cout << this->DTW[h][w] << "  ";
 		cout << "\n";
-	}*/
-	
+	}
+	*/
 	return this->DTW[this->M - 1][this->N - 1] / this->pathWarping();
 }
 
 float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
 	Equations equation_line_up(this->N, 1, this->M - r, r, 1, 0);
+	//Equations equation_line_up(r, 1, 0, this->N, 1, this->M - r);
 	equation_line_up.solve();
 	Equations equation_line_down(this->N - r, 1, this->M, 0, 1, r);
+	//Equations equation_line_down(0, 1, r,this->N - r, 1, this->M);
 	equation_line_down.solve();
 	//verifying
 	r = min(r, min(this->M, this->N));
@@ -96,13 +98,13 @@ float Dynamic_Time_Warping::DTWDistance_GPC(int r) {
 		}
 	}
 
-	cout << "Result: \n";
-	for (int h = 0; h < this->M; h++)
-	{
-		for (int w = 0; w < this->N; w++)
-			cout << this->DTW[h][w] << "  ";
-		cout << "\n";
-	}
+	//cout << "Result: \n";
+	//for (int h = 0; h < this->M; h++)
+	//{
+	//	for (int w = 0; w < this->N; w++)
+	//		cout << this->DTW[h][w] << "  ";
+	//	cout << "\n";
+	//}
 	
 	return this->DTW[this->M - 1][this->N - 1] / this->pathWarping();
 }
@@ -118,6 +120,7 @@ int Dynamic_Time_Warping::pathWarping()
 	//cout << "Path warping: ";
 	while (true)
 	{
+		cv::line(this->draw, Point(M_temp, round(this->X[M_temp] * 99)), Point(this->draw.cols/2 + N_temp, 100 + round(this->Y[N_temp] * 99)), Scalar(128, 128, 128));
 		//cout << " [" << M_temp << "][" << N_temp << "] -";
 		length_K++;
 		insertion = (float) this->DTW[(M_temp - 1 < 0) ? 0 : (M_temp - 1)][N_temp];//insertion
@@ -149,5 +152,28 @@ int Dynamic_Time_Warping::pathWarping()
 			break;
 		}
 	}
+
+
+	//Show
+	/*imshow("Word drawMatching", this->draw);
+	imwrite("D:/drawMatching.jpg", this->draw);*/
 	return length_K;
+}
+
+void Dynamic_Time_Warping::drawMatching()
+{
+	int cols = 2*((this->M > this->N) ? this->M : this->N);
+	int rows = 200;
+	this->draw = Mat(rows, cols, CV_8UC3, Scalar(255, 255, 255));
+
+	for (int i = 0; i < this->M - 1; i++)
+		cv::line(this->draw, Point(i, this->X[i] * 99), Point(i, this->X[i+1] * 99), Scalar(0, 0, 0));
+	for (int i = 0; i < this->N - 1; i++)
+		cv::line(this->draw, Point(cols/2 + i, 100 + this->Y[i] * 99), Point(cols / 2 + i, 100 + this->Y[i + 1] * 99), Scalar(0, 0, 0));
+
+}
+
+Mat Dynamic_Time_Warping::getDraw()
+{
+	return this->draw;
 }

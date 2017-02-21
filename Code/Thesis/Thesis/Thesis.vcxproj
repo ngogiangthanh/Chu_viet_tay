@@ -137,26 +137,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="A2DD.cpp" />
-    <ClCompile Include="DTWSingle.cpp" />
-    <ClCompile Include="MatModifies.cpp" />
-    <ClCompile Include="Obstructing.cpp" />
-    <ClCompile Include="MyForm.cpp" />
-    <ClCompile Include="ShortestPath.cpp" />
+    <ClCompile Include="frmMain.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="A2DD.h" />
-    <ClInclude Include="DTWSingle.h" />
-    <ClInclude Include="MatModifies.h" />
-    <ClInclude Include="Obstructing.h" />
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="ShortestPath.h" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

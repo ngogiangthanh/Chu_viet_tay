@@ -30,4 +30,9 @@ public:
 	int yCentroid(Mat, int, int, int);
 	void setWord(Mat);
 	Mat getWord();
+	void hough_transform(Mat& im, Mat& orig, double* skew);
+	Mat preprocess1(Mat& im);
+	Mat preprocess2(Mat& im);
+	Mat rot(Mat& im, double thetaRad);
+	Mat Skeleton(Mat);
 };

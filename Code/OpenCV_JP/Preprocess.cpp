@@ -16,6 +16,10 @@ void Preprocess::threshold(unsigned int threshold_val, unsigned int max_val, uns
 {
 	cout << "- Thresholding filter;" << endl;
 	cv::threshold(this->src, this->dist, threshold_val, max_val, threshold_type); // Threshold the Image using the value obtained from OTSU method
+
+	Mat element = getStructuringElement(MORPH_RECT, Size(3, 3));
+	//erode(this->dist, this->dist, element);
+	//dilate(this->dist, this->dist, element);
 }
 
 void Preprocess::gaussianBlur(unsigned int kernel_size)
@@ -142,6 +146,17 @@ void Preprocess::Morphology_Operations(int morph_operator, int morph_elem, int m
 
 	// Apply the specified morphology operation
 	morphologyEx(this->src, this->dist, operation, element);
+	if (morph_operator == MORPH_GRADIENT) {
+
+		// initialize the output matrix with zeros
+		Mat new_image = Mat::zeros(this->dist.size(), this->dist.type());
+
+		// create a matrix with all elements equal to 255 for subtraction
+		Mat sub_mat = Mat::ones(this->dist.size(), this->dist.type()) * 255;
+
+		//subtract the original matrix by sub_mat to give the negative output new_image
+		subtract(sub_mat, this->dist, this->dist);
+	}
 }
 
 void Preprocess::setSrc(Mat src)

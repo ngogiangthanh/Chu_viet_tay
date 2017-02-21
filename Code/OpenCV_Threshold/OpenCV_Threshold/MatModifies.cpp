@@ -119,11 +119,8 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				Node* X;
 				ShortestPath* shortest = new ShortestPath(rsCrop);
 
-				//cout << "(x_start, y_start) " << start.x - x_min << ", " << i - y_u<< endl;
-				//cout << "(x_end, y_end) " << obstructing->getXMax() - x_min + 1 << ", " << i - y_u << endl;
-
-				cout << "start x,y = " << start.x - x_min << ", " << i - y_u << endl;
-				cout << "goal x,y = " << obstructing->getXMax() - x_min + 1 << ", " << i - y_u << endl;
+				cout << "(x_start, y_start) " << start.x - x_min << ", " << i - y_u<< endl;
+				cout << "(x_end, y_end) " << obstructing->getXMax() - x_min + 1 << ", " << i - y_u << endl;
 				shortest->setX_start(start.x - x_min);
 				shortest->setY_start(i - y_u);
 				shortest->setX_goal(obstructing->getXMax() - x_min + 1);
@@ -135,8 +132,8 @@ int MatModifies::addPts(Mat src, cv::Point start, cv::Point end, int height_of_l
 				pts.insert(pts.end(), v_pts->begin(), v_pts->end());
 
 				//saving - nho xoa
-				//string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_doc_" + std::to_string(start.x) + "_" + std::to_string(i) + ".jpg";
-				//imwrite(savePath, rsCrop);
+				string savePath = "D:/Thesis/Chu_viet_tay/Outputs/Obstructing/cat_lien_thong_doc_" + std::to_string(start.x) + "_" + std::to_string(i) + ".jpg";
+				imwrite(savePath, rsCrop);
 				//saving - nho xoa
 				return -1;
 			}//if
@@ -282,7 +279,7 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 	//cout << endl << "truoc khi xoa " <<line.size() << endl;
 
 	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ) {
-		if ((flag == 1 | (flag == -1 & it->y >= y_min_part_line & it->y <= y_max_part_line )) & it->x >= x_min_part_line & it->x <= x_max_part_line) {
+		if ((flag == 1 | (flag == -1 & it->y >= y_min_part_line & it->y <= y_max_part_line)) & it->x >= x_min_part_line & it->x <= x_max_part_line) {
 			//cout << "xoa " << it->x << endl;
 			line.erase(it);
 			//line.erase(std::remove(line.begin(), line.end(), it), line.end());
@@ -300,6 +297,17 @@ void MatModifies::insert(vector<cv::Point>& line, vector<cv::Point> a_part_line,
 			break;
 		}
 	}
+
+	for (std::vector<cv::Point>::iterator it = line.begin(); it != line.end(); ++it) {
+		if ((it + 1) == line.end()) {
+			break;
+		}
+		if (it->x > (it+1)->x) {
+			cout << " xoa " << endl;
+			line.erase(it + 1);
+		}
+	}
+
 }
 
 void MatModifies::findMinMax(Mat img, int &x_min, int &y_min, int &x_max, int &y_max)

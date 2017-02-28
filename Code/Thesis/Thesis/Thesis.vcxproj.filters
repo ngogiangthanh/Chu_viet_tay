@@ -13,15 +13,138 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Segmentation">
+      <UniqueIdentifier>{5a8da825-de04-418f-a9f4-61b0f76ed205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Segmentation">
+      <UniqueIdentifier>{4e7d371a-281d-41f3-bfaa-07bfd85a188e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Features">
+      <UniqueIdentifier>{971561ce-a579-45dd-9b61-ef4b9421671f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\DynamicTimeWarping">
+      <UniqueIdentifier>{2020ab23-b365-43fd-b093-446863ce00ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DynamicTimeWarping">
+      <UniqueIdentifier>{a65480ef-0cb5-4557-85ac-3b8b6d143bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Features">
+      <UniqueIdentifier>{cf654717-de24-4d29-adb6-d2e074d83b02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="frmMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Extent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PreProcess.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DrawDecision.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="Element.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="MatModifies.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstructing.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="ShortestPath.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="Word_Element.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Element.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="Y_Element.cpp">
+      <Filter>Source Files\Segmentation</Filter>
+    </ClCompile>
+    <ClCompile Include="Normalization.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UpperWord.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="LowerWord.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectionProfiles.cpp">
+      <Filter>Source Files\Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Equations.cpp">
+      <Filter>Source Files\DynamicTimeWarping</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicTimeWarping.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Segmentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmMain.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Extent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PreProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Segmentation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Normalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Features.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicTimeWarping.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Element.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstructing.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawDecision.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="ShortestPath.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="MatModifies.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Element.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_Element.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="Y_Element.h">
+      <Filter>Header Files\Segmentation</Filter>
+    </ClInclude>
+    <ClInclude Include="UpperWord.h">
+      <Filter>Header Files\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="LowerWord.h">
+      <Filter>Header Files\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectionProfiles.h">
+      <Filter>Header Files\Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Equations.h">
+      <Filter>Header Files\DynamicTimeWarping</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

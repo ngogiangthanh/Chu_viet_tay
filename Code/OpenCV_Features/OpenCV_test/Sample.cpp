@@ -96,7 +96,7 @@ int main(int argc, char** argv)
 				std::string savePath = "D:\\Rs\\" + arrPath.back();
 				imshow("corrected", rotated);
 				cv::waitKey(0);
-				cv::destroyWindow("corrected");
+				cv::destroyWindow("corrected");]
 				imwrite(savePath, rotated);
 			}
 		}

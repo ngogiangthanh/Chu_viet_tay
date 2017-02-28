@@ -132,17 +132,53 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DrawDecision.cpp" />
+    <ClCompile Include="DynamicTimeWarping.cpp" />
+    <ClCompile Include="Element.cpp" />
+    <ClCompile Include="Equations.cpp" />
+    <ClCompile Include="Extent.cpp" />
     <ClCompile Include="frmMain.cpp" />
+    <ClCompile Include="LowerWord.cpp" />
+    <ClCompile Include="MatModifies.cpp" />
+    <ClCompile Include="Normalization.cpp" />
+    <ClCompile Include="Obstructing.cpp" />
+    <ClCompile Include="PreProcess.cpp" />
+    <ClCompile Include="ProjectionProfiles.cpp" />
+    <ClCompile Include="Segmentation.cpp" />
+    <ClCompile Include="ShortestPath.cpp" />
+    <ClCompile Include="UpperWord.cpp" />
+    <ClCompile Include="Word_Element.cpp" />
+    <ClCompile Include="X_Element.cpp" />
+    <ClCompile Include="Y_Element.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawDecision.h" />
+    <ClInclude Include="DynamicTimeWarping.h" />
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="Equations.h" />
+    <ClInclude Include="Extent.h" />
+    <ClInclude Include="Features.h" />
     <ClInclude Include="frmMain.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="LowerWord.h" />
+    <ClInclude Include="MatModifies.h" />
+    <ClInclude Include="Normalization.h" />
+    <ClInclude Include="Obstructing.h" />
+    <ClInclude Include="PreProcess.h" />
+    <ClInclude Include="ProjectionProfiles.h" />
+    <ClInclude Include="Segmentation.h" />
+    <ClInclude Include="ShortestPath.h" />
+    <ClInclude Include="UpperWord.h" />
+    <ClInclude Include="Word_Element.h" />
+    <ClInclude Include="X_Element.h" />
+    <ClInclude Include="Y_Element.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">

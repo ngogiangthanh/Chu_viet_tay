@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include <cmath>
 #include "Equations.h"
 #include <opencv2/opencv.hpp>
@@ -12,13 +13,13 @@ class Dynamic_Time_Warping
 {
 private:
 	float** DTW; //results matrix
-	float* X; //vector X
-	float* Y; //vector Y
+	vector<float> X; //vector X
+	vector<float> Y; //vector Y
 	int M, N; //length of X,Y
 	Mat draw;
 
 public:
-	Dynamic_Time_Warping(float*, float*, int, int);
+	Dynamic_Time_Warping(vector<float>, vector<float>);
 	float minimum(float, float, float);
 	float max(float, float);
 	float min(float, float);

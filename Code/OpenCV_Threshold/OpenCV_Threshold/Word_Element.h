@@ -13,4 +13,5 @@ public:
 		int getX_End();
 		int getX_Middle_Coordinate();
 		int get_Distance();
+
 };

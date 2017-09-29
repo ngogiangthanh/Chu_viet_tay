@@ -59,8 +59,8 @@ Mat Projection::draw_pp()
 		cv::line(dist, Point(i, round(this->pp[i] * (NORMALIZATION_PP - 1))), Point(i, round(this->pp[i + 1] * (NORMALIZATION_PP - 1))), Scalar(0, 0, 0));
 
 	//Show
-	//imshow("Projection profile", dist);
-	//imwrite("D:/save_pp.jpg", dist);
+	/*imshow("Projection profile", dist);
+	imwrite("D:/save_pp.jpg", dist);*/
 
 	return dist;
 }

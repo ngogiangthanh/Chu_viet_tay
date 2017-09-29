@@ -1,4 +1,5 @@
 ﻿#include "frmMain.h"
+#include "ocr.hpp"
 #define MAX_WIDTH 1380
 
 using namespace System;
@@ -18,6 +19,8 @@ int main(int argc, char** argv)
 
 System::Void Thesis::frmMain::btnSearch_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
+
+	Ptr<cv::text::OCRTesseract> tess = cv::text::OCRTesseract::create(NULL, NULL, NULL, 3, 3);
 	if (this->tbKeywords->Text != "") {
 		string str;
 		this->extent->MarshalString(this->tbKeywords->Text, str);

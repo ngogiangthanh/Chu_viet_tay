@@ -1,1 +1,14 @@
-﻿
+﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Release\) contains files shared from another project (OpenCV_test.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Sample.cpp
+Sample.cpp(157): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Sample.cpp(161): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Sample.cpp(166): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Sample.cpp(174): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Sample.cpp(185): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating code
+  8 of 505 functions ( 1.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Release\OpenCV_Features.exe
+  OpenCV_test.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Release\OpenCV_Features.pdb (Full PDB)

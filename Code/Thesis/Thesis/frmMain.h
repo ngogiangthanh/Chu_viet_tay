@@ -4,6 +4,7 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/xfeatures2d/nonfree.hpp"
+#include "ocr.hpp"
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <ctime>

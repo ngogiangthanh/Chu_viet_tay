@@ -23,6 +23,7 @@ public:
 	Normalized(Mat);
 	void MeasurementOfAverageStrokeThickness();
 	void StraightLineRemoval();
+	void UnderlineRemoval();
 	void BaseLineDetection(Mat&,int&,int&);
 	Mat SkewDetectionUsesCentreOfMass(int, int, int, int );
 	Mat SkewDetectionUsesCentreOfMass(int, int);

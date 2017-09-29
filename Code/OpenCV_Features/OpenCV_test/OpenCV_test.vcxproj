@@ -152,10 +152,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cluster.cpp" />
+    <ClCompile Include="CPoint.cpp" />
     <ClCompile Include="DTW.cpp" />
     <ClCompile Include="Element_RS.cpp" />
     <ClCompile Include="Equations.cpp" />
     <ClCompile Include="Extent.cpp" />
+    <ClCompile Include="KMeans.cpp" />
     <ClCompile Include="MatModifies.cpp" />
     <ClCompile Include="Normalized.cpp" />
     <ClCompile Include="Projection.cpp" />
@@ -165,10 +168,13 @@
     <ClCompile Include="Word_Up.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cluster.h" />
+    <ClInclude Include="CPoint.h" />
     <ClInclude Include="DTW.h" />
     <ClInclude Include="Element_RS.h" />
     <ClInclude Include="Equations.h" />
     <ClInclude Include="Extent.h" />
+    <ClInclude Include="KMeans.h" />
     <ClInclude Include="MatModifies.h" />
     <ClInclude Include="Normalized.h" />
     <ClInclude Include="Projection.h" />

@@ -10,7 +10,7 @@
 #include "Extent.h"
 #include "Preprocess.h"
 #include "Noise.h"
-#define MAX_WIDTH 1366
+#define MAX_WIDTH 1920
 
 namespace OpenCV_JP {
 

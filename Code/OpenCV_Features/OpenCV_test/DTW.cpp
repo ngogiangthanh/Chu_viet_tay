@@ -1,17 +1,13 @@
 #include "DTW.h"
 
-Dynamic_Time_Warping::Dynamic_Time_Warping(float* x, float* y, int M, int N)
+Dynamic_Time_Warping::Dynamic_Time_Warping(vector<float> x, vector<float> y)
 {
-	this->M = M;
-	this->N = N;
-	this->X = new float[this->M];
-	this->Y = new float[this->N];
+	this->M = x.size();
+	this->N = y.size();
+	this->X = x;
+	this->Y = y;
 
-	for (int i = 0; i < this->M; i++)
-		this->X[i] = x[i];
-
-	for (int i = 0; i < this->N; i++)
-		this->Y[i] = y[i];
+	cout << endl;
 
 	this->DTW = new float*[this->M];
 	for (int h = 0; h < this->M; h++)

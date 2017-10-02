@@ -9,7 +9,6 @@
 #include "DTW.h"
 #include "Equations.h"
 #include <time.h>
-#include "SIFT.h"
 #include "Normalized.h"
 #include <filesystem>
 #include "Extent.h"

@@ -142,32 +142,47 @@
   <ItemGroup>
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\DTW.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Equations.cpp" />
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\SIFT.cpp" />
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_lp.cpp" />
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_Up.cpp" />
     <ClCompile Include="DrawDecision.cpp" />
     <ClCompile Include="Element.cpp" />
     <ClCompile Include="Extent.cpp" />
+    <ClCompile Include="frmDTW.cpp" />
+    <ClCompile Include="frmExtractFeatures.cpp" />
     <ClCompile Include="frmMain.cpp" />
+    <ClCompile Include="frmNormalization.cpp" />
     <ClCompile Include="frmPreprocessing.cpp" />
     <ClCompile Include="frmSegmentation.cpp" />
     <ClCompile Include="MatModifies.cpp" />
+    <ClCompile Include="md5.cpp" />
     <ClCompile Include="Noise.cpp" />
+    <ClCompile Include="Normalized.cpp" />
     <ClCompile Include="Obstructing.cpp" />
     <ClCompile Include="Preprocess.cpp" />
+    <ClCompile Include="Projection.cpp" />
     <ClCompile Include="Segmentation.cpp" />
     <ClCompile Include="ShortestPath.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="Word_lp.cpp" />
+    <ClCompile Include="Word_Profile.cpp" />
+    <ClCompile Include="Word_Up.cpp" />
+    <ClCompile Include="X_Element.cpp" />
+    <ClCompile Include="Y_Element.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\DTW.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Equations.h" />
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\SIFT.h" />
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_lp.h" />
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_Up.h" />
     <ClInclude Include="DrawDecision.h" />
     <ClInclude Include="Element.h" />
     <ClInclude Include="Extent.h" />
+    <ClInclude Include="frmDTW.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmExtractFeatures.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="frmMain.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="frmNormalization.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="frmPreprocessing.h">
@@ -177,16 +192,34 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MatModifies.h" />
+    <ClInclude Include="md5.h" />
     <ClInclude Include="Noise.h" />
+    <ClInclude Include="Normalized.h" />
     <ClInclude Include="Obstructing.h" />
     <ClInclude Include="Preprocess.h" />
+    <ClInclude Include="Projection.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Segmentation.h" />
     <ClInclude Include="ShortestPath.h" />
+    <ClInclude Include="Test.h" />
+    <ClInclude Include="Word_lp.h" />
+    <ClInclude Include="Word_Profile.h" />
+    <ClInclude Include="Word_Up.h" />
+    <ClInclude Include="X_Element.h" />
+    <ClInclude Include="Y_Element.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmDTW.resx">
+      <DependentUpon>frmDTW.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExtractFeatures.resx">
+      <DependentUpon>frmExtractFeatures.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNormalization.resx">
+      <DependentUpon>frmNormalization.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPreprocessing.resx">
       <DependentUpon>frmPreprocessing.h</DependentUpon>

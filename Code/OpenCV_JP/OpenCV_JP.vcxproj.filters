@@ -24,15 +24,6 @@
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Equations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\SIFT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_lp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\OpenCV_Features\OpenCV_test\Word_Up.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="frmPreprocessing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,6 +57,42 @@
     <ClCompile Include="frmSegmentation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="frmExtractFeatures.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Projection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Word_lp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Word_Up.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Word_Profile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frmDTW.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="frmNormalization.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Normalized.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="X_Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Y_Element.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="frmMain.h">
@@ -75,15 +102,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Equations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\SIFT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_lp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\OpenCV_Features\OpenCV_test\Word_Up.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="frmPreprocessing.h">
@@ -122,6 +140,42 @@
     <ClInclude Include="frmSegmentation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="frmExtractFeatures.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_lp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_Up.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Word_Profile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frmDTW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="frmNormalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Normalized.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="X_Element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Y_Element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmMain.resx">
@@ -131,6 +185,9 @@
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSegmentation.resx">
+      <Filter>Resource Files</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExtractFeatures.resx">
       <Filter>Resource Files</Filter>
     </EmbeddedResource>
   </ItemGroup>

@@ -8,6 +8,7 @@ using namespace System::Windows::Forms;
 int main(int argc, char** argv){
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
+	
 
 	OpenCV_JP::frmMain main;
 	Application::Run(%main);
@@ -33,15 +34,27 @@ System::Void OpenCV_JP::frmMain::btnSeg_Click(System::Object ^ sender, System::E
 
 System::Void OpenCV_JP::frmMain::btnNormal_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	return System::Void();
+	if (!frmNormalization::instance) {
+		frmNormalization^ normal = gcnew frmNormalization();
+		normal->Show();
+		frmNormalization::instance = true;
+	}
 }
 
 System::Void OpenCV_JP::frmMain::btnExtract_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	return System::Void();
+	if (!frmExtractFeatures::instance) {
+		frmExtractFeatures^ extract = gcnew frmExtractFeatures();
+		extract->Show();
+		frmExtractFeatures::instance = true;
+	}
 }
 
 System::Void OpenCV_JP::frmMain::btnDTW_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	return System::Void();
+	if (!frmDTW::instance) {
+		frmDTW^ dtw = gcnew frmDTW();
+		dtw->Show();
+		frmDTW::instance = true;
+	}
 }

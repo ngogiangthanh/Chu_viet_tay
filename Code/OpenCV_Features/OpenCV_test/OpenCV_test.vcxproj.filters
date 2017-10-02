@@ -30,9 +30,6 @@
     <ClCompile Include="Equations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SIFT.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Projection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,9 +56,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SIFT.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Word_Up.h">
       <Filter>Header Files</Filter>
     </ClInclude>

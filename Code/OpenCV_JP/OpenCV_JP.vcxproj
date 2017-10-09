@@ -142,8 +142,11 @@
   <ItemGroup>
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\DTW.cpp" />
     <ClCompile Include="..\OpenCV_Features\OpenCV_test\Equations.cpp" />
+    <ClCompile Include="Cluster.cpp" />
+    <ClCompile Include="Clustering.cpp" />
     <ClCompile Include="DrawDecision.cpp" />
     <ClCompile Include="Element.cpp" />
+    <ClCompile Include="Entropy.cpp" />
     <ClCompile Include="Extent.cpp" />
     <ClCompile Include="frmDTW.cpp" />
     <ClCompile Include="frmExtractFeatures.cpp" />
@@ -170,9 +173,13 @@
   <ItemGroup>
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\DTW.h" />
     <ClInclude Include="..\OpenCV_Features\OpenCV_test\Equations.h" />
+    <ClInclude Include="Cluster.h" />
+    <ClInclude Include="Clustering.h" />
     <ClInclude Include="DrawDecision.h" />
     <ClInclude Include="Element.h" />
+    <ClInclude Include="Entropy.h" />
     <ClInclude Include="Extent.h" />
+    <ClInclude Include="FastDTW.h" />
     <ClInclude Include="frmDTW.h">
       <FileType>CppForm</FileType>
     </ClInclude>

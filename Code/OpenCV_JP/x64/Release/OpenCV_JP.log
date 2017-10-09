@@ -1,18 +1,19 @@
-﻿  frmNormalization.cpp
-d:\thesis\chu_viet_tay\code\opencv_jp\ShortestPath.h(8): warning C4005: 'UP': macro redefinition
-  d:\thesis\chu_viet_tay\code\opencv_jp\Obstructing.h(8): note: see previous definition of 'UP'
-d:\thesis\chu_viet_tay\code\opencv_jp\ShortestPath.h(9): warning C4005: 'DOWN': macro redefinition
-  d:\thesis\chu_viet_tay\code\opencv_jp\Obstructing.h(9): note: see previous definition of 'DOWN'
-d:\thesis\chu_viet_tay\code\opencv_jp\ShortestPath.h(18): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
-d:\thesis\chu_viet_tay\code\opencv_jp\ShortestPath.h(24): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
-frmNormalization.cpp(20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-frmNormalization.cpp(36): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-frmNormalization.cpp(46): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmNormalization.cpp(59): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-frmNormalization.cpp(69): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmNormalization.cpp(212): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-frmNormalization.cpp(222): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmNormalization.cpp(335): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  frmDTW.cpp
+d:\thesis\chu_viet_tay\code\opencv_jp\FastDTW.h(62): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\thesis\chu_viet_tay\code\opencv_jp\FastDTW.h(84): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+d:\thesis\chu_viet_tay\code\opencv_jp\FastDTW.h(143): warning C4267: 'initializing': conversion from 'size_t' to 'uint', possible loss of data
+d:\thesis\chu_viet_tay\code\opencv_jp\FastDTW.h(153): warning C4267: 'argument': conversion from 'size_t' to 'uint', possible loss of data
+frmDTW.cpp(47): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+frmDTW.cpp(87): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(118): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(127): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(186): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(194): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(204): warning C4267: 'argument': conversion from 'size_t' to 'uint', possible loss of data
+frmDTW.cpp(257): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(265): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(277): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
@@ -26,10 +27,6 @@ d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning 
 d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(580): warning C4793: 'cv::Mat::operator=': function compiled as native:
-  	Found an intrinsic not supported in managed code
-d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
   	Found an intrinsic not supported in managed code
   OpenCV_JP.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Release\OpenCV_JP.exe
   OpenCV_JP.vcxproj -> D:\Thesis\Chu_viet_tay\Code\OpenCV_Features\x64\Release\OpenCV_JP.pdb (Full PDB)

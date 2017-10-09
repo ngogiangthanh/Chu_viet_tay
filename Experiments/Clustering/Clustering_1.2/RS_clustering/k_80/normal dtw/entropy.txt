@@ -1,0 +1,80 @@
+25	anh 7	cw 3	lee 1	ocs 1	quee 3	sown 1	toor 2	veej 6	
+6	anh 6	boons 1	ddinhj 3	lee 2	nhwx 1	quee 1	theef 2	veej 2	
+52	anh 14	ddinhj 2	veej 1	
+72	baij 1	ddaoj 2	haf 1	nhw 1	soong 14	trieeuj 1	xwowng 2	
+74	baij 2	chwa 3	daang 8	ddaij 1	ddawngr 5	dongf 1	hwng 1	khan 5	lai 1	xwowng 2	
+79	baij 2	ddaij 2	ddaoj 3	hwowng 1	ta 3	taij 1	thwowngf 1	tieetj 4	tim 1	toor 1	
+77	baij 1	ddaps 1	khuaats 2	kieetj 1	lai 1	muoon 1	nganf 1	nhwx 1	nuis 7	sown 1	thur 2	tieetj 1	trieeuj 3	
+11	baij 1	boons 1	ddaps 1	haf 3	hanhf 4	khuaats 2	kieetj 3	nghichj 2	ngoaij 4	nhw 1	nuis 1	thur 1	vieetj 1	
+48	baij 1	baor 9	ddaps 1	hieens 1	hw 1	khan 1	laam 1	laanf 1	lai 1	lowif 2	nam 2	nhw 2	ta 3	trieeuj 3	vieetj 1	xaam 1	
+54	baij 1	ddaij 5	ddaps 6	lai 3	quee 1	toor 8	
+70	baor 1	boons 1	ddees 1	haf 17	hanhf 2	hieens 2	hw 6	lee 2	lowif 1	nhwx 1	nuis 1	taij 4	thur 2	thw 3	toor 3	
+62	baor 6	ddaps 1	laam 1	lowif 2	nayf 1	sown 1	trieeuj 1	xaam 1	
+32	baor 1	boons 2	chwa 1	conn 3	ddaps 2	em 2	hieens 2	laam 12	laanf 4	nawm 4	nayf 1	nganf 1	nhieen 1	sown 4	thieen 2	traanf 5	
+13	boons 1	cheets 1	ddees 8	haf 1	hieens 1	lee 1	loox 2	lowif 6	nuis 1	ocs 1	quee 1	sown 1	theef 9	thur 1	
+28	boons 1	laam 1	nawm 3	nayf 1	nhieen 3	san 2	ta 1	thieen 1	tim 2	trieeuj 1	xaam 1	
+67	boons 1	maus 1	nuis 8	quee 3	theef 1	
+3	boons 1	em 7	laam 1	laanf 1	lai 1	lowif 1	ocs 1	phamj 1	san 1	sown 1	ta 31	thieen 1	xaam 1	
+76	cheets 13	hanhf 1	khoois 1	khuaats 2	nguyeenj 1	taij 1	thw 1	vieetj 1	
+40	cheets 2	laanf 1	loox 3	lowif 8	ocs 1	
+75	cheets 1	haf 1	khoois 1	laanf 2	loox 4	lowif 24	taij 1	theef 1	toor 1	
+14	cheets 1	giang 7	xwowng 1	
+69	cho 18	chwa 3	nganf 2	nhieen 1	nuis 1	ocs 1	phucj 2	san 1	sown 4	xaam 5	xwowng 1	
+63	chwa 2	conn 1	daang 1	hwowng 2	khan 2	nam 28	nhw 1	ocs 2	ta 2	
+46	conn 1	ddaps 1	quoocs 1	quyeets 12	
+2	conn 3	ddaay 1	ddaps 1	hwng 4	hwowng 11	thwowngf 2	vwowng 6	xwowng 1	
+16	conn 1	em 14	khoois 1	laam 1	nam 1	nawm 1	nuis 1	sown 1	tim 1	vieetj 2	xaam 1	
+61	cungf 1	nghichj 2	nhwx 1	quoocs 3	tieetj 4	
+41	cungf 3	nhw 1	
+51	cungf 3	daang 1	ddaay 21	nayf 3	thwowngf 4	
+1	cungf 1	daang 4	nayf 1	vwowng 1	xwowng 6	
+15	cw 3	maus 3	nuis 9	quee 2	
+43	cw 1	nuis 6	ocs 2	
+24	cw 1	ddaps 1	ddinhj 1	hieens 2	kieetj 1	lee 1	maus 9	nuis 11	thur 1	
+5	cw 1	ddaps 12	ddinhj 1	lee 1	lys 14	maus 2	quee 5	quoocs 4	
+66	daang 2	ddawngr 1	dongf 1	giang 1	hwng 1	hwowng 1	nayf 2	phamj 1	
+9	daang 1	ddaay 7	ddaoj 2	thieen 1	xwowng 1	
+44	ddaay 7	ddaoj 2	hwng 2	hwowng 2	khan 1	vwowng 1	
+4	ddaij 1	ddaps 5	ddawngr 1	maus 4	taij 1	thur 1	toor 2	
+35	ddaps 9	lys 4	mootj 1	nganf 1	thur 1	
+45	ddaps 8	nayf 2	nguyeenj 2	vieetj 1	xaam 1	
+31	ddaps 3	veej 1	
+42	ddaps 7	nayf 1	nganf 1	ngoaij 1	traanf 3	trieeuj 1	
+10	ddaps 1	nhieen 1	sown 1	trieeuj 1	
+36	ddaps 1	kieetj 1	muoon 1	trieeuj 2	xaam 1	
+55	ddaps 2	giang 1	hwng 1	nam 28	nayf 3	nhw 1	nuis 2	soong 1	thwowngf 1	tim 1	trieeuj 1	xwowng 2	
+80	ddawngr 1	dongf 5	laam 1	sown 1	ta 1	thieen 1	trieeuj 1	
+27	ddawngr 1	thwowngf 1	
+59	ddinhj 2	nghichj 1	ngoaij 1	
+30	dongf 1	maus 1	soong 44	ta 1	
+60	em 1	nayf 1	ngoaij 1	
+78	em 1	phaanj 8	phamj 3	phucj 1	san 5	thieen 1	tim 1	
+34	em 1	nganf 2	nghichj 1	nguyeenj 3	san 1	vieetj 1	xaam 2	
+47	em 1	haf 1	phaanj 1	phamj 4	phucj 2	san 1	thw 2	
+7	giang 8	hw 2	khuaats 1	nayf 2	thw 2	trieeuj 1	
+64	haf 2	hieens 1	nam 1	nhwx 3	nuis 3	quee 1	san 2	theef 3	vieetj 1	
+26	haf 1	lai 1	phucj 2	ta 20	
+33	hanhf 2	khoois 1	nghichj 1	ngoaij 1	quoocs 15	
+23	hieens 3	nhw 2	nhwx 1	taij 1	vieetj 1	
+65	hieens 3	nganf 1	thieen 1	trieeuj 2	xaam 1	
+21	hieens 2	nuis 3	quoocs 1	
+29	hwowng 1	ngoaij 1	nguy 18	nguyeenj 10	thw 1	
+19	khoois 5	lowif 4	sown 1	theef 1	
+8	khuaats 2	kieetj 3	mootj 8	nghichj 2	quoocs 1	vieetj 6	xwowng 1	
+20	lai 1	
+17	lee 1	lowif 4	nuis 2	theef 1	vieetj 1	
+73	lowif 11	
+56	maus 6	nhwx 1	nuis 5	quee 1	
+53	muoon 14	san 2	sown 1	xaam 2	
+37	muoon 2	nguyeenj 1	
+38	nam 2	san 2	
+39	nawm 1	soong 4	veej 1	vieetj 3	xwowng 1	
+22	nhieen 3	phucj 1	thieen 1	xaam 1	
+57	nuis 2	
+68	quoocs 11	
+49	quyeets 4	traanf 1	
+58	quyeets 1	
+71	ta 1	tim 3	
+50	toor 1	veej 6	
+12	vieetj 10	
+18	vieetj 6	vwowng 1	

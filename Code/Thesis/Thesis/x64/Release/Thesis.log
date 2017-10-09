@@ -1,1 +1,338 @@
-﻿
+﻿  DrawDecision.cpp
+DrawDecision.cpp(82): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  DynamicTimeWarping.cpp
+DynamicTimeWarping.cpp(78): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+DynamicTimeWarping.cpp(78): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+DynamicTimeWarping.cpp(91): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+DynamicTimeWarping.cpp(92): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+DynamicTimeWarping.cpp(123): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+DynamicTimeWarping.cpp(148): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+DynamicTimeWarping.cpp(170): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+DynamicTimeWarping.cpp(172): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Element.cpp
+Element.cpp(165): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+  Equations.cpp
+Equations.cpp(17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+Equations.cpp(18): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+Equations.cpp(19): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  Extent.cpp
+Extent.cpp(68): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+Extent.cpp(69): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  frmMain.cpp
+d:\thesis\chu_viet_tay\code\thesis\thesis\frmMain.h(7): fatal error C1083: Cannot open include file: 'ocr.hpp': No such file or directory
+  LowerWord.cpp
+LowerWord.cpp(22): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+LowerWord.cpp(75): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+LowerWord.cpp(101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  MatModifies.cpp
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(8): warning C4005: 'UP': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(10): note: see previous definition of 'UP'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(9): warning C4005: 'DOWN': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(11): note: see previous definition of 'DOWN'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(12): warning C4005: 'THRESHOLD': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(12): note: see previous definition of 'THRESHOLD'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(18): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(24): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
+MatModifies.cpp(302): warning C4101: 'y': unreferenced local variable
+MatModifies.cpp(314): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+MatModifies.cpp(322): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+MatModifies.cpp(322): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+MatModifies.cpp(333): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+MatModifies.cpp(335): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+MatModifies.cpp(335): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+MatModifies.cpp(373): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+MatModifies.cpp(379): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+MatModifies.cpp(442): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+MatModifies.cpp(447): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  Normalization.cpp
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(8): warning C4005: 'UP': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(10): note: see previous definition of 'UP'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(9): warning C4005: 'DOWN': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(11): note: see previous definition of 'DOWN'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(12): warning C4005: 'THRESHOLD': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(12): note: see previous definition of 'THRESHOLD'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(18): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(24): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
+Normalization.cpp(26): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Normalization.cpp(35): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Normalization.cpp(71): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Normalization.cpp(79): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Normalization.cpp(90): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Normalization.cpp(98): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Normalization.cpp(152): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+Normalization.cpp(161): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Normalization.cpp(168): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Normalization.cpp(174): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Normalization.cpp(244): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Normalization.cpp(253): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+Normalization.cpp(297): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+Normalization.cpp(331): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Normalization.cpp(353): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+Normalization.cpp(371): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+Normalization.cpp(498): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+  Obstructing.cpp
+Obstructing.cpp(175): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Obstructing.cpp(176): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Obstructing.cpp(180): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Obstructing.cpp(181): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+  PreProcess.cpp
+PreProcess.cpp(42): warning C4018: '<': signed/unsigned mismatch
+PreProcess.cpp(43): warning C4018: '<': signed/unsigned mismatch
+PreProcess.cpp(47): warning C4018: '<': signed/unsigned mismatch
+PreProcess.cpp(51): warning C4244: '=': conversion from 'double' to 'unsigned int', possible loss of data
+PreProcess.cpp(54): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+PreProcess.cpp(57): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+PreProcess.cpp(58): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+PreProcess.cpp(59): warning C4018: '<': signed/unsigned mismatch
+PreProcess.cpp(59): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+PreProcess.cpp(61): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+PreProcess.cpp(71): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+PreProcess.cpp(77): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+PreProcess.cpp(88): warning C4018: '<': signed/unsigned mismatch
+PreProcess.cpp(100): warning C4018: '<': signed/unsigned mismatch
+  ProjectionProfiles.cpp
+ProjectionProfiles.cpp(34): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+ProjectionProfiles.cpp(59): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Segmentation.cpp
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(8): warning C4005: 'UP': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(10): note: see previous definition of 'UP'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(9): warning C4005: 'DOWN': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(11): note: see previous definition of 'DOWN'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(12): warning C4005: 'THRESHOLD': macro redefinition
+  d:\thesis\chu_viet_tay\code\thesis\thesis\Obstructing.h(12): note: see previous definition of 'THRESHOLD'
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(18): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(24): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
+Segmentation.cpp(46): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(52): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(88): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(95): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(100): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+Segmentation.cpp(102): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+Segmentation.cpp(117): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(120): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(121): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(122): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(126): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(127): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(128): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(138): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(140): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(150): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(151): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(152): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(153): warning C4554: '|': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(178): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(205): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(212): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(215): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(245): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(272): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(310): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(313): warning C4018: '>': signed/unsigned mismatch
+Segmentation.cpp(314): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(317): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(317): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(331): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(344): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(372): warning C4018: '<': signed/unsigned mismatch
+Segmentation.cpp(376): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(457): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(460): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(512): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(549): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(493): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+Segmentation.cpp(494): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+Segmentation.cpp(495): warning C4996: 'mkdir': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _mkdir. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\direct.h(108): note: see declaration of 'mkdir'
+Segmentation.cpp(599): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+Segmentation.cpp(606): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+Segmentation.cpp(677): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  ShortestPath.cpp
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(18): warning C4091: 'typedef ': ignored on left of 'State' when no variable is declared
+d:\thesis\chu_viet_tay\code\thesis\thesis\ShortestPath.h(24): warning C4091: 'typedef ': ignored on left of 'Node' when no variable is declared
+ShortestPath.cpp(72): warning C4244: 'return': conversion from 'int' to 'float', possible loss of data
+ShortestPath.cpp(77): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+ShortestPath.cpp(143): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+ShortestPath.cpp(220): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  UpperWord.cpp
+UpperWord.cpp(23): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+UpperWord.cpp(27): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+UpperWord.cpp(29): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+UpperWord.cpp(75): warning C4554: '&': check operator precedence for possible error; use parentheses to clarify precedence
+UpperWord.cpp(101): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  Word_Element.cpp
+  X_Element.cpp
+  Y_Element.cpp
+  Generating Code...
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\fast_math.hpp(96): warning C4793: '`anonymous namespace'::cvRound': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\fast_math.hpp(97): warning C4793: '`anonymous namespace'::cvRound': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(681): warning C4793: 'cv::Mat::release': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(1872): warning C4793: 'cv::SparseMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(3473): warning C4793: 'cv::UMat::addref': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(67): warning C4793: 'cv::detail::PtrOwner::incRef': function compiled as native:
+  	Found an intrinsic not supported in managed code
+d:\thesis\opencv_modify\install\include\opencv2\core\ptr.inl.hpp(72): warning C4793: 'cv::detail::PtrOwner::decRef': function compiled as native:
+  	Found an intrinsic not supported in managed code

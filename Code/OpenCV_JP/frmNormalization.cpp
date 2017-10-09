@@ -307,7 +307,7 @@ const Mat addSkewAndLine(Mat mat, bool addLine) {
 const void readDatabase(vector<Test>& database) {
 	Extent* extent = new Extent();
 	string input_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Clustering", input_path);
+	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Clustering\\data_normal", input_path);
 
 	for (auto i = fs::recursive_directory_iterator(input_path);
 		i != fs::recursive_directory_iterator();

@@ -6,11 +6,11 @@ rm(wp_series, pc.dtwlb, rs.Idx, rs, rs.val, i)
 wp_series <- reinterpolate(wp_data, new.length = max(lengths(wp_data)))
 wp_series <- zscore(wp_series)
 
-pc.dtwlb <- tsclust(wp_series, k = 20L, 
-                    distance = "dtw", centroid = "pam", 
+pc.dtwlb <- tsclust(wp_series, k = 80L, 
+                    distance = "dtw_lb", centroid = "pam", 
                     seed = 3247, trace = TRUE,
                     control = partitional_control(pam.precompute = FALSE),
-                    args = tsclust_args(dist = list(window.size = 20L)))
+                    args = tsclust_args(dist = list(window.size = 80L)))
 
 #plot(pc.dtwlb)
 

@@ -20,7 +20,7 @@ System::Void OpenCV_JP::frmNormalization::btnCreateDS1_Click(System::Object ^ se
 	srand(time(NULL));
 	Extent* extent = new Extent();
 	string output_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_1", output_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_1", output_path);
 	vector<Test> database;
 	readDatabase(database);
 
@@ -36,7 +36,7 @@ System::Void OpenCV_JP::frmNormalization::btnCreateDS2_Click(System::Object ^ se
 	srand(time(NULL));
 	Extent* extent = new Extent();
 	string output_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_2", output_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_2", output_path);
 	vector<Test> database;
 	readDatabase(database);
 
@@ -59,7 +59,7 @@ System::Void OpenCV_JP::frmNormalization::btnCreateDS3_Click(System::Object ^ se
 	srand(time(NULL));
 	Extent* extent = new Extent();
 	string output_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_3", output_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_3", output_path);
 	vector<Test> database;
 	readDatabase(database);
 
@@ -83,7 +83,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS1_Click(System::Object ^ send
 
 	Extent* extent = new Extent();
 	string input_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_1", input_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_1", input_path);
 
 	for (auto i = fs::recursive_directory_iterator(input_path);
 		i != fs::recursive_directory_iterator();
@@ -108,7 +108,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS1_Click(System::Object ^ send
 
 			//saving
 			vector<string> arrPath = extent->split(str, '\\');
-			std::string savePath = "D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_1_result\\" + arrPath.back();
+			std::string savePath = "D:\\Dataset\\2-Normalized\\Dataset_1_result\\" + arrPath.back();
 			imwrite(savePath, normalized.getWord());
 		}
 	}
@@ -124,7 +124,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS2_Click(System::Object ^ send
 
 	Extent* extent = new Extent();
 	string input_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_2", input_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_2", input_path);
 
 	for (auto i = fs::recursive_directory_iterator(input_path);
 		i != fs::recursive_directory_iterator();
@@ -149,7 +149,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS2_Click(System::Object ^ send
 
 			//saving
 			vector<string> arrPath = extent->split(str, '\\');
-			std::string savePath = "D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_2_result\\" + arrPath.back();
+			std::string savePath = "D:\\Dataset\\2-Normalized\\Dataset_2_result\\" + arrPath.back();
 			imwrite(savePath, normalized.getWord());
 		}
 	}
@@ -165,7 +165,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS3_Click(System::Object ^ send
 
 	Extent* extent = new Extent();
 	string input_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_3", input_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_3", input_path);
 
 	for (auto i = fs::recursive_directory_iterator(input_path);
 		i != fs::recursive_directory_iterator();
@@ -198,7 +198,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS3_Click(System::Object ^ send
 
 			//saving
 			vector<string> arrPath = extent->split(str, '\\');
-			std::string savePath = "D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_3_result\\" + arrPath.back();
+			std::string savePath = "D:\\Dataset\\2-Normalized\\Dataset_3_result\\" + arrPath.back();
 			imwrite(savePath, normalized.getWord());
 		}
 	}
@@ -212,7 +212,7 @@ System::Void OpenCV_JP::frmNormalization::btnCreateDS4_Click(System::Object ^ se
 	srand(time(NULL));
 	Extent* extent = new Extent();
 	string output_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_4", output_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_4", output_path);
 	vector<Test> database;
 	readDatabase(database);
 
@@ -236,7 +236,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS4_Click(System::Object ^ send
 
 	Extent* extent = new Extent();
 	string input_path;
-	extent->MarshalString("D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_4", input_path);
+	extent->MarshalString("D:\\Dataset\\2-Normalized\\Dataset_4", input_path);
 
 	for (auto i = fs::recursive_directory_iterator(input_path);
 		i != fs::recursive_directory_iterator();
@@ -264,7 +264,7 @@ System::Void OpenCV_JP::frmNormalization::btnNormDS4_Click(System::Object ^ send
 
 			//saving
 			vector<string> arrPath = extent->split(str, '\\');
-			std::string savePath = "D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_4_result\\" + arrPath.back();
+			std::string savePath = "D:\\Dataset\\2-Normalized\\Dataset_4_result\\" + arrPath.back();
 			imwrite(savePath, normalized.getWord());
 		}
 	}

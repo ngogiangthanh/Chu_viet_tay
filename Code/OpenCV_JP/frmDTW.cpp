@@ -12,7 +12,7 @@ const void to_str(System::String^ s, string& os);
 
 System::Void OpenCV_JP::frmDTW::btnCreate_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	openFileDialog->InitialDirectory = "D:\\";
+	openFileDialog->InitialDirectory = "D:\\Dataset\\4-Features";
 	openFileDialog->FilterIndex = 2;
 	openFileDialog->RestoreDirectory = true;
 
@@ -42,7 +42,7 @@ System::Void OpenCV_JP::frmDTW::button1_Click(System::Object ^ sender, System::E
 			string path_img = v[0];
 
 			cv::Mat img_org = cv::imread(path_img, CV_LOAD_IMAGE_GRAYSCALE);
-			std::string savePath = "D:/Thesis/Chu_viet_tay/Experiments/Clustering/rs/" +cluster_num+"/";
+			std::string savePath = "D:\\Dataset\\4-Features\\Clustering\\rs\\" +cluster_num+"\\";
 
 			mkdir(savePath.c_str());
 
@@ -174,7 +174,6 @@ System::Void OpenCV_JP::frmDTW::backgroundWorkerFastDTW_DoWork(System::Object ^ 
 		String^ str;
 
 		vector<vector<double>> candidates;
-
 
 		while ((str = din->ReadLine()) != nullptr)
 		{

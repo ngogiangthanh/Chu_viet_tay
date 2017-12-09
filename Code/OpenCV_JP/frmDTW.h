@@ -104,7 +104,7 @@ namespace OpenCV_JP {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(62, 81);
+			this->button4->Location = System::Drawing::Point(56, 81);
 			this->button4->Name = L"button4";
 			this->button4->Size = System::Drawing::Size(122, 39);
 			this->button4->TabIndex = 6;
@@ -147,9 +147,9 @@ namespace OpenCV_JP {
 			this->lbPath->AutoSize = true;
 			this->lbPath->Location = System::Drawing::Point(73, 43);
 			this->lbPath->Name = L"lbPath";
-			this->lbPath->Size = System::Drawing::Size(29, 20);
+			this->lbPath->Size = System::Drawing::Size(172, 20);
 			this->lbPath->TabIndex = 2;
-			this->lbPath->Text = L"D:\\";
+			this->lbPath->Text = L"D:\\Dataset\\4-Features\\";
 			// 
 			// label1
 			// 

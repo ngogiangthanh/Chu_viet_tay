@@ -102,13 +102,22 @@ namespace OpenCV_JP {
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->label16 = (gcnew System::Windows::Forms::Label());
+			this->btnNormDS4 = (gcnew System::Windows::Forms::Button());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label8 = (gcnew System::Windows::Forms::Label());
 			this->label9 = (gcnew System::Windows::Forms::Label());
+			this->btnNormDS3 = (gcnew System::Windows::Forms::Button());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->btnNormDS2 = (gcnew System::Windows::Forms::Button());
 			this->btnNormDS1 = (gcnew System::Windows::Forms::Button());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->label13 = (gcnew System::Windows::Forms::Label());
+			this->btnCreateDS4 = (gcnew System::Windows::Forms::Button());
+			this->label14 = (gcnew System::Windows::Forms::Label());
 			this->label10 = (gcnew System::Windows::Forms::Label());
 			this->label11 = (gcnew System::Windows::Forms::Label());
 			this->label12 = (gcnew System::Windows::Forms::Label());
@@ -118,15 +127,6 @@ namespace OpenCV_JP {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->btnCreateDS1 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->label13 = (gcnew System::Windows::Forms::Label());
-			this->btnCreateDS4 = (gcnew System::Windows::Forms::Button());
-			this->label14 = (gcnew System::Windows::Forms::Label());
-			this->btnNormDS3 = (gcnew System::Windows::Forms::Button());
-			this->label5 = (gcnew System::Windows::Forms::Label());
-			this->label7 = (gcnew System::Windows::Forms::Label());
-			this->label15 = (gcnew System::Windows::Forms::Label());
-			this->label16 = (gcnew System::Windows::Forms::Label());
-			this->btnNormDS4 = (gcnew System::Windows::Forms::Button());
 			this->panel1->SuspendLayout();
 			this->groupBox2->SuspendLayout();
 			this->groupBox1->SuspendLayout();
@@ -163,6 +163,52 @@ namespace OpenCV_JP {
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Normalization";
 			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Location = System::Drawing::Point(18, 156);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(83, 20);
+			this->label15->TabIndex = 18;
+			this->label15->Text = L"Dataset 4:";
+			// 
+			// label16
+			// 
+			this->label16->AutoSize = true;
+			this->label16->Location = System::Drawing::Point(107, 156);
+			this->label16->Name = L"label16";
+			this->label16->Size = System::Drawing::Size(262, 20);
+			this->label16->TabIndex = 16;
+			this->label16->Text = L"D:\\Dataset\\2-Normalized\\Dataset_4";
+			// 
+			// btnNormDS4
+			// 
+			this->btnNormDS4->Location = System::Drawing::Point(561, 149);
+			this->btnNormDS4->Name = L"btnNormDS4";
+			this->btnNormDS4->Size = System::Drawing::Size(93, 34);
+			this->btnNormDS4->TabIndex = 17;
+			this->btnNormDS4->Text = L"Normalize";
+			this->btnNormDS4->UseVisualStyleBackColor = true;
+			this->btnNormDS4->Click += gcnew System::EventHandler(this, &frmNormalization::btnNormDS4_Click);
+			// 
+			// label7
+			// 
+			this->label7->AutoSize = true;
+			this->label7->Location = System::Drawing::Point(19, 112);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(83, 20);
+			this->label7->TabIndex = 15;
+			this->label7->Text = L"Dataset 3:";
+			// 
+			// label5
+			// 
+			this->label5->AutoSize = true;
+			this->label5->Location = System::Drawing::Point(108, 112);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(262, 20);
+			this->label5->TabIndex = 8;
+			this->label5->Text = L"D:\\Dataset\\2-Normalized\\Dataset_3";
+			// 
 			// label8
 			// 
 			this->label8->AutoSize = true;
@@ -181,14 +227,24 @@ namespace OpenCV_JP {
 			this->label9->TabIndex = 13;
 			this->label9->Text = L"Dataset 1:";
 			// 
+			// btnNormDS3
+			// 
+			this->btnNormDS3->Location = System::Drawing::Point(562, 105);
+			this->btnNormDS3->Name = L"btnNormDS3";
+			this->btnNormDS3->Size = System::Drawing::Size(93, 34);
+			this->btnNormDS3->TabIndex = 12;
+			this->btnNormDS3->Text = L"Normalize";
+			this->btnNormDS3->UseVisualStyleBackColor = true;
+			this->btnNormDS3->Click += gcnew System::EventHandler(this, &frmNormalization::btnNormDS3_Click);
+			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(108, 72);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(425, 20);
+			this->label3->Size = System::Drawing::Size(262, 20);
 			this->label3->TabIndex = 5;
-			this->label3->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_2";
+			this->label3->Text = L"D:\\Dataset\\2-Normalized\\Dataset_2";
 			// 
 			// btnNormDS2
 			// 
@@ -215,9 +271,9 @@ namespace OpenCV_JP {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(107, 32);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(425, 20);
+			this->label2->Size = System::Drawing::Size(262, 20);
 			this->label2->TabIndex = 2;
-			this->label2->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_1";
+			this->label2->Text = L"D:\\Dataset\\2-Normalized\\Dataset_1";
 			// 
 			// groupBox1
 			// 
@@ -240,32 +296,60 @@ namespace OpenCV_JP {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Generate dataset";
 			// 
+			// label13
+			// 
+			this->label13->AutoSize = true;
+			this->label13->Location = System::Drawing::Point(109, 149);
+			this->label13->Name = L"label13";
+			this->label13->Size = System::Drawing::Size(262, 20);
+			this->label13->TabIndex = 15;
+			this->label13->Text = L"D:\\Dataset\\2-Normalized\\Dataset_4";
+			// 
+			// btnCreateDS4
+			// 
+			this->btnCreateDS4->Location = System::Drawing::Point(562, 139);
+			this->btnCreateDS4->Name = L"btnCreateDS4";
+			this->btnCreateDS4->Size = System::Drawing::Size(93, 34);
+			this->btnCreateDS4->TabIndex = 14;
+			this->btnCreateDS4->Text = L"Create";
+			this->btnCreateDS4->UseVisualStyleBackColor = true;
+			this->btnCreateDS4->Click += gcnew System::EventHandler(this, &frmNormalization::btnCreateDS4_Click);
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Location = System::Drawing::Point(20, 150);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(83, 20);
+			this->label14->TabIndex = 13;
+			this->label14->Text = L"Dataset 4:";
+			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
 			this->label10->Location = System::Drawing::Point(109, 103);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(425, 20);
+			this->label10->Size = System::Drawing::Size(262, 20);
 			this->label10->TabIndex = 12;
-			this->label10->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_3";
+			this->label10->Text = L"D:\\Dataset\\2-Normalized\\Dataset_3";
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
 			this->label11->Location = System::Drawing::Point(109, 64);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(425, 20);
+			this->label11->Size = System::Drawing::Size(262, 20);
 			this->label11->TabIndex = 11;
-			this->label11->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_2";
+			this->label11->Text = L"D:\\Dataset\\2-Normalized\\Dataset_2";
 			// 
 			// label12
 			// 
 			this->label12->AutoSize = true;
 			this->label12->Location = System::Drawing::Point(109, 25);
 			this->label12->Name = L"label12";
-			this->label12->Size = System::Drawing::Size(425, 20);
+			this->label12->Size = System::Drawing::Size(262, 20);
 			this->label12->TabIndex = 10;
-			this->label12->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_1";
+			this->label12->Text = L"D:\\Dataset\\2-Normalized\\Dataset_1";
 			// 
 			// btnCreateDS3
 			// 
@@ -323,90 +407,6 @@ namespace OpenCV_JP {
 			this->label1->Size = System::Drawing::Size(83, 20);
 			this->label1->TabIndex = 1;
 			this->label1->Text = L"Dataset 1:";
-			// 
-			// label13
-			// 
-			this->label13->AutoSize = true;
-			this->label13->Location = System::Drawing::Point(109, 149);
-			this->label13->Name = L"label13";
-			this->label13->Size = System::Drawing::Size(425, 20);
-			this->label13->TabIndex = 15;
-			this->label13->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_4";
-			// 
-			// btnCreateDS4
-			// 
-			this->btnCreateDS4->Location = System::Drawing::Point(562, 139);
-			this->btnCreateDS4->Name = L"btnCreateDS4";
-			this->btnCreateDS4->Size = System::Drawing::Size(93, 34);
-			this->btnCreateDS4->TabIndex = 14;
-			this->btnCreateDS4->Text = L"Create";
-			this->btnCreateDS4->UseVisualStyleBackColor = true;
-			this->btnCreateDS4->Click += gcnew System::EventHandler(this, &frmNormalization::btnCreateDS4_Click);
-			// 
-			// label14
-			// 
-			this->label14->AutoSize = true;
-			this->label14->Location = System::Drawing::Point(20, 150);
-			this->label14->Name = L"label14";
-			this->label14->Size = System::Drawing::Size(83, 20);
-			this->label14->TabIndex = 13;
-			this->label14->Text = L"Dataset 4:";
-			// 
-			// btnNormDS3
-			// 
-			this->btnNormDS3->Location = System::Drawing::Point(562, 105);
-			this->btnNormDS3->Name = L"btnNormDS3";
-			this->btnNormDS3->Size = System::Drawing::Size(93, 34);
-			this->btnNormDS3->TabIndex = 12;
-			this->btnNormDS3->Text = L"Normalize";
-			this->btnNormDS3->UseVisualStyleBackColor = true;
-			this->btnNormDS3->Click += gcnew System::EventHandler(this, &frmNormalization::btnNormDS3_Click);
-			// 
-			// label5
-			// 
-			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(108, 112);
-			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(425, 20);
-			this->label5->TabIndex = 8;
-			this->label5->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_3";
-			// 
-			// label7
-			// 
-			this->label7->AutoSize = true;
-			this->label7->Location = System::Drawing::Point(19, 112);
-			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(83, 20);
-			this->label7->TabIndex = 15;
-			this->label7->Text = L"Dataset 3:";
-			// 
-			// label15
-			// 
-			this->label15->AutoSize = true;
-			this->label15->Location = System::Drawing::Point(18, 156);
-			this->label15->Name = L"label15";
-			this->label15->Size = System::Drawing::Size(83, 20);
-			this->label15->TabIndex = 18;
-			this->label15->Text = L"Dataset 4:";
-			// 
-			// label16
-			// 
-			this->label16->AutoSize = true;
-			this->label16->Location = System::Drawing::Point(107, 156);
-			this->label16->Name = L"label16";
-			this->label16->Size = System::Drawing::Size(425, 20);
-			this->label16->TabIndex = 16;
-			this->label16->Text = L"D:\\Thesis\\Chu_viet_tay\\Experiments\\Normalized\\Dataset_4";
-			// 
-			// btnNormDS4
-			// 
-			this->btnNormDS4->Location = System::Drawing::Point(561, 149);
-			this->btnNormDS4->Name = L"btnNormDS4";
-			this->btnNormDS4->Size = System::Drawing::Size(93, 34);
-			this->btnNormDS4->TabIndex = 17;
-			this->btnNormDS4->Text = L"Normalize";
-			this->btnNormDS4->UseVisualStyleBackColor = true;
-			this->btnNormDS4->Click += gcnew System::EventHandler(this, &frmNormalization::btnNormDS4_Click);
 			// 
 			// frmNormalization
 			// 

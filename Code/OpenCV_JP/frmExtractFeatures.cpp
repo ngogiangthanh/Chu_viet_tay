@@ -8,7 +8,7 @@ const vector<string> explode(const string& s, const char& c);
 
 System::Void OpenCV_JP::frmExtractFeatures::btnOpenInput_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	folderBrowserDialog->SelectedPath = "D:\\Thesis\\Chu_viet_tay\\Experiments\\Clustering";
+	folderBrowserDialog->SelectedPath = "D:\\Dataset\\3-Clustering";
 	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		this->lbInput->Text = folderBrowserDialog->SelectedPath;
 		tbAlert->Text = tbAlert->Text + "\r\nChoose input: " + folderBrowserDialog->SelectedPath;
@@ -17,7 +17,7 @@ System::Void OpenCV_JP::frmExtractFeatures::btnOpenInput_Click(System::Object ^ 
 
 System::Void OpenCV_JP::frmExtractFeatures::btnOpenOutput_Click(System::Object ^ sender, System::EventArgs ^ e)
 {
-	folderBrowserDialog->SelectedPath = "D:\\Thesis\\Chu_viet_tay\\Experiments\\Clustering";
+	folderBrowserDialog->SelectedPath = "D:\\Dataset\\3-Clustering";
 	if (folderBrowserDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
 		this->lbOutput->Text = folderBrowserDialog->SelectedPath;
 		tbAlert->Text = tbAlert->Text + "\r\nChoose output: " + folderBrowserDialog->SelectedPath;

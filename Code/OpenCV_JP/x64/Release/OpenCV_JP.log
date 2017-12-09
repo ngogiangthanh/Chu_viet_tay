@@ -8,12 +8,12 @@ frmDTW.cpp(47): warning C4996: 'mkdir': The POSIX name for this item is deprecat
 frmDTW.cpp(87): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 frmDTW.cpp(118): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 frmDTW.cpp(127): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmDTW.cpp(186): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmDTW.cpp(194): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmDTW.cpp(204): warning C4267: 'argument': conversion from 'size_t' to 'uint', possible loss of data
-frmDTW.cpp(257): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmDTW.cpp(265): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-frmDTW.cpp(277): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(185): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(193): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(203): warning C4267: 'argument': conversion from 'size_t' to 'uint', possible loss of data
+frmDTW.cpp(256): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(264): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+frmDTW.cpp(276): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
 d:\thesis\opencv_modify\install\include\opencv2\core\cvstd.hpp(599): warning C4793: 'cv::String::String': function compiled as native:
   	Found an intrinsic not supported in managed code
 d:\thesis\opencv_modify\install\include\opencv2\core\mat.inl.hpp(392): warning C4793: 'cv::Mat::Mat': function compiled as native:

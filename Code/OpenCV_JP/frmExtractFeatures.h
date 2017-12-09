@@ -154,9 +154,9 @@ namespace OpenCV_JP {
 			this->lbOutput->AutoSize = true;
 			this->lbOutput->Location = System::Drawing::Point(121, 73);
 			this->lbOutput->Name = L"lbOutput";
-			this->lbOutput->Size = System::Drawing::Size(338, 20);
+			this->lbOutput->Size = System::Drawing::Size(175, 20);
 			this->lbOutput->TabIndex = 6;
-			this->lbOutput->Text = L"D:/Thesis/Chu_viet_tay/Experiments/Clustering";
+			this->lbOutput->Text = L"D:/Dataset/3-Clustering";
 			// 
 			// lbOutputlabel
 			// 
@@ -192,9 +192,9 @@ namespace OpenCV_JP {
 			this->lbInput->AutoSize = true;
 			this->lbInput->Location = System::Drawing::Point(121, 29);
 			this->lbInput->Name = L"lbInput";
-			this->lbInput->Size = System::Drawing::Size(338, 20);
+			this->lbInput->Size = System::Drawing::Size(175, 20);
 			this->lbInput->TabIndex = 2;
-			this->lbInput->Text = L"D:/Thesis/Chu_viet_tay/Experiments/Clustering";
+			this->lbInput->Text = L"D:/Dataset/3-Clustering";
 			// 
 			// lbInputLabel
 			// 
